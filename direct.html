@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Écoute en direct – VA FM</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* Barre de navigation */
+    .main-nav {
+      background-color: #970A0A;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 14px 0;
+    }
+
+    .main-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95em;
+      transition: background-color 0.3s ease;
+    }
+
+    .main-nav a:hover {
+      background-color: white;
+      color: #57081B;
+      border-radius: 5px;
+      padding: 6px 10px;
+    }
+
+    /* Section logo cliquable */
+    .logo-section {
+      background-color: transparent;
+      text-align: center;
+      padding: 40px 0 20px;
+    }
+
+    .clickable-logo {
+      height: 400px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border-radius: 20px;
+    }
+
+    .clickable-logo:hover {
+      transform: scale(1.05);
+    }
+
+    /* Égaliseur wrapper fixe */
+    .equalizer-wrapper {
+      height: 50px; /* Réserve l’espace */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .equalizer {
+      display: flex;
+      gap: 4px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .equalizer.hidden {
+      opacity: 0;
+    }
+
+    .bar {
+      width: 6px;
+      height: 20px;
+      background: #57081B;
+      animation: bounce 1s infinite ease-in-out;
+    }
+
+    .bar:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .bar:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+      0%, 100% { height: 20px; }
+      50% { height: 40px; }
+    }
+
+    /* Pied de page */
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px 0;
+      }
+
+      .main-nav a {
+        font-size: 1em;
+      }
+
+      .clickable-logo {
+        height: 70px;
+      }
+
+      .bar {
+        width: 4px;
+      }
+
+      .equalizer-wrapper {
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre de navigation -->
+  
+  <nav class="main-nav">
+    <a href="index.html">ACCUEIL</a>
+    <a href="programmes.html">PROGRAMMES</a>
+    <a href="histoire.html">HISTOIRE</a>
+  </nav>
+
+  <!-- Section logo cliquable -->
+  <section class="logo-section">
+    <img src="assets/logo vafm.png" alt="Logo VA FM" class="clickable-logo" onclick="togglePlay()">
+    <div class="equalizer-wrapper">
+      <div id="equalizer" class="equalizer hidden">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audio -->
+  <audio id="radio-player" src="http://vafm.ddns.net:8000/stream.mp3"></audio>
+
+  <!-- Pied de page -->
+  <footer>
+    <p>© 2025 VA FM. Tous droits réservés.</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const player = document.getElementById('radio-player');
+    const equalizer = document.getElementById('equalizer');
+    let isPlaying = false;
+    function togglePlay() {
+      if (!isPlaying) {
+        player.play();
+        equalizer.classList.remove('hidden');
+        isPlaying = true;
+      } else {
+        player.pause();
+        equalizer.classList.add('hidden');
+        isPlaying = false;
+      }
+    }
+  </script>
+</body>
+</html>

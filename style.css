@@ -484,5 +484,15 @@ body {
         height: 40px;
       }
     }
+@media (max-width: 768px) {
+  .clickable-logo {
+    max-height: 120px;
+  }
+
+  .logo-section {
+    padding-top: 40px;
+  }
+}
+
 
 

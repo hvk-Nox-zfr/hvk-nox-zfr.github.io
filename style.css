@@ -493,6 +493,26 @@ body {
     padding-top: 40px;
   }
 }
+@media (max-width: 768px) {
+  .main-nav {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .news-card {
+    width: 100%;
+  }
+
+  .popup-content {
+    max-width: 95%;
+    max-height: 90vh;
+  }
+
+  .clickable-logo {
+    max-height: 120px;
+  }
+}
+
 
 
 

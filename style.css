@@ -512,6 +512,12 @@ body {
     max-height: 120px;
   }
 }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 
 
 

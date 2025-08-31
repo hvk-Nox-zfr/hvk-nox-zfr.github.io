@@ -385,22 +385,26 @@ body {
   transform: scale(1.2);
 }
     /* Section logo cliquable */
-    .logo-section {
-      background-color: transparent;
-      text-align: center;
-      padding: 40px 0 20px;
-    }
+.logo-section {
+  background-color: transparent;
+  text-align: center;
+  padding-top: 80px;     /* espace depuis le haut */
+  padding-bottom: 20px;
+}
 
-    .clickable-logo {
-      height: 400px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      border-radius: 20px;
-    }
+.clickable-logo {
+  max-height: 200px;     /* taille raisonnable et responsive */
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 20px;
+  display: inline-block;
+}
 
-    .clickable-logo:hover {
-      transform: scale(1.05);
-    }
+.clickable-logo:hover {
+  transform: scale(1.05);
+}
+
 
     /* Égaliseur wrapper fixe */
     .equalizer-wrapper {
@@ -480,3 +484,4 @@ body {
         height: 40px;
       }
     }
+

@@ -140,15 +140,20 @@ footer {
 /* POPUP STYLES */
 .popup-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.7);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
   display: none;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* descend la pop-up */
   z-index: 1000;
-  padding: 20px;
+  padding: 60px 20px 20px; /* espace en haut + padding latéral */
+  box-sizing: border-box;
+  overflow-y: auto;
 }
+
 
 .popup-content {
   background: white;
@@ -398,6 +403,7 @@ const articles = [
 
 </body>
 </html>
+
 
 
 

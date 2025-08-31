@@ -388,12 +388,12 @@ body {
 .logo-section {
   background-color: transparent;
   text-align: center;
-  padding-top: 80px;     /* espace depuis le haut */
+  padding-top: 200px;     /* espace depuis le haut */
   padding-bottom: 20px;
 }
 
 .clickable-logo {
-  max-height: 200px;     /* taille raisonnable et responsive */
+  max-height: 400px;     /* taille raisonnable et responsive */
   width: auto;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -484,4 +484,5 @@ body {
         height: 40px;
       }
     }
+
 

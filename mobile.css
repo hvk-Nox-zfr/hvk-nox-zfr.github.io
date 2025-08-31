@@ -1,0 +1,53 @@
+@media (max-width: 768px) {
+  /* Barre du haut en colonne */
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  /* Menu en colonne */
+  .main-nav {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  /* Logo plus petit */
+  .clickable-logo {
+    max-height: 120px;
+  }
+
+  /* Cartes d’actualité en pile */
+  .news-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .news-card {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Pop-up plus compacte */
+  .popup-content {
+    max-width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .carousel img {
+    max-height: 200px;
+  }
+
+  .popup-text {
+    font-size: 0.95em;
+  }
+
+  /* Espacement du logo */
+  .logo-section {
+    padding-top: 30px;
+  }
+}

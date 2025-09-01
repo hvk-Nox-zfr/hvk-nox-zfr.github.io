@@ -427,6 +427,7 @@ body {
       opacity: 0;
     }
 
+/* --- Barre rouge du haut --- */
 .top-bar {
   background-color: #970A0A;
   color: white;
@@ -435,9 +436,10 @@ body {
   align-items: center;
   padding: 15px 20px;
   height: 80px;
-  position: relative; /* important pour placer le hamburger dedans */
+  position: relative; /* pour placer le hamburger dedans */
 }
 
+/* --- Menu latéral --- */
 .side-menu {
   position: fixed;
   top: 0;
@@ -457,6 +459,19 @@ body {
   right: 0; /* visible */
 }
 
+.side-menu a {
+  color: white; /* couleur fixe */
+  font-size: 1.1em; /* taille fixe */
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.side-menu a:hover {
+  color: yellow; /* couleur au survol */
+  text-decoration: underline;
+}
+
+/* --- Bouton hamburger --- */
 .hamburger {
   font-size: 28px;
   cursor: pointer;
@@ -466,17 +481,14 @@ body {
   border-radius: 6px;
 }
 
-
-.side-menu a:hover {
-  text-decoration: underline;
-}
-
+/* --- Réseaux sociaux dans le menu --- */
 .social-links {
   display: flex;
   justify-content: center;
   gap: 12px;
   padding-top: 20px;
   border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: auto;
 }
 
 .social-links img {
@@ -487,87 +499,72 @@ body {
   filter: brightness(1.1);
 }
 
-
-    .bar {
-      width: 6px;
-      height: 20px;
-      background: #57081B;
-      animation: bounce 1s infinite ease-in-out;
-    }
-
-    .bar:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .bar:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-.side-menu a {
-  color: white; /* couleur fixe */
-  font-size: 1.1em; /* taille fixe */
-  text-decoration: none;
+.social-links img:hover {
+  transform: scale(1.2);
 }
 
-.side-menu a:hover {
-  color: yellow; /* couleur au survol */
+/* --- Animation barres (equalizer) --- */
+.bar {
+  width: 6px;
+  height: 20px;
+  background: #57081B;
+  animation: bounce 1s infinite ease-in-out;
 }
 
-    @keyframes bounce {
-      0%, 100% { height: 20px; }
-      50% { height: 40px; }
-    }
+.bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
 
-    /* Pied de page */
-    footer {
-      background-color: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
+.bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% { height: 20px; }
+  50% { height: 40px; }
+}
+
+/* --- Pied de page --- */
+footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* --- Responsive --- */
 @media (max-width: 768px) {
   .top-bar {
     flex-direction: column;
     gap: 20px;
   }
-    /* Responsive */
-    @media (max-width: 768px) {
-      .main-nav {
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px 0;
-      }
 
-      .main-nav a {
-        font-size: 1em;
-      }
+  .main-nav {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+  }
 
-      .clickable-logo {
-        height: 70px;
-      }
+  .main-nav a {
+    font-size: 1em;
+  }
 
-      .bar {
-        width: 4px;
-      }
-
-      .equalizer-wrapper {
-        height: 40px;
-      }
-    }
-@media (max-width: 768px) {
   .clickable-logo {
+    height: 70px;
     max-height: 120px;
   }
 
   .logo-section {
     padding-top: 40px;
   }
-}
-@media (max-width: 768px) {
-  .main-nav {
-    flex-direction: column;
-    gap: 15px;
+
+  .bar {
+    width: 4px;
+  }
+
+  .equalizer-wrapper {
+    height: 40px;
   }
 
   .news-card {
@@ -578,35 +575,11 @@ body {
     max-width: 95%;
     max-height: 90vh;
   }
-
-  .clickable-logo {
-    max-height: 120px;
-  }
 }
+
+/* --- Container général --- */
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

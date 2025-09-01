@@ -13,3 +13,19 @@ function toggleMenu() {
   function closePopup() {
     document.getElementById("popup").classList.add("hidden");
   }
+
+function togglePlay() {
+  const logo = document.querySelector('.clickable-logo');
+
+  if (!isPlaying) {
+    player.play();
+    equalizer.classList.remove('hidden');
+    logo.classList.add('playing'); // active l'animation
+    isPlaying = true;
+  } else {
+    player.pause();
+    equalizer.classList.add('hidden');
+    logo.classList.remove('playing'); // stoppe l'animation
+    isPlaying = false;
+  }
+}

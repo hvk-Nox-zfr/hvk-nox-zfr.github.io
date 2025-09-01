@@ -12,12 +12,7 @@
   height: 250px;
 }
 
-.clickable-logo {
-  max-width: 200px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
+/* --- Logo cliquable + animation --- */
 .logo-section {
   display: flex;
   flex-direction: column;
@@ -25,6 +20,12 @@
   justify-content: center;
   margin: 40px 0;
   text-align: center;
+}
+
+.clickable-logo {
+  max-width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .clickable-logo.playing {
@@ -128,10 +129,6 @@
 }
 
 /* --- Égaliseur --- */
-.equalizer.hidden {
-  display: none;
-}
-
 .equalizer-wrapper {
   display: flex;
   justify-content: center;
@@ -141,6 +138,10 @@
 .equalizer {
   display: flex;
   gap: 4px;
+}
+
+.equalizer.hidden {
+  display: none;
 }
 
 .bar {

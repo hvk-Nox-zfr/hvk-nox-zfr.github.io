@@ -66,21 +66,24 @@
 
   <!-- Script -->
   <script>
-    const player = document.getElementById('radio-player');
-    const equalizer = document.getElementById('equalizer');
-    let isPlaying = false;
-    function togglePlay() {
-      if (!isPlaying) {
-        player.play();
-        equalizer.classList.remove('hidden');
-        isPlaying = true;
-      } else {
-        player.pause();
-        equalizer.classList.add('hidden');
-        isPlaying = false;
-      }
+<script>
+  const player = document.getElementById('radio-player');
+  const equalizer = document.getElementById('equalizer');
+  let isPlaying = false;
+
+  function togglePlay() {
+    if (!isPlaying) {
+      player.play();
+      equalizer.classList.remove('hidden');
+      isPlaying = true;
+    } else {
+      player.pause();
+      equalizer.classList.add('hidden');
+      isPlaying = false;
     }
-  </script>
+  }
+</script>
+
     <script>
 function toggleMenu() {
   const menu = document.getElementById("sideMenu");
@@ -109,6 +112,7 @@ function toggleMenu() {
 </script>
 </body>
 </html>
+
 
 
 

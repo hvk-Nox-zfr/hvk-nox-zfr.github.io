@@ -12,6 +12,21 @@
   height: 250px;
 }
 
+.clickable-logo {
+  max-width: 200px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  text-align: center;
+}
+
 /* --- Barre noire --- */
 .sub-bar {
   background-color: #111;

@@ -599,6 +599,22 @@ body {
   display: none;
   z-index: 900;
 }
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .hamburger {
+    display: block; /* ou none si tu veux le cacher sur grand écran */
+  }
+}
+
 
 
 

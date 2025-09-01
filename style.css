@@ -471,15 +471,6 @@ body {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: auto;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.2);
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
   padding-top: 20px;
   border-top: 1px solid rgba(255,255,255,0.2);
 }
@@ -491,6 +482,7 @@ body {
   transition: transform 0.3s ease;
   filter: brightness(1.1);
 }
+
 
     .bar {
       width: 6px;
@@ -582,6 +574,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

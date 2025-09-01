@@ -1,15 +1,12 @@
 function toggleMenu() {
   const menu = document.getElementById("sideMenu");
+  const toggleBtn = document.getElementById("menuToggle");
 
-  // Si le menu est ouvert, on le remet complètement hors écran
-  if (menu.style.right === "0px") {
-    menu.style.right = "-250px"; // complètement caché
+  menu.classList.toggle("open");
+
+  if (menu.classList.contains("open")) {
+    toggleBtn.textContent = "✖";
   } else {
-    menu.style.right = "0px"; // complètement visible
+    toggleBtn.textContent = "☰";
   }
 }
-function toggleMenu() {
-  const menu = document.getElementById("sideMenu");
-  menu.classList.toggle("open");
-}
-

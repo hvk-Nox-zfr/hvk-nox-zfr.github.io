@@ -1,491 +1,59 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="/vafm/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VAFM</title>
+  <title>VAEFA - La radio qu'il vous faut</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
-  <script src="principal.js"></script>
-  <style>
-    body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-    
-@media (max-width: 768px) {
-  .popup-overlay {
-    padding-top: 80px;
-  }
-}
-
-.site-header {
-  background-color: #ffffff;
-  color: white;
-}
-
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-}
-
-.logo img {
-  height: 80px;
-  border-radius: 14px;
-}
-
-.socials {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.social-icon img {
-  width: 32px;
-  height: 32px;
-  transition: transform 0.3s ease;
-}
-
-.social-icon img:hover {
-  transform: scale(1.2);
-}
-
-.main-nav {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 12px 0;
-  background-color: #970A0A;
-}
-
-.main-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.95em;
-  transition: background-color 0.3s ease;
-}
-
-.main-nav a:hover {
-  background-color: white;
-  color: #57081B;
-  border-radius: 5px;
-  padding: 6px 10px;
-}
-
-.intro {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-footer {
-  background-color: #222;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-}
-
-.news-section {
-  padding: 40px 20px;
-  background-color: #fff;
-  text-align: center;
-}
-
-.news-section h2 {
-  color: #57081B;
-  margin-bottom: 30px;
-}
-
-.news-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.news-card {
-  width: 300px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.news-card:hover {
-  transform: scale(1.03);
-}
-
-.news-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.news-text {
-  padding: 15px;
-  text-align: left;
-}
-
-.news-text h3 {
-  margin-top: 0;
-  color: #3e0613;
-  font-size: 1.1em;
-}
-
-.news-text p {
-  font-size: 0.95em;
-  color: #333;
-}
-
-/* POPUP STYLES */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  justify-content: center;
-  align-items: flex-start; /* place la pop-up en haut */
-  z-index: 1000;
-  padding-top: 200px; /* espace depuis le haut */
-  padding-left: 20px;
-  padding-right: 20px;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
-
-.popup-content {
-  background: white;
-  border-radius: 10px;
-  max-width: 700px;
-  width: 100%;
-  max-height: 100vh;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  animation: fadeIn 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.carousel {
-  position: relative;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.carousel img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 8px 8px 0 0;
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #57081B;
-  color: white;
-  border: none;
-  font-size: 1.5em;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1;
-  opacity: 0.8;
-  border-radius: 5px;
-}
-
-.arrow.left {
-  left: 10px;
-}
-
-.arrow.right {
-  right: 10px;
-}
-
-.popup-text {
-  flex: 1;
-  overflow-y: auto;
-  max-height: 150px;
-  padding: 30px;
-  text-align: left;
-  scrollbar-width: thin;
-  scrollbar-color: #970A0A #f9f9f9;
-}
-
-.popup-text h3 {
-  margin-top: 0;
-  color: #3e0613;
-}
-
-.popup-text p {
-  font-size: 1em;
-  color: #333;
-}
-
-/* Scrollbar for WebKit browsers */
-.popup-text::-webkit-scrollbar {
-  width: 6px;
-}
-
-.popup-text::-webkit-scrollbar-track {
-  background: #f9f9f9;
-}
-
-.popup-text::-webkit-scrollbar-thumb {
-  background-color: #970A0A;
-  border-radius: 3px;
-}
-
-/* Close button */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  color: #57081B;
-}
-/* Barre rouge */
-.top-bar {
-  background-color: #970A0A;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px; /* plus de padding = plus grande hauteur */
-  height: 80px; /* tu peux ajuster */
-}
-
-/* Logo */
-.logo {
-  height: 250px;
-  border-radius: 10px;
-  margin-top: -30px;
-}
-
-/* Barre noire */
-.sub-bar {
-  background-color: #111;
-  color: white;
-  text-align: center;
-  padding: 6px 0; /* moins de padding = plus fine */
-  font-size: 0.95em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  height: 35px; /* plus petite que la rouge */
-}
-
-
-/* Responsive */
-@media (max-width: 768px) {
-  .top-bar {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .main-nav {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .popup-content {
-    max-width: 95%;
-    max-height: 90vh;
-  }
-
-  .popup-text {
-    max-height: 250px;
-  }
-}
-    
-  </style>
 </head>
 <body>
 
-<!-- Barre noire -->
-<div class="sub-bar">
-</div>
+  <!-- Barre rouge -->
+  <header class="top-bar">
+    <div class="logo-zone">
+      <img src="assets/logo.png" alt="VAEFA" class="logo">
+    </div>
+    <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Barre noire -->
+  <div class="sub-bar">
+    <p>LA RADIO QU'IL VOUS FAUT !</p>
+  </div>
+
+  <!-- Menu latéral -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="index.html">Accueil</a>
+    <a href="direct.html">Écouter le direct</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="histoire.html">Histoire</a>
+
+    <div class="social-links">
+      <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
+      <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
+    </div>
+  </nav>
 
   <!-- Contenu principal -->
-  <main>
-  <section class="news-section">
-    <div class="news-grid">
-      <div class="news-card" onclick="openPopup(0)">
-        <img src="assets/fresne lescaut nex concert.jpg" alt="Actu 1">
-        <div class="news-text">
-          <h3>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h3>
-          <p>Fresnes-sur-Escaut – 16 août 2025.
-La tradition a une nouvelle fois été respectée hier : Fresnes-sur-Escaut a fêté son 15 août avec faste. Entre le carnaval haut en couleurs, les concerts festifs et un feu d’artifice grandiose, la commune a rassemblé plusieurs milliers de spectateurs venus profiter d’une journée placée sous le signe de la convivialité.</p>
-        </div>
-      </div>
-      <!-- Ajoute d'autres cartes ici -->
-    </div>
-  </section>
-
-  <div id="popup" class="popup-overlay" onclick="closePopup(event)">
-    <div class="popup-content">
-      <span class="close-btn" onclick="closePopup(event)">×</span>
-
-      <div class="carousel">
-        <button class="arrow left" onclick="changeSlide(-1)">←</button>
-        <img id="carousel-img" src="" alt="Image popup">
-        <button class="arrow right" onclick="changeSlide(1)">→</button>
-      </div>
-
-      <div class="popup-text scrollable">
-        <h3 id="popup-title"></h3>
-        <p id="popup-body"></p>
-      </div>
-    </div>
-  </div>
-</main>
-  
-<!-- Barre rouge -->
-<div class="top-bar">
-  <div class="logo-zone">
-    <img src="assets/erasebg-transformed.png" alt="VAEFA" class="logo">
-  </div>
-  <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-
-<!-- Menu latéral -->
-<div class="side-menu" id="sideMenu">
-  <a href="#">Accueil</a>
-  <a href="#">Écouter le direct</a>
-  <a href="#">Programmes</a>
-  <a href="#">Histoire</a>
-
-  <div class="social-links">
-    <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
-    <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
-    <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
-    <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
-  </div>
-</div>
-
-
-
-<script>
-const articles = [
-  {
-    title: "Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025",
-    file: "articles/fresne.txt",
-    images: [
-      "assets/fresne lescaut nex concert.jpg",
-      "assets/frs.jpg",
-      "assets/frs_c.jpg"
-    ]
-  }
-  // Tu peux ajouter d'autres articles ici
-];
-
-
-  let currentArticle = 0;
-  let currentSlide = 0;
-
-  function openPopup(index) {
-    currentArticle = index;
-    currentSlide = 0;
-
-    const article = articles[index];
-    document.getElementById("popup-title").textContent = article.title;
-    document.getElementById("carousel-img").src = article.images[0];
-
-    fetch(article.file)
-      .then(response => response.text())
-      .then(text => {
-        document.getElementById("popup-body").textContent = text;
-      });
-
-    document.getElementById("popup").style.display = "flex";
-  }
-
-  function closePopup(e) {
-    if (e.target.id === "popup") {
-      document.getElementById("popup").style.display = "none";
-    }
-  }
-
-  function changeSlide(direction) {
-    const imgs = articles[currentArticle].images;
-    currentSlide = (currentSlide + direction + imgs.length) % imgs.length;
-    document.getElementById("carousel-img").src = imgs[currentSlide];
-  }
-</script>
+  <main class="container">
+    <article class="news-card">
+      <img src="assets/event.jpg" alt="Concert">
+      <h2>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h2>
+      <p>Fresnes-sur-Escaut – 15 août 2025. La tradition a une nouvelle fois été respectée...</p>
+    </article>
   </main>
 
-  <!-- Pied de page -->
+  <!-- Footer -->
   <footer>
-    &copy; 2025 VA FM. Tous droits réservés.
+    © 2025 VAEFA. Tous droits réservés.
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

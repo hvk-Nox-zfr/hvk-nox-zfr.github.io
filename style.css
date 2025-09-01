@@ -9,7 +9,7 @@
 }
 
 .logo {
-  height: 50px; /* Ajuste ici si tu veux plus grand */
+  height: 250px; /* Ajuste ici si tu veux plus grand */
 }
 
 /* --- Barre noire --- */
@@ -191,5 +191,6 @@ footer {
     max-height: 90vh;
   }
 }
+
 
 

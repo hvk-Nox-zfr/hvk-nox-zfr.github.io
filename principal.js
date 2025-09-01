@@ -8,4 +8,8 @@ function toggleMenu() {
     menu.style.right = "0px"; // complètement visible
   }
 }
+function toggleMenu() {
+  const menu = document.getElementById("sideMenu");
+  menu.classList.toggle("open");
+}
 

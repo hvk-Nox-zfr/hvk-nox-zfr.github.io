@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="/vafm/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/vafm/">
   <link rel="stylesheet" href="direct.css">
   <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
   <title>Écoute en direct – VAFM</title>
@@ -24,8 +23,7 @@
   </header>
 
   <!-- Barre noire -->
-  <div class="sub-bar">
-  </div>
+  <div class="sub-bar"></div>
 
   <!-- Menu latéral -->
   <nav class="side-menu" id="sideMenu">
@@ -43,18 +41,16 @@
   </nav>
 
   <!-- Section logo cliquable -->
-<section class="logo-section">
-  <img src="assets/logo vafm.png" alt="Logo VA FM" class="clickable-logo" onclick="togglePlay()">
-  <div class="equalizer-wrapper">
-    <div id="equalizer" class="equalizer hidden">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
+  <section class="logo-section">
+    <img src="assets/logo vafm.png" alt="Logo VA FM" class="clickable-logo" onclick="togglePlay()">
+    <div class="equalizer-wrapper">
+      <div id="equalizer" class="equalizer hidden">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
     </div>
-  </div>
-</section>
-
-<audio id="radio-player" src="http://vafm.ddns.net:8000/stream.mp3"></audio>
+  </section>
 
   <!-- Audio -->
   <audio id="radio-player" src="http://vafm.ddns.net:8000/stream.mp3"></audio>
@@ -66,68 +62,29 @@
 
   <!-- Script -->
   <script>
-<script>
-  const player = document.getElementById('radio-player');
-  const equalizer = document.getElementById('equalizer');
-  let isPlaying = false;
+    function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      const toggleBtn = document.getElementById("menuToggle");
 
-  function togglePlay() {
-    if (!isPlaying) {
-      player.play();
-      equalizer.classList.remove('hidden');
-      isPlaying = true;
-    } else {
-      player.pause();
-      equalizer.classList.add('hidden');
-      isPlaying = false;
+      menu.classList.toggle("open");
+      toggleBtn.classList.toggle("open");
     }
-  }
-</script>
 
-    <script>
-function toggleMenu() {
-  const menu = document.getElementById("sideMenu");
-  const toggleBtn = document.getElementById("menuToggle");
+    const player = document.getElementById('radio-player');
+    const equalizer = document.getElementById('equalizer');
+    let isPlaying = false;
 
-  menu.classList.toggle("open");
-  toggleBtn.classList.toggle("open");
-}
+    function togglePlay() {
+      if (!isPlaying) {
+        player.play();
+        equalizer.classList.remove('hidden');
+        isPlaying = true;
+      } else {
+        player.pause();
+        equalizer.classList.add('hidden');
+        isPlaying = false;
+      }
+    }
   </script>
-  <script>
-  const player = document.getElementById('radio-player');
-  const equalizer = document.getElementById('equalizer');
-  let isPlaying = false;
-
-  function togglePlay() {
-    if (!isPlaying) {
-      player.play();
-      equalizer.classList.remove('hidden');
-      isPlaying = true;
-    } else {
-      player.pause();
-      equalizer.classList.add('hidden');
-      isPlaying = false;
-    }
-  }
-</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

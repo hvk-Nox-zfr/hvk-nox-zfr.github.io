@@ -438,21 +438,6 @@ body {
   position: relative; /* important pour placer le hamburger dedans */
 }
 
-.hamburger {
-  font-size: 28px;
-  cursor: pointer;
-  background-color: #970A0A;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  position: absolute; /* se place par rapport à .top-bar */
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%); /* centre verticalement */
-}
-
-
-  
 .side-menu {
   position: fixed;
   top: 0;
@@ -461,17 +446,26 @@ body {
   height: 100%;
   background-color: #57081B;
   color: white;
-  display: none; /* invisible par défaut */
+  display: flex;
   flex-direction: column;
   padding: 60px 20px;
-  transition: right 0.3s ease;
+  transition: right 0.3s ease; /* animation fluide */
   z-index: 1000;
 }
 
 .side-menu.open {
-  display: flex; /* visible seulement quand ouvert */
-  right: 0;
+  right: 0; /* visible */
 }
+
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  background-color: #970A0A;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
 
 .side-menu a:hover {
   text-decoration: underline;
@@ -594,6 +588,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

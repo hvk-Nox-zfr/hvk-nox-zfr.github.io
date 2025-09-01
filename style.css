@@ -496,6 +496,16 @@ body {
       animation-delay: 0.4s;
     }
 
+.side-menu a {
+  color: white; /* couleur fixe */
+  font-size: 1.1em; /* taille fixe */
+  text-decoration: none;
+}
+
+.side-menu a:hover {
+  color: yellow; /* couleur au survol */
+}
+
     @keyframes bounce {
       0%, 100% { height: 20px; }
       50% { height: 40px; }
@@ -571,6 +581,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

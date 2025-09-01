@@ -272,7 +272,8 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 15px 20px; /* plus de padding = plus grande hauteur */
+  height: 80px; /* tu peux ajuster */
 }
 
 /* Logo */
@@ -286,11 +287,13 @@ footer {
   background-color: #111;
   color: white;
   text-align: center;
-  padding: 8px 0;
+  padding: 6px 0; /* moins de padding = plus fine */
   font-size: 0.95em;
   font-weight: bold;
   letter-spacing: 1px;
+  height: 35px; /* plus petite que la rouge */
 }
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -445,6 +448,7 @@ const articles = [
 
 </body>
 </html>
+
 
 
 

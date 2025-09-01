@@ -265,6 +265,32 @@ footer {
   cursor: pointer;
   color: #57081B;
 }
+/* Barre rouge */
+.top-bar {
+  background-color: #970A0A;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+/* Logo */
+.logo {
+  height: 50px;
+  border-radius: 10px;
+}
+
+/* Barre noire */
+.sub-bar {
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.95em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -287,10 +313,24 @@ footer {
     max-height: 250px;
   }
 }
+    
   </style>
 </head>
 <body>
   
+<!-- Barre rouge -->
+<div class="top-bar">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="logo-zone">
+    <img src="assets/logo.png" alt="VAFM" class="logo">
+  </div>
+</div>
+
+<!-- Barre noire -->
+<div class="sub-bar">
+  <p class="sub-text">LA RADIO QU'IL VOUS FAUT !</p>
+</div>
+
   <!-- Contenu principal -->
   <main>
   <section class="news-section">
@@ -405,6 +445,7 @@ const articles = [
 
 </body>
 </html>
+
 
 
 

@@ -426,6 +426,7 @@ body {
     .equalizer.hidden {
       opacity: 0;
     }
+
 .hamburger {
   position: fixed;
   top: 20px;
@@ -437,6 +438,8 @@ body {
   color: white;
   padding: 10px 15px;
   border-radius: 8px;
+}
+
   
 .side-menu {
   position: fixed;
@@ -452,7 +455,6 @@ body {
   transition: right 0.3s ease;
   z-index: 1000;
 }
-
 
 .side-menu a {
   color: white;
@@ -579,6 +581,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

@@ -3,10 +3,5 @@ function toggleMenu() {
   const toggleBtn = document.getElementById("menuToggle");
 
   menu.classList.toggle("open");
-
-  if (menu.classList.contains("open")) {
-    toggleBtn.textContent = "✖";
-  } else {
-    toggleBtn.textContent = "☰";
-  }
+  toggleBtn.classList.toggle("open");
 }

@@ -133,30 +133,33 @@ footer {
   }
 }
 .news-card {
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 600px; /* moins large */
+  margin: 20px auto; /* espace autour */
   background: white;
-  padding: 20px;
+  padding: 15px; /* moins de padding */
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .news-card img {
   width: 100%;
+  max-height: 250px; /* limite la hauteur de l'image */
+  object-fit: cover; /* recadre si nécessaire */
   border-radius: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .news-card h2 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
+  font-size: 1.4em; /* plus petit */
+  margin-bottom: 8px;
   color: #970A0A;
 }
 
 .news-card p {
-  font-size: 1.1em;
-  line-height: 1.6;
+  font-size: 0.95em; /* texte plus petit */
+  line-height: 1.4; /* moins d'espacement vertical */
   color: #333;
 }
+
 
 

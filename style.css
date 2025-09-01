@@ -434,8 +434,7 @@ body {
   font-size: 28px;
   cursor: pointer;
   z-index: 1100;
-  background-color: #970A0A;
-  color: white;
+  color: black;
   padding: 10px 15px;
   border-radius: 8px;
 }
@@ -574,6 +573,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

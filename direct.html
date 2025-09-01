@@ -1,178 +1,87 @@
-/* --- Barre rouge --- */
-.top-bar {
-  background-color: #970A0A;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  height: 80px;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/vafm/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="direct.css">
+  <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
+  <title>Écoute en direct – VAFM</title>
+</head>
+<body>
 
-.logo {
-  height: 50px;
-}
+  <!-- Barre rouge -->
+  <header class="top-bar">
+    <div class="logo-zone">
+      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
+    </div>
+    <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
 
-/* --- Barre noire --- */
-.sub-bar {
-  background-color: #111;
-  height: 8px;
-}
+  <!-- Barre noire -->
+  <div class="sub-bar">
+  </div>
 
-/* --- Hamburger animé --- */
-.hamburger {
-  width: 30px;
-  height: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 1100;
-}
+  <!-- Menu latéral -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="index.html">Accueil</a>
+    <a href="direct.html">Écouter le direct</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="histoire.html">Histoire</a>
 
-.hamburger span {
-  display: block;
-  height: 4px;
-  background: white;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
+    <div class="social-links">
+      <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
+      <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
+    </div>
+  </nav>
 
-.hamburger.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
+  <!-- Section logo cliquable -->
+  <section class="logo-section">
+    <img src="assets/logo vafm.png" alt="Logo VA FM" class="clickable-logo" onclick="togglePlay()">
+    <div class="equalizer-wrapper">
+      <div id="equalizer" class="equalizer hidden">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </section>
 
-/* --- Menu latéral --- */
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -250px;
-  width: 250px;
-  height: 100%;
-  background-color: #57081B;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  padding: 60px 20px;
-  transition: right 0.3s ease;
-  z-index: 1000;
-}
+  <!-- Audio -->
+  <audio id="radio-player" src="http://vafm.ddns.net:8000/stream.mp3"></audio>
 
-.side-menu.open {
-  right: 0;
-}
+  <!-- Pied de page -->
+  <footer>
+    <p>© 2025 VA FM. Tous droits réservés.</p>
+  </footer>
 
-.side-menu a {
-  color: white;
-  font-size: 1.1em;
-  text-decoration: none;
-  margin-bottom: 20px;
-}
+  <!-- Script -->
+  <script>
+    const player = document.getElementById('radio-player');
+    const equalizer = document.getElementById('equalizer');
+    let isPlaying = false;
+    function togglePlay() {
+      if (!isPlaying) {
+        player.play();
+        equalizer.classList.remove('hidden');
+        isPlaying = true;
+      } else {
+        player.pause();
+        equalizer.classList.add('hidden');
+        isPlaying = false;
+      }
+    }
+  </script>
+</body>
+</html>
 
-.side-menu a:hover {
-  color: yellow;
-}
-
-/* --- Réseaux sociaux --- */
-.social-links {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.2);
-}
-
-.social-links img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.social-links img:hover {
-  transform: scale(1.2);
-}
-
-/* --- Section logo cliquable --- */
-.logo-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 40px 0;
-}
-
-.clickable-logo {
-  max-width: 200px;
-  cursor: pointer;
-}
-
-/* --- Égaliseur --- */
-.equalizer-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.equalizer {
-  display: flex;
-  gap: 4px;
-}
-
-.equalizer.hidden {
-  display: none;
-}
-
-.bar {
-  width: 6px;
-  height: 20px;
-  background: #970A0A;
-  animation: bounce 1s infinite ease-in-out;
-}
-
-.bar:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.bar:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes bounce {
-  0%, 100% { height: 20px; }
-  50% { height: 40px; }
-}
-
-/* --- Footer --- */
-footer {
-  background-color: #222;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-}
-
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .top-bar {
-    flex-direction: column;
-    gap: 10px;
-    height: auto;
-  }
-
-  .clickable-logo {
-    max-width: 150px;
-  }
-
-  .bar {
-    width: 4px;
-  }
-}
 
 
 

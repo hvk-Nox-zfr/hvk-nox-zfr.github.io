@@ -427,17 +427,30 @@ body {
       opacity: 0;
     }
 
+.top-bar {
+  background-color: #970A0A;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  height: 80px;
+  position: relative; /* important pour placer le hamburger dedans */
+}
+
 .hamburger {
-  position: fixed;
-  top: 20px;
-  right: 20px;
   font-size: 28px;
   cursor: pointer;
-  z-index: 1100;
-  color: black;
-  padding: 10px 15px;
-  border-radius: 8px;
+  background-color: #970A0A;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  position: absolute; /* se place par rapport à .top-bar */
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%); /* centre verticalement */
 }
+
 
   
 .side-menu {
@@ -581,6 +594,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

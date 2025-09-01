@@ -444,7 +444,7 @@ body {
 .side-menu {
   position: fixed;
   top: 0;
-  right: -250px; /* caché en dehors de l’écran */
+  right: -350px; /* caché en dehors de l’écran */
   width: 250px;
   height: 100%;
   background-color: #57081B;
@@ -582,6 +582,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

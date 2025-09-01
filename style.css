@@ -465,6 +465,11 @@ body {
   text-decoration: underline;
 }
 
+.social-links {
+  flex-direction: column;
+  align-items: center;
+}
+
     .bar {
       width: 6px;
       height: 20px;
@@ -555,6 +560,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

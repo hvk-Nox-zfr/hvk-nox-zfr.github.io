@@ -70,26 +70,27 @@
 
       menu.classList.toggle("open");
       toggleBtn.classList.toggle("open");
-    }
 
-    const player = document.getElementById('radio-player');
-    const equalizer = document.getElementById('equalizer');
-    let isPlaying = false;
+  const player = document.getElementById('radio-player');
+  const animation = document.getElementById('logoAnimation');
+  let isPlaying = false;
 
-    function togglePlay() {
-      if (!isPlaying) {
-        player.play();
-        equalizer.classList.remove('hidden');
-        isPlaying = true;
-      } else {
-        player.pause();
-        equalizer.classList.add('hidden');
-        isPlaying = false;
-      }
+  function togglePlay() {
+    if (!isPlaying) {
+      player.play();
+      animation.classList.remove('hidden');
+      isPlaying = true;
+    } else {
+      player.pause();
+      animation.classList.add('hidden');
+      isPlaying = false;
     }
+  }
+
   </script>
 </body>
 </html>
+
 
 
 

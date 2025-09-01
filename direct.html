@@ -43,17 +43,18 @@
   </nav>
 
   <!-- Section logo cliquable -->
-  <section class="logo-section">
-    <img src="assets/logo vafm.png" alt="Logo VA FM" class="clickable-logo" onclick="togglePlay()">
-    <audio id="radio-player" src="http://vafm.ddns.net:8000/stream.mp3"></audio>
-    <div class="equalizer-wrapper">
-      <div id="equalizer" class="equalizer hidden">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
+<section class="logo-section">
+  <img src="assets/logo vafm.png" alt="Logo VA FM" class="clickable-logo" onclick="togglePlay()">
+  <div class="equalizer-wrapper">
+    <div id="equalizer" class="equalizer hidden">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
     </div>
-  </section>
+  </div>
+</section>
+
+<audio id="radio-player" src="http://vafm.ddns.net:8000/stream.mp3"></audio>
 
   <!-- Audio -->
   <audio id="radio-player" src="http://vafm.ddns.net:8000/stream.mp3"></audio>
@@ -108,6 +109,7 @@ function toggleMenu() {
 </script>
 </body>
 </html>
+
 
 
 

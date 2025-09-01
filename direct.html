@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <base href="/vafm/">
-  <script src="principal.js"></script>
+  <script src="script.js"></script>
   <link rel="stylesheet" href="direct.css">
   <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
   <title>Écoute en direct – VAFM</title>
@@ -44,14 +44,13 @@
   <!-- Section logo cliquable -->
   <section class="logo-section">
     <img src="assets/logo vafm 3.png" alt="Logo VA FM" class="clickable-logo" onclick="togglePlay()">
-<div class="logo-container" onclick="togglePlay()">
-  <img src="assets/logo-blanc.png" alt="Logo VAE5" class="logo-base">
-  <div id="logo-animation" class="logo-animation hidden">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
-</div>
+    <div class="equalizer-wrapper">
+      <div id="equalizer" class="equalizer hidden">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
   </section>
 
   <!-- Audio -->
@@ -70,26 +69,28 @@
 
       menu.classList.toggle("open");
       toggleBtn.classList.toggle("open");
-
-  const player = document.getElementById('radio-player');
-  const animation = document.getElementById('logoAnimation');
-  let isPlaying = false;
-
-  function togglePlay() {
-    if (!isPlaying) {
-      player.play();
-      animation.classList.remove('hidden');
-      isPlaying = true;
-    } else {
-      player.pause();
-      animation.classList.add('hidden');
-      isPlaying = false;
     }
-  }
 
+    const player = document.getElementById('radio-player');
+    const equalizer = document.getElementById('equalizer');
+    let isPlaying = false;
+
+    function togglePlay() {
+      if (!isPlaying) {
+        player.play();
+        equalizer.classList.remove('hidden');
+        isPlaying = true;
+      } else {
+        player.pause();
+        equalizer.classList.add('hidden');
+        isPlaying = false;
+      }
+    }
   </script>
 </body>
 </html>
+
+
 
 
 

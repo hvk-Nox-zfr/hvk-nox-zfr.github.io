@@ -7,6 +7,9 @@
   padding: 15px 20px;
   height: 80px;
 }
+.equalizer.hidden {
+  display: none;
+}
 
 .logo {
   height: 200px;

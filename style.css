@@ -443,23 +443,21 @@ body {
 .side-menu {
   position: fixed;
   top: 0;
-  right: -350px; /* caché en dehors de l’écran */
+  right: -250px; /* caché hors écran */
   width: 250px;
   height: 100%;
   background-color: #57081B;
   color: white;
-  display: flex;
+  display: none; /* invisible par défaut */
   flex-direction: column;
   padding: 60px 20px;
   transition: right 0.3s ease;
   z-index: 1000;
 }
 
-.side-menu a {
-  color: white;
-  text-decoration: none;
-  margin-bottom: 20px;
-  font-size: 1.1em;
+.side-menu.open {
+  display: flex; /* visible seulement quand ouvert */
+  right: 0;
 }
 
 .side-menu a:hover {
@@ -573,6 +571,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

@@ -1,449 +1,60 @@
-/* ========== RESET ========== */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-/* ========== EN-TÊTE FIXE ========== */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 1005;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* ========== BARRE SUPÉRIEURE ========== */
-.top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  flex-wrap: wrap;
-}
-
-.logo img {
-  height: 100px;
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-  border: 3px solid white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
-}
-
-.logo_vafm img {
-  width: 500px;       /* Largeur plus grande */
-  height: 100px;      /* Hauteur plus petite */
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;     /* Centre le logo */
-}
-.logo_vafm {
-  text-align: center;
-  padding: 20px 0;
-}
-
-
-.logo img:hover {
-  transform: scale(1.05);
-}
-
-/* ========== BOUTON ÉCOUTER LE DIRECT ========== */
-.live-button a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-  background-color: black;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 1em;
-  transition: background-color 0.3s ease;
-}
-
-.live-button a:hover {
-  background-color: #555;
-}
-
-.live-button .play-icon {
-  font-size: 1.2em;
-  border: 1px solid white;
-  border-radius: 50%;
-  padding: 4px 6px;
-}
-
-/* ========== RÉSEAUX SOCIAUX ========== */
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.social-icon {
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: bold;
-  color: #fff;
-  transition: background 0.3s ease;
-}
-
-.facebook {
-  background-color: #3b5998;
-}
-
-.instagram {
-  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-
-.youtube {
-  background-color: #ff0000;
-}
-
-.tiktok {
-  background: linear-gradient(135deg, #000000, #ff0050);
-}
-
-.social-icon:hover {
-  opacity: 0.8;
-}
-
-/* ========== BARRE DE NAVIGATION ROUGE ========== */
-.main-nav {
-  background-color: #57081B;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 14px 0;
-}
-
-.main-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.95em;
-  transition: background-color 0.3s ease;
-}
-
-.main-nav a:hover {
-  background-color: white;
-  color: #57081B;
-  border-radius: 5px;
-  padding: 6px 10px;
-}
-
-.search-icon {
-  font-size: 1.1em;
-}
-
-/* ========== CONTENU PRINCIPAL ========== */
-main {
-  padding-top: 180px;
-  text-align: center;
-}
-
-.intro h2 {
-  font-size: 1.6em;
-  color: #57081B;
-  margin-bottom: 30px;
-}
-
-/* ========== BANNIÈRE LOGO VA FM ========== */
-.logo-strip {
-  width: 100%;
-  background-color: #57081B;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-}
-
-.logo-strip-image {
-  width: auto;
-  max-width: 100%;
-  height: 80px;
-  object-fit: contain;
-}
-
-/* ========== IMAGE RADIO AVEC PLAY ========== */
-.radio-banner {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.banner-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-.play-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.play-icon {
-  width: 100px;
-  height: 100px;
-  opacity: 0.9;
-  transition: transform 0.3s ease;
-  pointer-events: none;
-}
-
-.radio-banner:hover .play-icon {
-  transform: scale(1.1);
-}
-
-/* ========== LECTEUR AUDIO ========== */
-.player-section {
-  background-color: white;
-  padding: 20px;
-  margin: 40px auto;
-  max-width: 400px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-audio {
-  width: 100%;
-}
-
-/* ========== PIED DE PAGE ========== */
-footer {
-  background-color: #000;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 50px;
-}
-.radio-banner {
-  width: 100%;
-  background-color: #c40000;
-  padding: 40px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-}
-
-.banner-content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.radio-text {
-  font-size: 2.5em;
-  font-weight: bold;
-  color: white;
-  letter-spacing: 2px;
-}
-
-.play-icon {
-  width: 60px;
-  height: 60px;
-  transition: transform 0.3s ease;
-}
-
-.radio-banner:hover .play-icon {
-  transform: scale(1.1);
-}
-.main-nav {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 12px 0;
-  background-color: #970A0A;
-}
-
-.main-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.95em;
-  transition: background-color 0.3s ease;
-}
-
-.main-nav a:hover {
-  background-color: white;
-  color: #57081B;
-  border-radius: 5px;
-  padding: 6px 10px;
-}
-.site-header {
-  background-color: #ffffff;
-  color: white;
-}
-/* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
-  .top-bar {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo img {
-    height: 32px;
-  }
-
-  .main-nav {
-    flex-direction: column;
-    gap: 15px;
-    padding: 10px 0;
-  }
-
-  .main-nav a {
-    font-size: 1em;
-  }
-
-  main {
-    padding-top: 220px;
-  }
-
-  .play-icon {
-    width: 70px;
-    height: 70px;
-  }
-
-  .logo-strip-image {
-    height: 60px;
-  }
-}
-body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-.site-header {
-  background-color: #ffffff;
-  color: white;
-}
-    /* Barre de navigation */
-    .main-nav {
-      background-color: #970A0A;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 14px 0;
-    }
-
-    .main-nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.95em;
-      transition: background-color 0.3s ease;
-    }
-
-    .main-nav a:hover {
-      background-color: white;
-      color: #57081B;
-      border-radius: 5px;
-      padding: 6px 10px;
-    }
-
-    .logo img {
-  height: 80px;
-  border-radius: 14px;
-}
-    
-.socials {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.social-icon img {
-  width: 32px;
-  height: 32px;
-  transition: transform 0.3s ease;
-}
-
-.social-icon img:hover {
-  transform: scale(1.2);
-}
-    /* Section logo cliquable */
-.logo-section {
-  background-color: transparent;
-  text-align: center;
-  padding-top: 200px;     /* espace depuis le haut */
-  padding-bottom: 20px;
-}
-
-.clickable-logo {
-  max-height: 400px;     /* taille raisonnable et responsive */
-  width: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  border-radius: 20px;
-  display: inline-block;
-}
-
-.clickable-logo:hover {
-  transform: scale(1.05);
-}
-
-
-    /* Égaliseur wrapper fixe */
-    .equalizer-wrapper {
-      height: 50px; /* Réserve l’espace */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10px;
-      overflow: hidden;
-    }
-
-    .equalizer {
-      display: flex;
-      gap: 4px;
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-
-    .equalizer.hidden {
-      opacity: 0;
-    }
-
-/* --- Barre rouge du haut --- */
+/* --- Barre rouge --- */
 .top-bar {
   background-color: #970A0A;
-  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
   height: 80px;
-  position: relative; /* pour placer le hamburger dedans */
+}
+
+.logo {
+  height: 50px;
+}
+
+/* --- Barre noire --- */
+.sub-bar {
+  background-color: #111;
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  font-weight: bold;
+}
+
+/* --- Hamburger animé --- */
+.hamburger {
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  height: 4px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* --- Menu latéral --- */
 .side-menu {
   position: fixed;
   top: 0;
-  right: -250px; /* caché hors écran */
+  right: -250px;
   width: 250px;
   height: 100%;
   background-color: #57081B;
@@ -451,135 +62,73 @@ body {
   display: flex;
   flex-direction: column;
   padding: 60px 20px;
-  transition: right 0.3s ease; /* animation fluide */
+  transition: right 0.3s ease;
   z-index: 1000;
 }
 
 .side-menu.open {
-  right: 0; /* visible */
+  right: 0;
 }
 
 .side-menu a {
-  color: white; /* couleur fixe */
-  font-size: 1.1em; /* taille fixe */
+  color: white;
+  font-size: 1.1em;
   text-decoration: none;
   margin-bottom: 20px;
 }
 
 .side-menu a:hover {
-  color: yellow; /* couleur au survol */
-  text-decoration: underline;
+  color: yellow;
 }
 
-/* --- Bouton hamburger --- */
-.hamburger {
-  font-size: 28px;
-  cursor: pointer;
-  background-color: #970A0A;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-}
-
-/* --- Réseaux sociaux dans le menu --- */
+/* --- Réseaux sociaux --- */
 .social-links {
+  margin-top: auto;
   display: flex;
   justify-content: center;
   gap: 12px;
   padding-top: 20px;
   border-top: 1px solid rgba(255,255,255,0.2);
-  margin-top: auto;
 }
 
 .social-links img {
   width: 24px;
   height: 24px;
   object-fit: contain;
-  transition: transform 0.3s ease;
-  filter: brightness(1.1);
 }
 
-.social-links img:hover {
-  transform: scale(1.2);
+/* --- Contenu principal --- */
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
-/* --- Animation barres (equalizer) --- */
-.bar {
-  width: 6px;
-  height: 20px;
-  background: #57081B;
-  animation: bounce 1s infinite ease-in-out;
+.news-card {
+  max-width: 800px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
 }
 
-.bar:nth-child(2) {
-  animation-delay: 0.2s;
+.news-card img {
+  width: 100%;
+  border-radius: 8px;
 }
 
-.bar:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes bounce {
-  0%, 100% { height: 20px; }
-  50% { height: 40px; }
-}
-
-/* --- Pied de page --- */
+/* --- Footer --- */
 footer {
   background-color: #222;
   color: white;
   text-align: center;
   padding: 20px;
-  font-size: 14px;
 }
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .top-bar {
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+    height: auto;
   }
-
-  .main-nav {
-    flex-direction: column;
-    gap: 15px;
-    padding: 10px 0;
-  }
-
-  .main-nav a {
-    font-size: 1em;
-  }
-
-  .clickable-logo {
-    height: 70px;
-    max-height: 120px;
-  }
-
-  .logo-section {
-    padding-top: 40px;
-  }
-
-  .bar {
-    width: 4px;
-  }
-
-  .equalizer-wrapper {
-    height: 40px;
-  }
-
-  .news-card {
-    width: 100%;
-  }
-
-  .popup-content {
-    max-width: 95%;
-    max-height: 90vh;
-  }
-}
-
-/* --- Container général --- */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }

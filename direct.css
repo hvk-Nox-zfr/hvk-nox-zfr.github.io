@@ -27,6 +27,19 @@
   text-align: center;
 }
 
+.clickable-logo.playing {
+  animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 /* --- Barre noire --- */
 .sub-bar {
   background-color: #111;

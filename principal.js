@@ -6,4 +6,3 @@ function toggleMenu() {
     menu.style.right = "0px";
   }
 }
-

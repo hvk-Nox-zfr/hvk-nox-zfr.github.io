@@ -88,8 +88,26 @@
       toggleBtn.classList.toggle("open");
     }
   </script>
+  <script>
+  const player = document.getElementById('radio-player');
+  const equalizer = document.getElementById('equalizer');
+  let isPlaying = false;
+
+  function togglePlay() {
+    if (!isPlaying) {
+      player.play();
+      equalizer.classList.remove('hidden');
+      isPlaying = true;
+    } else {
+      player.pause();
+      equalizer.classList.add('hidden');
+      isPlaying = false;
+    }
+  }
+</script>
 </body>
 </html>
+
 
 
 

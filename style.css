@@ -9,7 +9,7 @@
 }
 
 .logo {
-  height: 200px;
+  height: 50px; /* Ajuste ici si tu veux plus grand */
 }
 
 /* --- Barre noire --- */
@@ -95,6 +95,12 @@
   width: 24px;
   height: 24px;
   object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: brightness(1.1);
+}
+
+.social-links img:hover {
+  transform: scale(1.2);
 }
 
 /* --- Contenu principal --- */
@@ -105,15 +111,32 @@
 }
 
 .news-card {
-  max-width: 800px;
+  max-width: 600px;
+  margin: 20px auto;
   background: white;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .news-card img {
   width: 100%;
+  max-height: 250px;
+  object-fit: cover;
   border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.news-card h2 {
+  font-size: 1.4em;
+  margin-bottom: 8px;
+  color: #970A0A;
+}
+
+.news-card p {
+  font-size: 0.95em;
+  line-height: 1.4;
+  color: #333;
 }
 
 /* --- Footer --- */
@@ -131,35 +154,42 @@ footer {
     gap: 10px;
     height: auto;
   }
-}
-.news-card {
-  max-width: 600px; /* moins large */
-  margin: 20px auto; /* espace autour */
-  background: white;
-  padding: 15px; /* moins de padding */
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
 
-.news-card img {
-  width: 100%;
-  max-height: 250px; /* limite la hauteur de l'image */
-  object-fit: cover; /* recadre si nécessaire */
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
+  .main-nav {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+  }
 
-.news-card h2 {
-  font-size: 1.4em; /* plus petit */
-  margin-bottom: 8px;
-  color: #970A0A;
-}
+  .main-nav a {
+    font-size: 1em;
+  }
 
-.news-card p {
-  font-size: 0.95em; /* texte plus petit */
-  line-height: 1.4; /* moins d'espacement vertical */
-  color: #333;
-}
+  .clickable-logo {
+    height: 70px;
+    max-height: 120px;
+  }
 
+  .logo-section {
+    padding-top: 40px;
+  }
+
+  .bar {
+    width: 4px;
+  }
+
+  .equalizer-wrapper {
+    height: 40px;
+  }
+
+  .news-card {
+    width: 100%;
+  }
+
+  .popup-content {
+    max-width: 95%;
+    max-height: 90vh;
+  }
+}
 
 

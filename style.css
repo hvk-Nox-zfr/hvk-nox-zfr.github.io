@@ -437,12 +437,11 @@ body {
   color: white;
   padding: 10px 15px;
   border-radius: 8px;
-}
-
+  
 .side-menu {
   position: fixed;
   top: 0;
-  right: -250px;
+  right: -250px; /* caché en dehors de l’écran */
   width: 250px;
   height: 100%;
   background-color: #57081B;
@@ -453,6 +452,7 @@ body {
   transition: right 0.3s ease;
   z-index: 1000;
 }
+
 
 .side-menu a {
   color: white;
@@ -579,6 +579,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 
 

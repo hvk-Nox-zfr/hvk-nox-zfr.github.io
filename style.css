@@ -426,6 +426,44 @@ body {
     .equalizer.hidden {
       opacity: 0;
     }
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1100;
+  background-color: #970A0A;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #57081B;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 20px;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.side-menu a {
+  color: white;
+  text-decoration: none;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+.side-menu a:hover {
+  text-decoration: underline;
+}
 
     .bar {
       width: 6px;
@@ -518,44 +556,7 @@ body {
   justify-content: center;
 }
 
-.hamburger {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  font-size: 28px;
-  cursor: pointer;
-  z-index: 1100;
-  background-color: #970A0A;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-}
 
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -250px;
-  width: 250px;
-  height: 100%;
-  background-color: #57081B;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  padding: 60px 20px;
-  transition: right 0.3s ease;
-  z-index: 1000;
-}
-
-.side-menu a {
-  color: white;
-  text-decoration: none;
-  margin-bottom: 20px;
-  font-size: 1.1em;
-}
-
-.side-menu a:hover {
-  text-decoration: underline;
-}
 
 
 

@@ -127,7 +127,12 @@ body {
       .actus-page {
         flex-direction: column;
       }
-
+          
+.logo {
+  height: 250px;
+  margin-top: 20px; /* ajuste ici selon le rendu */
+}
+          
       .sidebar {
         margin-top: 30px;
       }

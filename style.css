@@ -39,7 +39,7 @@ main, .container {
 
 .logo {
   height: 250px;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .footer-logo {
@@ -373,6 +373,7 @@ main, .container {
     justify-content: center;
   }
 }
+
 
 
 

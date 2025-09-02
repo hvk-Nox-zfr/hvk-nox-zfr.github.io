@@ -42,8 +42,14 @@ main, .container {
   margin-top: 50px;
 }
 
+.footer-logo img {
+  height: 100px; /* ou plus selon ton design */
+  max-width: 100%;
+  object-fit: contain;
+}
+
 .footer-logo {
-  height: 250px;
+  padding: 20px 0;
 }
 
 /* --- Barre noire --- */
@@ -373,6 +379,7 @@ main, .container {
     justify-content: center;
   }
 }
+
 
 
 

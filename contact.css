@@ -53,3 +53,65 @@
 .contact-form button:hover {
   background-color: #b31212;
 }
+body {
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+.animated-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.animated-background::before,
+.animated-background::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: float 10s infinite ease-in-out;
+}
+
+.animated-background::before {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, #ff4d4d, #ffcc00);
+  top: 10%;
+  left: 20%;
+}
+
+.animated-background::after {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(45deg, #00ccff, #66ff66);
+  bottom: 15%;
+  right: 25%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+/* Form above background */
+.contact-section {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}

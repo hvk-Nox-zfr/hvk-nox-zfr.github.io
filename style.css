@@ -287,7 +287,7 @@ footer {
   border-radius: 10px;
   max-width: 700px;
   width: 90%;
-  max-height: 300px; /* hauteur réduite */
+  max-height: 200px; /* hauteur réduite */
   overflow-y: auto;
   position: relative;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -318,6 +318,7 @@ footer {
 .popup-text {
   width: 60%;
 }
+
 
 
 

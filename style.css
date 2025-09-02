@@ -308,6 +308,24 @@ footer {
     right: 15px;
   }
 }
+@media (max-width: 768px) {
+  .top-bar {
+    position: relative;
+    justify-content: center;
+    height: 60px;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .hamburger {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}
+
 
 
 

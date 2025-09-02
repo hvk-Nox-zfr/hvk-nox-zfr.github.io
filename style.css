@@ -26,7 +26,7 @@ html, body {
 
 .logo {
   height: 250px;
-  margin-top: 20px; /* ajuste ici selon le rendu */
+  margin-top: 40px; /* ajuste ici selon le rendu */
 }
 
 
@@ -271,8 +271,8 @@ footer {
   }
 
 .logo {
-  height: 250px;
-  margin-top: 20px; /* ajuste ici selon le rendu */
+  height: 2150px;
+  margin-top: 40px; /* ajuste ici selon le rendu */
 }
 
   .hamburger {
@@ -321,6 +321,7 @@ footer {
 .popup-text {
   width: 60%;
 }
+
 
 
 

@@ -113,27 +113,63 @@ body {
       font-size: 14px;
     }
 
-    @media (max-width: 768px) {
-      .top-bar {
-        flex-direction: column;
-        gap: 20px;
-      }
+   @media (max-width: 768px) {
+  .top-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    height: 60px;
+  }
 
-      .main-nav {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .actus-page {
-        flex-direction: column;
-      }
-          
 .logo {
-  height: 250px;
-  margin-top: -40px; /* ajuste ici selon le rendu */
+  height: 150px;
+  margin-top: 40px; /* ajuste ici selon le rendu */
 }
-          
-      .sidebar {
-        margin-top: 30px;
-      }
-    }
+
+  .hamburger {
+    top: 15px;
+    right: 15px;
+  }
+
+  .news-card {
+    width: 100%;
+  }
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 200px; /* hauteur réduite */
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.popup-image {
+  width: 40%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.popup-content h2 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.popup-content p {
+  font-size: 0.9em;
+  line-height: 1.4;
+  color: #333;
+}
+
+.popup-text {
+  width: 60%;
+}

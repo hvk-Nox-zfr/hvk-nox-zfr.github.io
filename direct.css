@@ -17,6 +17,7 @@
 
 .logo {
   height: 250px;
+  margin-top: 50px; /* ajuste ici selon le rendu */
 }
 
 /* --- Logo cliquable + animation --- */

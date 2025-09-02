@@ -28,6 +28,11 @@ body {
   border-radius: 14px;
 }
 
+.logo {
+  height: 250px;
+  margin-top: 20px; /* ajuste ici selon le rendu */
+}
+
 .socials {
   display: flex;
   gap: 15px;

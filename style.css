@@ -1,4 +1,11 @@
 /* --- Barre rouge --- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .top-bar {
   background-color: #970A0A;
   display: flex;
@@ -282,6 +289,7 @@ footer {
   cursor: pointer;
   color: #970A0A;
 }
+
 
 
 

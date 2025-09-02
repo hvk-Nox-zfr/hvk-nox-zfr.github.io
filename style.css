@@ -289,6 +289,26 @@ footer {
   cursor: pointer;
   color: #970A0A;
 }
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    height: 60px;
+  }
+
+  .logo {
+    height: 50px;
+  }
+
+  .hamburger {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}
+
 
 
 

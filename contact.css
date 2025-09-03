@@ -18,45 +18,46 @@ body {
 
 .blob {
   position: absolute;
+  background: #ff4d4d;
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  animation: blobMove 18s infinite ease-in-out;
+  animation: blobFloat 20s infinite ease-in-out;
   opacity: 1;
-  filter: blur(0px);
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.1));
 }
 
 .blob1 {
-  width: 220px;
+  width: 280px;
   height: 220px;
   background: linear-gradient(135deg, #ff4d4d, #ffcc00);
   top: 10%;
-  left: 10%;
+  left: 5%;
   animation-delay: 0s;
 }
 
 .blob2 {
-  width: 180px;
-  height: 180px;
+  width: 240px;
+  height: 200px;
   background: linear-gradient(135deg, #00ccff, #66ff66);
   bottom: 15%;
-  right: 15%;
-  animation-delay: 4s;
+  right: 10%;
+  animation-delay: 5s;
 }
 
 .blob3 {
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 180px;
   background: linear-gradient(135deg, #cc66ff, #ff99cc);
   top: 50%;
   left: 65%;
-  animation-delay: 8s;
+  animation-delay: 10s;
 }
 
-@keyframes blobMove {
+@keyframes blobFloat {
   0%, 100% {
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(30px, -20px) scale(1.1);
+    transform: translate(30px, -20px) scale(1.05);
   }
 }
 

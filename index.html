@@ -104,7 +104,21 @@
   <script data-goatcounter="https://vafm.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
+  <script>
+  const startTime = Date.now();
+
+  window.addEventListener('beforeunload', () => {
+    const duration = Math.round((Date.now() - startTime) / 1000); // en secondes
+
+    fetch('https://hugohts.goatcounter.com/count', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `event=durée&title=Durée de session&duration=${duration}`
+    });
+  });
+</script>
 </html>
+
 
 
 

@@ -6,5 +6,34 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- Tu peux ajouter d'autres pages ici -->
+    <url>
+    <loc>https://hvk-nox-zfr.github.io/vafm/index.html</loc>
+    <lastmod>2025-09-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+    <url>
+    <loc>https://hvk-nox-zfr.github.io/vafm/direct.html</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+    <url>
+    <loc>https://hvk-nox-zfr.github.io/vafm/histoire.html</loc>
+    <lastmod>2025-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+    <url>
+    <loc>https://hvk-nox-zfr.github.io/vafm/programmes.html</loc>
+    <lastmod>2025-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+    <url>
+    <loc>https://hvk-nox-zfr.github.io/vafm/contact.html</loc>
+    <lastmod>2025-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

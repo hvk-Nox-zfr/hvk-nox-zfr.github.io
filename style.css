@@ -332,7 +332,7 @@ main, .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px; /* Ajuste selon ton design */
+  height: 50px; /* Ajuste selon ton design */
 }
 
 .text:hover {
@@ -405,6 +405,7 @@ main, .container {
     justify-content: center;
   }
 }
+
 
 
 

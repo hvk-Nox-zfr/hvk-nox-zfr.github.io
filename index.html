@@ -46,84 +46,58 @@
     </nav>
 
     <!-- Contenu principal -->
-    <main class="container">
-      <div class="article-card" onclick="openPopup()">
-        <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="card-image">
-        <div class="card-content">
-          <h3>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h3>
-          <p>Fresnes-sur-Escaut – 16 août 2025. La tradition a une nouvelle fois été respectée hier : Fresnes-sur-Escaut a fêté son 15 août avec faste. Entre le carnaval haut en couleurs, les concerts festifs et un feu d’artifice grandiose, la commune a rassemblé plusieurs milliers de spectateurs venus profiter d’une journée placée sous le signe de la convivialité.</p>
-        </div>
-      </div>
-    </main>
-
-    <!-- Pop-up masqué -->
-    <div id="popup" class="popup hidden">
-      <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">✖</span>
-        <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="popup-image">
-        <h2>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h2>
-        <p>
-          Fresnes-sur-Escaut – 16 août 2025. La tradition a une nouvelle fois été respectée hier : Fresnes-sur-Escaut a fêté son 15 août avec faste. Entre le carnaval haut en couleurs, les concerts festifs et un feu d’artifice grandiose, la commune a rassemblé plusieurs milliers de spectateurs venus profiter d’une journée placée sous le signe de la convivialité.
-          <!-- Texte long ici -->
-        </p>
-      </div>
+<main class="container">
+  <!-- Carte Fresnes-sur-Escaut -->
+  <div class="article-card" onclick="openPopup('popup-fresnes')">
+    <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="card-image">
+    <div class="card-content">
+      <h3>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h3>
+      <p>Fresnes-sur-Escaut – 16 août 2025. La tradition a une nouvelle fois été respectée hier : Fresnes-sur-Escaut a fêté son 15 août avec faste. Entre le carnaval haut en couleurs, les concerts festifs et un feu d’artifice grandiose, la commune a rassemblé plusieurs milliers de spectateurs venus profiter d’une journée placée sous le signe de la convivialité.</p>
     </div>
-    
-    <main class="container">
-      <div class="article-card" onclick="openPopup()">
-        <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="card-image">
-        <div class="card-content">
-          <h3>VAFM rectrute !</h3>
-          <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !
-
-Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ?
-C’est le moment !</p>
-        </div>
-      </div>
-    </main>
-
-    <!-- Pop-up masqué -->
-    <div id="popup-recrutement" class="popup hidden">
-      <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">✖</span>
-        <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="popup-image">
-        <h2>VAFM recrute !</h2>
-        <p>
-          La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !
-
-Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ?
-C’est le moment !
-
-Nous recherchons :
-
-🔹 Des journalistes bénévoles pour informer, raconter, creuser les sujets
-
-🔹 Des animateurs bénévoles pour proposer des émissions originales et faire vibrer les auditeurs
-
-🔹 Des reporters bénévoles pour aller à la rencontre des gens, couvrir des événements, récolter des témoignages et donner la parole au terrain
-
-📻 Tous les animateurs, journalistes et reporters enregistrent leurs émissions depuis chez eux.
-
-🎧 Il faut juste un micro avec un son net (on veut t’entendre, pas ton grille-pain en fond sonore).
-
-🎙️ Et bien sûr, un minimum de rigueur, un max de passion… et une maquette audio pour découvrir ton style !
-
-👉 Envoie-nous une petite démo de ton talent (même 2-3 minutes suffisent), histoire qu’on voie si tu fais vibrer les ondes ou si t’as juste allumé ton micro par accident. 😄
-
-✨ Débutants motivés ou pros du micro, vous êtes tous les bienvenus !
-
-Beaucoup de créneaux libres, surtout le week-end. 📆
-
-📩 Intéressé(e) ? Contacte-nous pour rejoindre l’équipe VAFM !
-
-📧 contact.vafm@gmail.com
-🌐 https://hvk-nox-zfr.github.io/vafm/index.html
-
-À très vite dans nos oreilles !
-— L’équipe de VAFM
-        </p>
-      </div>
+  </div>
+  
+  <div class="article-card" onclick="openPopup('popup-recrutement')">
+    <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="card-image">
+    <div class="card-content">
+      <h3>VAFM recrute !</h3>
+      <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe ! Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ? C’est le moment !</p>
     </div>
+  </div>
+</main>
+    <!-- Popup Fresnes-sur-Escaut -->
+<div id="popup-fresnes" class="popup hidden">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup('popup-fresnes')">✖</span>
+    <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="popup-image">
+    <h2>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h2>
+    <p>Fresnes-sur-Escaut – 16 août 2025. La tradition a une nouvelle fois été respectée hier : Fresnes-sur-Escaut a fêté son 15 août avec faste. Entre le carnaval haut en couleurs, les concerts festifs et un feu d’artifice grandiose, la commune a rassemblé plusieurs milliers de spectateurs venus profiter d’une journée placée sous le signe de la convivialité.</p>
+  </div>
+</div>
+
+<!-- Popup VAFM recrute -->
+<div id="popup-recrutement" class="popup hidden">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup('popup-recrutement')">✖</span>
+    <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="popup-image">
+    <h2>VAFM recrute !</h2>
+    <p>
+      La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !<br><br>
+      Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ? C’est le moment !<br><br>
+      Nous recherchons :<br>
+      🔹 Des journalistes bénévoles<br>
+      🔹 Des animateurs bénévoles<br>
+      🔹 Des reporters bénévoles<br><br>
+      📻 Enregistrement depuis chez soi<br>
+      🎧 Micro avec son net<br>
+      🎙️ Passion + rigueur + démo audio<br><br>
+      👉 Envoie-nous une démo à : contact.vafm@gmail.com<br>
+      🌐 https://hvk-nox-zfr.github.io/vafm/index.html<br><br>
+      À très vite dans nos oreilles !<br>
+      — L’équipe de VAFM
+    </p>
+  </div>
+</div>
+
     <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-content">
@@ -178,6 +152,7 @@ Beaucoup de créneaux libres, surtout le week-end. 📆
   });
 </script>
 </html>
+
 
 
 

@@ -18,7 +18,12 @@ html, body {
 .container {
   flex: 1;
 }
-
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px; /* ou ce que tu veux */
+}
 
 /* --- Contenu principal --- */
 main, .container {
@@ -400,6 +405,7 @@ main, .container {
     justify-content: center;
   }
 }
+
 
 
 

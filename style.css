@@ -319,13 +319,17 @@ main, .container {
 
 .text {
   color: #000; /* Texte noir */
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif; /* Police moderne */
-  font-size: 2em; /* Taille bien visible */
-  font-weight: 600; /* Texte semi-gras */
-  text-align: center; /* Centrage horizontal */
-  margin: 40px auto; /* Espacement autour */
-  display: block; /* Permet le centrage si utilisé sur un span */
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  font-size: 1.4em; /* Taille réduite */
+  font-weight: 500;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Ajuste selon ton design */
 }
+
 .text:hover {
   letter-spacing: 1px;
   transition: all 0.3s ease;
@@ -396,6 +400,7 @@ main, .container {
     justify-content: center;
   }
 }
+
 
 
 

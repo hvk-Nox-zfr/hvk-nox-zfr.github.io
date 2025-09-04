@@ -448,23 +448,19 @@ main, .container {
     justify-content: center;
   }
 }
+.text {
+  font-family: 'Rampart One', cursive;
+  font-size: 2.5em; /* taille par défaut pour desktop */
+  color: #000;
+  text-align: center;
+  margin: 20px auto;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Version mobile */
+@media screen and (max-width: 600px) {
+  .text {
+    font-size: 1.6em; /* plus petit sur mobile */
+    margin: 10px auto;
+  }
+}
 

@@ -6,13 +6,13 @@ function toggleMenu() {
   toggleBtn.classList.toggle("open");
 }
 
-  function openPopup() {
-    document.getElementById("popup").classList.remove("hidden");
-  }
+function openPopup(id) {
+  document.getElementById(id).classList.remove("hidden");
+}
 
-  function closePopup() {
-    document.getElementById("popup").classList.add("hidden");
-  }
+function closePopup(id) {
+  document.getElementById(id).classList.add("hidden");
+}
 
 function togglePlay() {
   const logo = document.querySelector('.clickable-logo');

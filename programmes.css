@@ -198,7 +198,7 @@ footer {
 .content {
   font-family: 'Rampart One', cursive;
   font-size: 1.8em;
-  color: #fff; /* ou #000 si fond clair */
+  color: #000; /* ou #000 si fond clair */
   text-align: center;
   display: flex;
   justify-content: center;

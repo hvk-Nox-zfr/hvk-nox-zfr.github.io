@@ -7,33 +7,51 @@
     <priority>1.0</priority>
   </url>
     <url>
-    <loc>https://hvk-nox-zfr.github.io/vafm/index.html</loc>
+    <loc>https://hvk-nox-zfr.github.io/index.html</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
     <url>
-    <loc>https://hvk-nox-zfr.github.io/vafm/direct.html</loc>
+    <loc>https://hvk-nox-zfr.github.io/direct.html</loc>
     <lastmod>2025-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
     <url>
-    <loc>https://hvk-nox-zfr.github.io/vafm/histoire.html</loc>
+    <loc>https://hvk-nox-zfr.github.io/histoire.html</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
     <url>
-    <loc>https://hvk-nox-zfr.github.io/vafm/programmes.html</loc>
+    <loc>https://hvk-nox-zfr.github.io/programmes.html</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
     <url>
-    <loc>https://hvk-nox-zfr.github.io/vafm/contact.html</loc>
+    <loc>https://hvk-nox-zfr.github.io/contact.html</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
+  </url>
+   <url>
+    <loc>https://hvk-nox-zfr.github.io/mentions.html</loc>
+    <lastmod>2025-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://hvk-nox-zfr.github.io/a-propos.html</loc>
+    <lastmod>2025-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://hvk-nox-zfr.github.io/accessibilite.html</loc>
+    <lastmod>2025-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.2</priority>
   </url>
 </urlset>

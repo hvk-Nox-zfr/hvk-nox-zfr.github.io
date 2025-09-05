@@ -340,11 +340,6 @@ main, .container {
   transition: all 0.3s ease;
 }
 
-.container {
-  display: flex;
-  flex-direction: column-reverse;
-}
-
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .top-bar {
@@ -468,5 +463,6 @@ main, .container {
     margin: 10px auto;
   }
 }
+
 
 

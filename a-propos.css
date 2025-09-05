@@ -1,1 +1,20 @@
+.mentions-vafm {
+  background-color: #fff;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: auto;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: #333;
+}
 
+.mentions-vafm h2 {
+  color: #970A0A;
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mentions-vafm p {
+  margin-bottom: 20px;
+}

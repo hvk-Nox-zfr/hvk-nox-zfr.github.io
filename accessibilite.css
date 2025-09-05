@@ -1,1 +1,44 @@
+.accessibilite {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
+  background-color: #fff;
+  color: #333;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.accessibilite h2 {
+  color: #970A0A;
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.accessibilite h3 {
+  margin-top: 30px;
+  color: #57081B;
+  font-size: 1.3em;
+}
+
+.accessibilite ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.accessibilite ul li::before {
+  content: "✔️ ";
+  margin-right: 8px;
+  color: #970A0A;
+}
+
+.accessibilite a {
+  color: #970A0A;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.accessibilite a:hover {
+  text-decoration: underline;
+}
 

@@ -1,1 +1,33 @@
+.mentions-legales {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
+  background-color: #fff;
+  color: #333;
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+.mentions-legales h2 {
+  color: #970A0A;
+  font-size: 2em;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.mentions-legales h3 {
+  margin-top: 30px;
+  color: #57081B;
+  font-size: 1.3em;
+}
+
+.mentions-legales a {
+  color: #970A0A;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.mentions-legales a:hover {
+  text-decoration: underline;
+}
 

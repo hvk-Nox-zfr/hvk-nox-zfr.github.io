@@ -51,6 +51,70 @@ html, body {
   border-radius: 10px;
   font-size: 1em;
 }
+.live-dedicace {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.live-dedicace h2 {
+  text-align: center;
+  color: #970A0A;
+  margin-bottom: 20px;
+}
+
+#dedicaceForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#dedicaceForm input,
+#dedicaceForm textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+#dedicaceForm button {
+  background-color: #970A0A;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#dedicaceForm button:hover {
+  background-color: #57081B;
+}
+
+.dedicace-feed {
+  margin-top: 30px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.dedicace-entry {
+  background: #ffeded;
+  border-left: 5px solid #970A0A;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 #sondageForm button {
   background-color: #970A0A;
@@ -512,6 +576,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

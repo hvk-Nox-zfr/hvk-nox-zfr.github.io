@@ -29,3 +29,23 @@ function togglePlay() {
     isPlaying = false;
   }
 }
+
+  const form = document.getElementById("sondageForm");
+  const feed = document.getElementById("sondageFeed");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const prenom = document.getElementById("prenom").value.trim();
+    const nom = document.getElementById("nom").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (prenom && nom && message) {
+      const entry = document.createElement("div");
+      entry.classList.add("entry");
+      entry.innerHTML = `<strong>${prenom} ${nom} :</strong><br>${message}`;
+      feed.prepend(entry);
+
+      form.reset();
+    }
+  });

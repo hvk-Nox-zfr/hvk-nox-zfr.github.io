@@ -8,12 +8,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo gris vafm.png">
   <link rel="stylesheet" href="style.css">
   <script src="principal.js" defer></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938"
-     crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-8497430727637938">
   <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
 </head>
 <body>
   <div class="page-wrapper">
@@ -71,9 +70,20 @@
         </div>
       </div>
 
+      <!-- Dédicaces en direct -->
+      <section class="live-dedicace">
+        <h2>📻 Dédicace en direct</h2>
+        <form id="dedicaceForm">
+          <input type="text" id="nom" placeholder="Ton prénom ou pseudo" required>
+          <textarea id="message" placeholder="Ta dédicace..." required></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+        <div id="dedicaceFeed" class="dedicace-feed"></div>
+      </section>
+
     </main>
 
-    <!-- Popup Fresnes-sur-Escaut -->
+    <!-- Popups -->
     <div id="popup-fresnes" class="popup hidden">
       <div class="popup-content">
         <span class="close-btn" onclick="closePopup('popup-fresnes')">✖</span>
@@ -83,7 +93,6 @@
       </div>
     </div>
 
-    <!-- Popup VAFM recrute -->
     <div id="popup-recrutement" class="popup hidden">
       <div class="popup-content">
         <span class="close-btn" onclick="closePopup('popup-recrutement')">✖</span>
@@ -99,26 +108,12 @@
           📻 Enregistrement depuis chez soi<br>
           🎧 Micro avec son net<br>
           🎙️ Passion + rigueur + démo audio<br><br>
-          👉 Envoie-nous une démo à : contact.vafm@gmail.com ou en bas de cette page à nous contacter<br>
+          👉 Envoie-nous une démo à : contact.vafm@gmail.com<br>
           À très vite dans nos oreilles !<br>
           — L’équipe de VAFM
         </p>
       </div>
     </div>
-
-    <section class="live-sondage">
-  <h2>Dédicace en direct</h2>
-  <form id="sondageForm">
-    <input type="text" id="prenom" placeholder="Prénom" required>
-    <input type="text" id="nom" placeholder="Nom" required>
-    <textarea id="message" placeholder="Ton message ou idée..." required></textarea>
-    <button type="submit">Envoyer</button>
-  </form>
-
-  <div class="sondage-feed" id="sondageFeed">
-    <!-- Les messages s'affichent ici -->
-  </div>
-</section>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -162,53 +157,55 @@
       const duration = Math.round((Date.now() - startTime) / 1000);
       fetch('https://hugohts.goatcounter.com/count', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: `event=durée&title=Durée de session&duration=${duration}`
       });
     });
   </script>
+
   <script>
-  // Configuration Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
-    authDomain: "vafm-dedicaces.firebaseapp.com",
-    databaseURL: "https://vafm-dedicaces-default-rtdb.firebaseio.com",
-    projectId: "vafm-dedicaces",
-    storageBucket: "vafm-dedicaces.firebasestorage.app",
-    messagingSenderId: "553720861929",
-    appId: "1:553720861929:web:87739d3bfa41ed5b50cc78",
-    measurementId: "G-QNVR8XET7E"
-  };
+    // Configuration Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
+      authDomain: "vafm-dedicaces.firebaseapp.com",
+      databaseURL: "https://vafm-dedicaces-default-rtdb.firebaseio.com",
+      projectId: "vafm-dedicaces",
+      storageBucket: "vafm-dedicaces.firebasestorage.app",
+      messagingSenderId: "553720861929",
+      appId: "1:553720861929:web:87739d3bfa41ed5b50cc78",
+      measurementId: "G-QNVR8XET7E"
+    };
 
-  // Initialisation
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
+    // Initialisation Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-  // Envoi de dédicace
-  document.getElementById("dedicaceForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const nom = document.getElementById("nom").value.trim();
-    const message = document.getElementById("message").value.trim();
-    if (nom && message) {
-      db.ref("dedicaces").push({ nom, message });
-      this.reset();
-    }
-  });
+    // Envoi de dédicace
+    document.getElementById("dedicaceForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nom = document.getElementById("nom").value.trim();
+      const message = document.getElementById("message").value.trim();
+      if (nom && message) {
+        db.ref("dedicaces").push({ nom, message });
+        this.reset();
+      }
+    });
 
-  // Affichage en direct
-  db.ref("dedicaces").on("child_added", function(snapshot) {
-    const data = snapshot.val();
-    const div = document.createElement("div");
-    div.classList.add("dedicace-entry");
-    div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
-    document.getElementById("dedicaceFeed").prepend(div);
-  });
-</script>
+    // Affichage en direct
+    db.ref("dedicaces").on("child_added", function(snapshot) {
+      const data = snapshot.val();
+      const div = document.createElement("div");
+      div.classList.add("dedicace-entry");
+      div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
+      document.getElementById("dedicaceFeed").prepend(div);
+    });
+  </script>
+
   <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
-
-
 
 
 

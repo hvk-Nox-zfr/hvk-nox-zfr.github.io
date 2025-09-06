@@ -190,6 +190,26 @@
   background-color: #57081B;
   transform: scale(1.05);
 }
+.home-top-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #970A0A;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.home-top-button:hover {
+  background-color: #57081B;
+  transform: scale(1.05);
+}
 
 /* RESPONSIVE MOBILE */
 @media screen and (max-width: 768px) {
@@ -219,6 +239,14 @@
   .forme-2,
   .forme-3 {
     display: none; /* Masquer les formes sur mobile si elles gênent */
+  }
+}
+@media screen and (max-width: 600px) {
+  .home-top-button {
+    font-size: 0.9em;
+    padding: 8px 14px;
+    top: 15px;
+    left: 15px;
   }
 }
 

@@ -7,38 +7,27 @@
 
 html, body {
   height: 100%;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* --- Structure principale --- */
 .page-wrapper {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
   flex: 1;
+  padding: 20px;
 }
+
+/* --- Header --- */
 header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120px; /* ou ce que tu veux */
-}
-
-/* --- Contenu principal --- */
-main, .container {
-  flex: 1;
-  padding: 20px;
-}
-
-.footer {
-  width: 100vw; /* largeur totale de l’écran */
-  background-color: #000;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  box-sizing: border-box;
+  height: 120px;
 }
 
 /* --- Barre rouge --- */
@@ -52,25 +41,13 @@ main, .container {
   position: relative;
 }
 
+/* --- Logo --- */
 .logo {
   height: 250px;
   margin-top: 50px;
 }
 
-.footer-logo img {
-  height: 100px; /* ou plus selon ton design */
-  max-width: 100%;
-  object-fit: contain;
-}
-
-.footer-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
-}
-
-/* --- Barre noire --- */
+/* --- Barre noire secondaire --- */
 .sub-bar {
   background-color: #111;
   color: white;
@@ -133,7 +110,6 @@ main, .container {
   transform: translateX(0);
 }
 
-/* --- Liens du menu --- */
 .side-menu a {
   color: white;
   font-size: 1.1em;
@@ -244,8 +220,7 @@ main, .container {
 /* --- Pop-up --- */
 .popup {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.6);
@@ -253,6 +228,8 @@ main, .container {
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .popup.hidden {
@@ -262,9 +239,9 @@ main, .container {
 .popup-content {
   background: white;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 12px;
   max-width: 700px;
-  width: 90%;
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -285,13 +262,32 @@ main, .container {
   color: #970A0A;
 }
 
-/* --- Footer --- */
+/* --- Texte stylisé --- */
+.text {
+  font-family: 'Rampart One', cursive;
+  font-size: 2.5em;
+  color: #000;
+  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  transition: letter-spacing 0.3s ease;
+}
+
+.text:hover {
+  letter-spacing: 1px;
+}
+
+/* --- Footer principal --- */
 .site-footer {
   background-color: #111;
   color: white;
   padding: 40px 20px 20px;
   font-size: 0.95em;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-content {
@@ -332,76 +328,14 @@ main, .container {
   opacity: 0.7;
 }
 
-.text {
-  color: #000; /* Texte noir */
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  font-size: 1.2em; /* Taille réduite */
-  font-weight: 500;
-  text-align: center;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 150px; /* Ajuste selon ton design */
-}
-
-.text:hover {
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-}
-
 /* --- Responsive --- */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .top-bar {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     padding: 10px 15px;
     height: 60px;
   }
-.popup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.popup-content {
-  background: #fff;
-  width: 100%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 12px;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
-  font-size: 1rem;
-}
-
-.popup-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px; right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: #333;
-}
 
   .logo {
     height: 150px;
@@ -413,39 +347,24 @@ main, .container {
     right: 15px;
   }
 
-  .news-card {
+  .news-card,
+  .article-card {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .card-content {
     width: 100%;
   }
 
   .popup-content {
     padding: 20px;
-    max-height: 200px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .popup-image {
-    width: 40%;
-    max-height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .popup-content h2 {
-    font-size: 1.2em;
-    margin-bottom: 8px;
-  }
-
-  .popup-content p {
-    font-size: 0.9em;
-    line-height: 1.4;
-    color: #333;
-  }
-
-  .popup-text {
-    width: 60%;
+    max-height: 90vh;
   }
 
   .footer-content {
@@ -454,25 +373,64 @@ main, .container {
     text-align: center;
   }
 
-  .footer-links {
+    .footer-links {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-}
-.text {
-  font-family: 'Rampart One', cursive;
-  font-size: 2.5em; /* taille par défaut pour desktop */
-  color: #000;
-  text-align: center;
-  margin: 20px auto;
+
+  .footer-logo img {
+    height: 50px;
+  }
+
+  .footer-bottom {
+    font-size: 0.8em;
+    margin-top: 20px;
+  }
+
+  .text {
+    font-size: 1.6em;
+    margin: 10px auto;
+    height: auto;
+    padding: 20px 10px;
+  }
+
+  .popup-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .popup-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .popup-text {
+    width: 100%;
+  }
+
+  .side-menu {
+    width: 100%;
+    padding: 80px 20px;
+  }
+
+  .side-menu a {
+    font-size: 1em;
+    margin-bottom: 15px;
+  }
+
+  .social-links {
+    gap: 10px;
+    padding-top: 15px;
+  }
+
+  .social-links img {
+    width: 20px;
+    height: 20px;
+  }
 }
 
-/* Version mobile */
-@media screen and (max-width: 600px) {
-  .text {
-    font-size: 1.6em; /* plus petit sur mobile */
-    margin: 10px auto;
-  }
-}
 
 
 

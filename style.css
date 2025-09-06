@@ -31,6 +31,16 @@ main, .container {
   padding: 20px;
 }
 
+.footer {
+  width: 100vw; /* largeur totale de l’écran */
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
 /* --- Barre rouge --- */
 .top-bar {
   background-color: #970A0A;
@@ -463,6 +473,7 @@ main, .container {
     margin: 10px auto;
   }
 }
+
 
 
 

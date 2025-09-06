@@ -21,6 +21,72 @@ html, body {
   flex: 1;
   padding: 20px;
 }
+/* --- Bulles rouges flottantes --- */
+.floating-bubbles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff2a2a 0%, #970A0A 100%);
+  opacity: 0.2;
+  animation: float 20s linear infinite;
+}
+
+.bubble1 {
+  width: 120px;
+  height: 120px;
+  left: 10%;
+  bottom: -150px;
+  animation-delay: 0s;
+}
+
+.bubble2 {
+  width: 80px;
+  height: 80px;
+  left: 40%;
+  bottom: -100px;
+  animation-delay: 5s;
+}
+
+.bubble3 {
+  width: 100px;
+  height: 100px;
+  left: 70%;
+  bottom: -120px;
+  animation-delay: 10s;
+}
+
+.bubble4 {
+  width: 60px;
+  height: 60px;
+  left: 85%;
+  bottom: -80px;
+  animation-delay: 15s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-50vh) scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1);
+    opacity: 0;
+  }
+}
 
 /* --- Header --- */
 header {
@@ -430,6 +496,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

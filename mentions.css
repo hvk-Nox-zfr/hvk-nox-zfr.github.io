@@ -115,6 +115,56 @@
 .mention-card a:hover {
   color: #ffdddd;
 }
+.mentions-canva {
+  background-color: #fff;
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.mentions-canva h1 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #970A0A;
+  margin-bottom: 50px;
+}
+
+/* Formes arrondies façon Canva */
+.mention-shape {
+  background: linear-gradient(135deg, #fce4e4, #fff);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.mention-shape:hover {
+  transform: scale(1.02);
+}
+
+.mention-shape h2 {
+  font-size: 1.4em;
+  color: #970A0A;
+  margin-bottom: 15px;
+}
+
+.mention-shape p {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.mention-shape a {
+  color: #970A0A;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.mention-shape a:hover {
+  text-decoration: underline;
+}
 
 /* RESPONSIVE MOBILE */
 @media screen and (max-width: 768px) {

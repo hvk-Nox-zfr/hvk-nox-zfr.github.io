@@ -1,9 +1,11 @@
+/* SECTION FOND VAFM AVEC FORMES ABSTRAITES */
 .fond-vafm {
   position: relative;
   background-color: #111;
-  color: white;
+  color: #fff;
   padding: 80px 20px;
   overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .contenu-vafm {
@@ -25,7 +27,7 @@
   line-height: 1.6;
 }
 
-/* Formes abstraites */
+/* FORMES ABSTRAITES EN FOND */
 .forme {
   position: absolute;
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -57,6 +59,8 @@
   top: 40%;
   left: 60%;
 }
+
+/* SECTION MENTIONS LÉGALES */
 .mentions-theme {
   background-color: #000;
   color: #fff;
@@ -72,16 +76,17 @@
 .mention-block h2 {
   text-align: center;
   font-size: 2.5em;
-  color: #970A0A;
+  color: #ff2a2a;
   margin-bottom: 40px;
 }
 
+/* CARTES DE MENTIONS */
 .mention-card {
   background: linear-gradient(135deg, #970A0A, #57081B);
-  border-radius: 25px 10px 25px 10px;
+  border-radius: 30px;
   padding: 25px;
   margin-bottom: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
 }
 
@@ -108,3 +113,25 @@
 .mention-card a:hover {
   color: #ffdddd;
 }
+
+/* RESPONSIVE MOBILE */
+@media screen and (max-width: 768px) {
+  .fond-vafm h1,
+  .mention-block h2 {
+    font-size: 2em;
+  }
+
+  .mention-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .mention-card h3 {
+    font-size: 1.2em;
+  }
+
+  .mention-card p {
+    font-size: 0.95em;
+  }
+}
+

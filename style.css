@@ -7,10 +7,10 @@
 
 html, body {
   height: 100%;
-  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* --- Structure principale --- */
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -19,8 +19,17 @@ html, body {
 
 .container {
   flex: 1;
-  padding: 20px;
 }
+
+.site-footer {
+  background-color: #111;
+  color: white;
+  padding: 40px 20px 20px;
+  font-size: 0.95em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* --- Bulles rouges flottantes --- */
 .live-sondage {
   max-width: 800px;
@@ -576,6 +585,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

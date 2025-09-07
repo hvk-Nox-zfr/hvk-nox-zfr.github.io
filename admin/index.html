@@ -25,19 +25,21 @@
     .editor {
       flex: 1;
       display: flex;
-      flex-direction: row;
-      gap: 20px;
+      flex-direction: column;
       padding: 20px;
       box-sizing: border-box;
     }
 
     .tools {
-      width: 300px;
-      flex-shrink: 0;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
     .tools h2 {
-      margin-top: 0;
+      margin: 0;
+      flex: 1;
+      color: #970A0A;
     }
 
     .tools button {
@@ -47,12 +49,9 @@
       padding: 10px 20px;
       border-radius: 30px;
       cursor: pointer;
-      margin-bottom: 10px;
-      width: 100%;
     }
 
     .zone-cartes {
-      flex: 1;
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
@@ -61,6 +60,7 @@
       border-radius: 12px;
       background-color: #f9f9f9;
       overflow-y: auto;
+      margin-bottom: 20px;
     }
 
     .carte {
@@ -80,6 +80,20 @@
     .carte.dragging {
       opacity: 0.5;
       transform: scale(1.02);
+    }
+
+    .preview {
+      flex: 1;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
@@ -107,6 +121,11 @@
         <!-- Les cartes ajoutées apparaîtront ici -->
       </div>
 
+      <!-- Aperçu du site public -->
+      <div class="preview">
+        <iframe src="https://hvk-nox-zfr.github.io/index.html"></iframe>
+      </div>
+
     </main>
   </div>
 
@@ -117,15 +136,15 @@
 
   <!-- Configuration Firebase -->
   <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyBsla-0z8ZyPgfJOTxabFKxBEE2y0oZDD8",
-  authDomain: "vafm-admin.firebaseapp.com",
-  databaseURL: "https://vafm-admin-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "vafm-admin",
-  storageBucket: "vafm-admin.firebasestorage.app",
-  messagingSenderId: "323614046813",
-  appId: "1:323614046813:web:15a1bceb338680abb0ebb4"
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsla-0z8ZyPgfJOTxabFKxBEE2y0oZDD8",
+      authDomain: "vafm-admin.firebaseapp.com",
+      databaseURL: "https://vafm-admin-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "vafm-admin",
+      storageBucket: "vafm-admin.firebasestorage.app",
+      messagingSenderId: "323614046813",
+      appId: "1:323614046813:web:15a1bceb338680abb0ebb4"
+    };
 
     firebase.initializeApp(firebaseConfig);
   </script>
@@ -143,6 +162,7 @@ const firebaseConfig = {
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

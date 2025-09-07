@@ -1,4 +1,28 @@
 /* --- Barre rouge --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+}
+
+.site-footer {
+  background-color: #111;
+  color: white;
+  padding: 40px 20px 20px;
+  font-size: 0.95em;
+  width: 100%;
+  box-sizing: border-box;
+}
 
 * {
   margin: 0;

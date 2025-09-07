@@ -115,6 +115,17 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
   <script src="firebase-config.js"></script>
+
+  <!-- 🔐 Sécurité Firebase -->
+  <script>
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+
   <script src="script.js"></script>
 </body>
 </html>
+

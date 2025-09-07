@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(err => alert("Erreur de déconnexion : " + err.message));
   };
 
-  // Ajouter une carte glissable et éditable
+  // Ajouter une carte glissable, éditable et supprimable
   window.ajouterCarte = function () {
     const zone = document.getElementById("zone-cartes");
     if (!zone) {
@@ -42,6 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
     div.setAttribute("draggable", "true");
     div.setAttribute("contenteditable", "true");
     div.innerHTML = "<h3>Nouveau titre</h3><p>Contenu ici...</p>";
+
+    const btnSupprimer = document.createElement("button");
+    btnSupprimer.textContent = "🗑️";
+    btnSupprimer.style.cssText = "position:absolute;top:5px;right:5px;background:none;border:none;font-size:18px;cursor:pointer;";
+    btnSupprimer.onclick = () => div.remove();
+    div.style.position = "relative";
+    div.appendChild(btnSupprimer);
 
     zone.appendChild(div);
     activerDragDrop(div);
@@ -111,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(err => alert("Erreur de publication : " + err.message));
   };
 
-  // Charger les cartes depuis Firebase (optionnel mais utile)
+  // Charger les cartes depuis Firebase
   const zone = document.getElementById("zone-cartes");
   if (zone) {
     firebase.database().ref("articles").on("value", snapshot => {
@@ -124,12 +131,17 @@ document.addEventListener("DOMContentLoaded", () => {
         div.setAttribute("draggable", "true");
         div.setAttribute("contenteditable", "true");
         div.innerHTML = article.html;
+
+        const btnSupprimer = document.createElement("button");
+        btnSupprimer.textContent = "🗑️";
+        btnSupprimer.style.cssText = "position:absolute;top:5px;right:5px;background:none;border:none;font-size:18px;cursor:pointer;";
+        btnSupprimer.onclick = () => div.remove();
+        div.style.position = "relative";
+        div.appendChild(btnSupprimer);
+
         zone.appendChild(div);
         activerDragDrop(div);
       });
     });
   }
 });
-
-
-

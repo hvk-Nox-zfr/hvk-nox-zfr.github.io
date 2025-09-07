@@ -110,6 +110,26 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(() => alert("Articles publiés !"))
       .catch(err => alert("Erreur de publication : " + err.message));
   };
+
+  // Charger les cartes depuis Firebase (optionnel mais utile)
+  const zone = document.getElementById("zone-cartes");
+  if (zone) {
+    firebase.database().ref("articles").on("value", snapshot => {
+      const articles = snapshot.val();
+      zone.innerHTML = "";
+
+      (articles || []).forEach(article => {
+        const div = document.createElement("div");
+        div.className = "carte";
+        div.setAttribute("draggable", "true");
+        div.setAttribute("contenteditable", "true");
+        div.innerHTML = article.html;
+        zone.appendChild(div);
+        activerDragDrop(div);
+      });
+    });
+  }
 });
+
 
 

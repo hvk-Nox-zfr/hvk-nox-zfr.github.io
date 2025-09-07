@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #970A0A;
+  color: white;
+  padding: 20px;
+}
+
+.editor {
+  flex: 1;
+  padding: 40px;
+  background: #f9f9f9;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #970A0A;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.editor {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+}
+
+.tools {
+  flex: 1;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+.preview {
+  flex: 2;
+  border-left: 2px solid #ccc;
+  padding: 0;
+}
+
+.preview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.zone-cartes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.carte {
+  background: #fff;
+  border: 2px solid #970A0A;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: move;
+}
+
+.carte[contenteditable="true"] {
+  outline: none;
+}

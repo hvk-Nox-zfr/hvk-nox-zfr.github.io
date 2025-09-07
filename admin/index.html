@@ -5,6 +5,98 @@
   <title>Admin VAFM</title>
   <style>
     /* Ton CSS reste inchangé ici */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .admin-layout {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #970A0A;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .editor {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .tools {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .tools h2 {
+      margin: 0;
+      flex: 1;
+      color: #970A0A;
+    }
+
+    .tools button {
+      background-color: #970A0A;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .zone-cartes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      background-color: #f9f9f9;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .carte {
+      background: #fff;
+      border: 2px solid #970A0A;
+      border-radius: 12px;
+      padding: 20px;
+      width: 300px;
+      min-height: 100px;
+      cursor: move;
+    }
+
+    .carte[contenteditable="true"] {
+      outline: none;
+    }
+
+    .carte.dragging {
+      opacity: 0.5;
+      transform: scale(1.02);
+    }
+
+    .preview {
+      flex: 1;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .preview iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -36,15 +128,15 @@
 
   <!-- ✅ Configuration Firebase -->
   <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyBsla-0z8ZyPgfJOTxabFKxBEE2y0oZDD8",
-  authDomain: "vafm-admin.firebaseapp.com",
-  databaseURL: "https://vafm-admin-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "vafm-admin",
-  storageBucket: "vafm-admin.firebasestorage.app",
-  messagingSenderId: "323614046813",
-  appId: "1:323614046813:web:15a1bceb338680abb0ebb4"
-};
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsla-0z8ZyPgfJOTxabFKxBEE2y0oZDD8",
+      authDomain: "vafm-admin.firebaseapp.com",
+      databaseURL: "https://vafm-admin-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "vafm-admin",
+      storageBucket: "vafm-admin.appspot.com",
+      messagingSenderId: "323614046813",
+      appId: "1:323614046813:web:15a1bceb338680abb0ebb4"
+    };
 
     firebase.initializeApp(firebaseConfig);
   </script>
@@ -58,7 +150,7 @@ const firebaseConfig = {
     });
   </script>
 
-  <!-- ✅ Script principal chargé après le DOM -->
+  <!-- ✅ Script principal chargé après Firebase et le DOM -->
   <script src="script.js"></script>
 </body>
 </html>

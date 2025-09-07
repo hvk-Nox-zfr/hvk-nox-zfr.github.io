@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+User-agent: *
+Allow: /
+Sitemap: https://hvk-nox-zfr.github.io/sitemap.xml

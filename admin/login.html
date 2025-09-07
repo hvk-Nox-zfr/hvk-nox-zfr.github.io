@@ -63,10 +63,23 @@
     <div id="error" class="error"></div>
   </div>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-  <script src="firebase-config.js"></script>
+  <!-- Firebase SDK (version 8 compatible HTML classique) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+  <!-- Configuration Firebase -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "TA_CLE_API",
+      authDomain: "TON_PROJET.firebaseapp.com",
+      projectId: "TON_PROJET",
+      storageBucket: "TON_PROJET.appspot.com",
+      messagingSenderId: "TON_ID",
+      appId: "TON_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
 
   <!-- Script de connexion -->
   <script>
@@ -86,5 +99,7 @@
   </script>
 </body>
 </html>
+
+
 
 

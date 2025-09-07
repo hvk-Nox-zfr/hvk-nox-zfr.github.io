@@ -137,25 +137,24 @@
 
   <!-- Configuration Firebase -->
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBsla-0z8ZyPgfJOTxabFKxBEE2y0oZDD8",
-      authDomain: "vafm-admin.firebaseapp.com",
-      databaseURL: "https://vafm-admin-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "vafm-admin",
-      storageBucket: "vafm-admin.appspot.com",
-      messagingSenderId: "323614046813",
-      appId: "1:323614046813:web:15a1bceb338680abb0ebb4"
-    };
+    document.addEventListener("DOMContentLoaded", function () {
+      const firebaseConfig = {
+        apiKey: "AIzaSyBsla-0z8ZyPgfJOTxabFKxBEE2y0oZDD8",
+        authDomain: "vafm-admin.firebaseapp.com",
+        databaseURL: "https://vafm-admin-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "vafm-admin",
+        storageBucket: "vafm-admin.appspot.com",
+        messagingSenderId: "323614046813",
+        appId: "1:323614046813:web:15a1bceb338680abb0ebb4"
+      };
 
-    firebase.initializeApp(firebaseConfig);
-  </script>
+      firebase.initializeApp(firebaseConfig);
 
-  <!-- 🔐 Sécurité Firebase -->
-  <script>
-    firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = "login.html";
-      }
+      firebase.auth().onAuthStateChanged(user => {
+        if (!user) {
+          window.location.href = "login.html";
+        }
+      });
     });
   </script>
 
@@ -163,6 +162,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 

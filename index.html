@@ -7,36 +7,16 @@
   <title>VAFM - La radio qu'il vous faut</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo gris vafm.png">
   <link rel="stylesheet" href="style.css">
+  <script src="principal.js" defer></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-8497430727637938">
-
-  <style>
-    .dedicace-marquee {
-      width: 100%;
-      overflow: hidden;
-      background-color: #970A0A;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      padding: 10px 0;
-      position: relative;
-    }
-
-    .dedicace-track {
-      display: inline-block;
-      white-space: nowrap;
-      animation: defilement 30s linear infinite;
-      padding-left: 100%;
-    }
-
-    @keyframes defilement {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-  </style>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
 </head>
 <body>
   <div class="page-wrapper">
+
     <!-- Barre rouge -->
     <header class="top-bar">
       <div class="logo-zone">
@@ -45,8 +25,10 @@
       <div class="text">
         <h1>Bienvenue sur VAFM</h1>
       </div>
-      <div class="hamburger" id="menuToggle">
-        <span></span><span></span><span></span>
+      <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </header>
 
@@ -69,10 +51,33 @@
 
     <!-- Contenu principal -->
     <main class="container">
-      <!-- Cartes d'articles -->
-      <!-- ... (tes cartes restent inchangées) ... -->
+            <!-- Carte Lille braderie -->
+      <div class="article-card" onclick="openPopup('popup-braderie')">
+        <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="card-image">
+        <div class="card-content">
+          <h3>Retour sur la Braderie de Lille 2025</h3>
+          <p>Ce week-end, la capitale des Flandres a une nouvelle fois vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues de Lille pour chiner, déguster les incontournables moules-frites et profiter d’une ambiance festive unique.</p>
+        </div>
+      </div>
+      
+      <!-- Carte VAFM recrute -->
+      <div class="article-card" onclick="openPopup('popup-recrutement')">
+        <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="card-image">
+        <div class="card-content">
+          <h3>VAFM recrute !</h3>
+          <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe ! Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ? C’est le moment !</p>
+        </div>
+      </div>
 
-      <!-- Bandeau défilant -->
+      <!-- Carte Fresnes-sur-Escaut -->
+      <div class="article-card" onclick="openPopup('popup-fresnes')">
+        <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="card-image">
+        <div class="card-content">
+          <h3>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h3>
+          <p>Fresnes-sur-Escaut – 16 août 2025. La tradition a une nouvelle fois été respectée hier : Fresnes-sur-Escaut a fêté son 15 août avec faste. Entre le carnaval haut en couleurs, les concerts festifs et un feu d’artifice grandiose, la commune a rassemblé plusieurs milliers de spectateurs venus profiter d’une journée placée sous le signe de la convivialité.</p>
+        </div>
+      </div>
+      
       <div class="dedicace-marquee">
         <div class="dedicace-track" id="dedicaceMarquee"></div>
       </div>
@@ -87,79 +92,104 @@
         </form>
         <div id="dedicaceFeed" class="dedicace-feed"></div>
       </section>
-
+      
       <!-- Pub personnalisée -->
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="https://www.facebook.com/la.touche.personnelle.2024" target="_blank">
-          <img src="assets/PUB thomas.png" alt="La Touche Personnelle" style="max-width: 50%; height: auto; border-radius: 12px;">
-        </a>
-      </div>
+<div style="text-align: center; margin-top: 30px;">
+  <a href="https://www.facebook.com/la.touche.personnelle.2024" target="_blank">
+    <img src="assets/PUB thomas.png" alt="La Touche Personnelle" style="max-width: 50%; height: auto; border-radius: 12px;">
+  </a>
+</div>
+
+
+      
     </main>
+    
+    <div id="popup-braderie" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup('popup-braderie')">✖</span>
+        <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="popup-image">
+        <h2>Retour sur la Braderie de Lille 2025</h2>
+        <p>Ce week-end, la capitale des Flandres a une nouvelle fois vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues de Lille pour chiner, déguster les incontournables moules-frites et profiter d’une ambiance festive unique.
+🛍️ Des stands à perte de vue : brocanteurs, artisans et commerçants ont proposé une incroyable diversité d’objets, des bonnes affaires aux pièces rares.
+🎶 Une atmosphère conviviale : entre musique, rires et animations, la Braderie a rassemblé toutes les générations.
+🍟 La tradition respectée : les restaurants et brasseries ont servi des tonnes de moules-frites, symbole incontournable de l’événement.
+Cette édition a confirmé que la Braderie de Lille reste l’un des rendez-vous populaires les plus emblématiques d’Europe.</p>
+      </div>
+    </div>
+    
+    <!-- Popups -->
+    <div id="popup-fresnes" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup('popup-fresnes')">✖</span>
+        <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="popup-image">
+        <h2>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h2>
+        <p>Fresnes-sur-Escaut – 16 août 2025. La tradition a une nouvelle fois été respectée hier : Fresnes-sur-Escaut a fêté son 15 août avec faste. Entre le carnaval haut en couleurs, les concerts festifs et un feu d’artifice grandiose, la commune a rassemblé plusieurs milliers de spectateurs venus profiter d’une journée placée sous le signe de la convivialité.</p>
+      </div>
+    </div>
 
+    <div id="popup-recrutement" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup('popup-recrutement')">✖</span>
+        <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="popup-image">
+        <h2>VAFM recrute !</h2>
+        <p>
+          La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !<br><br>
+          Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ? C’est le moment !<br><br>
+          Nous recherchons :<br>
+          🔹 Des journalistes bénévoles<br>
+          🔹 Des animateurs bénévoles<br>
+          🔹 Des reporters bénévoles<br><br>
+          📻 Enregistrement depuis chez soi<br>
+          🎧 Micro avec son net<br>
+          🎙️ Passion + rigueur + démo audio<br><br>
+          👉 Envoie-nous une démo à : contact.vafm@gmail.com<br>
+          À très vite dans nos oreilles !<br>
+          — L’équipe de VAFM
+        </p>
+      </div>
+    </div>
+    
     <!-- Footer -->
-    <!-- ... (ton footer reste inchangé) ... -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/logo gris vafm.png" alt="Logo du site VAFM" style="height: 250px;">
+        </div>
+        <div class="footer-links">
+          <a href="contact.html">Nous contacter</a>
+          <a href="mentions.html">Mentions légales</a>
+          <a href="a-propos.html">À propos</a>
+          <a href="accessibilite.html">Accessibilité</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 VAFM | Tous droits réservés.</p>
+      </div>
+    </footer>
+
   </div>
+<!-- Firebase SDK version 8 -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-  <!-- Firebase SDK version 8 -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
+  authDomain: "vafm-dedicaces.firebaseapp.com",
+  databaseURL: "https://vafm-dedicaces-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "vafm-dedicaces",
+  storageBucket: "vafm-dedicaces.firebasestorage.app",
+  messagingSenderId: "553720861929",
+  appId: "1:553720861929:web:87739d3bfa41ed5b50cc78",
+  measurementId: "G-QNVR8XET7E"
+};
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Menu toggle
-      const toggleBtn = document.getElementById("menuToggle");
-      const sideMenu = document.getElementById("sideMenu");
-      toggleBtn.addEventListener("click", () => {
-        sideMenu.classList.toggle("open");
-        toggleBtn.classList.toggle("open");
-      });
+  firebase.initializeApp(firebaseConfig);
+</script>
 
-      // Firebase config
-      const firebaseConfig = {
-        apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
-        authDomain: "vafm-dedicaces.firebaseapp.com",
-        databaseURL: "https://vafm-dedicaces-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "vafm-dedicaces",
-        storageBucket: "vafm-dedicaces.appspot.com",
-        messagingSenderId: "553720861929",
-        appId: "1:553720861929:web:87739d3bfa41ed5b50cc78"
-      };
-
-      firebase.initializeApp(firebaseConfig);
-      const db = firebase.database();
-
-      // Dédicace en direct
-      const form = document.getElementById("dedicaceForm");
-      const feed = document.getElementById("dedicaceFeed");
-      const marquee = document.getElementById("dedicaceMarquee");
-
-      form.addEventListener("submit", e => {
-        e.preventDefault();
-        const nom = document.getElementById("nom").value.trim();
-        const message = document.getElementById("message").value.trim();
-        if (nom && message) {
-          db.ref("dedicaces").push({ nom, message });
-          form.reset();
-        }
-      });
-
-      db.ref("dedicaces").on("child_added", snapshot => {
-        const data = snapshot.val();
-
-        // Affichage dans le flux
-        const div = document.createElement("div");
-        div.classList.add("dedicace-entry");
-        div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
-        feed.prepend(div);
-
-        // Ajout dans le bandeau défilant
-        const span = document.createElement("span");
-        span.textContent = ` 🎙️ ${data.nom} : ${data.message}  • `;
-        marquee.appendChild(span);
-      });
-    });
-  </script>
+  <!-- Scripts -->
 
   <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+

@@ -40,6 +40,27 @@ html, body {
   width: 100%;
   box-sizing: border-box;
 }
+.dedicace-marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #970A0A;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 0;
+  box-shadow: inset 0 -2px 0 rgba(255,255,255,0.2);
+}
+
+.dedicace-track {
+  display: inline-block;
+  animation: defilement 30s linear infinite;
+}
+
+@keyframes defilement {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 
 /* --- Bulles rouges flottantes --- */
 .live-sondage {
@@ -596,6 +617,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

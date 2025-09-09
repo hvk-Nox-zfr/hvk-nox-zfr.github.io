@@ -1,5 +1,6 @@
 User-agent: *
-Allow: /
-User-agent: *
-Allow: /
-Sitemap: https://hvk-nox-zfr.github.io/sitemap.xml
+Disallow: /BingSiteAuth.xml
+Disallow: /GoogleSiteAuth.xml
+Disallow: /accessibility.html
+Disallow: /ads.txt
+Disallow: /app-ads.txt

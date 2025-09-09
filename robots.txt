@@ -4,3 +4,4 @@ Disallow: /GoogleSiteAuth.xml
 Disallow: /accessibility.html
 Disallow: /ads.txt
 Disallow: /app-ads.txt
+Sitemap: https://hxk-xz.github.io/sitemap.xml

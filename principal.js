@@ -128,3 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+const marquee = document.getElementById("dedicaceMarquee");
+
+db.ref("dedicaces").on("child_added", snapshot => {
+  const data = snapshot.val();
+  const span = document.createElement("span");
+  span.textContent = ` 🎙️ ${data.nom} : ${data.message}  • `;
+  marquee.appendChild(span);
+});

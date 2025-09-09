@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🔁 Dédicace en direct
   const dedicaceForm = document.getElementById("dedicaceForm");
   const dedicaceFeed = document.getElementById("dedicaceFeed");
+  const marquee = document.getElementById("dedicaceMarquee");
 
   if (dedicaceForm && dedicaceFeed) {
     dedicaceForm.addEventListener("submit", e => {
@@ -107,10 +108,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     db.ref("dedicaces").on("child_added", snapshot => {
       const data = snapshot.val();
+
+      // Affichage dans le flux
       const div = document.createElement("div");
       div.classList.add("dedicace-entry");
       div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
       dedicaceFeed.prepend(div);
+
+      // Ajout dans le bandeau défilant
+      if (marquee) {
+        const span = document.createElement("span");
+        span.textContent = ` 🎙️ ${data.nom} : ${data.message}  • `;
+        marquee.appendChild(span);
+      }
     });
   }
 
@@ -128,11 +138,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-const marquee = document.getElementById("dedicaceMarquee");
 
-db.ref("dedicaces").on("child_added", snapshot => {
-  const data = snapshot.val();
-  const span = document.createElement("span");
-  span.textContent = ` 🎙️ ${data.nom} : ${data.message}  • `;
-  marquee.appendChild(span);
-});

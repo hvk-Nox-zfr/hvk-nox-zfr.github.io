@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ✅ Firebase (version 8 recommandée dans HTML)
+  // ✅ Firebase (version 8)
   const firebaseConfig = {
     apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
     authDomain: "vafm-dedicaces.firebaseapp.com",
@@ -94,7 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const dedicaceFeed = document.getElementById("dedicaceFeed");
   const marquee = document.getElementById("dedicaceMarquee");
 
-  if (dedicaceForm && dedicaceFeed) {
+  const file = [];
+
+  if (dedicaceForm && dedicaceFeed && marquee) {
     dedicaceForm.addEventListener("submit", e => {
       e.preventDefault();
       const nom = document.getElementById("nom")?.value.trim();
@@ -115,13 +117,24 @@ document.addEventListener("DOMContentLoaded", () => {
       div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
       dedicaceFeed.prepend(div);
 
-      // Ajout dans le bandeau défilant
-      if (marquee) {
-        const span = document.createElement("span");
-        span.textContent = ` 🎙️ ${data.nom} : ${data.message}  • `;
-        marquee.appendChild(span);
+      // Ajout dans la file du bandeau
+      file.push(` 🎙️ ${data.nom} : ${data.message} `);
+      if (file.length === 1) {
+        afficherUneDedicace();
       }
     });
+
+    function afficherUneDedicace() {
+      if (file.length === 0) return;
+
+      marquee.textContent = file[0];
+      marquee.style.animation = "defilement 30s linear";
+
+      setTimeout(() => {
+        file.shift();
+        afficherUneDedicace();
+      }, 30000); // Durée identique à l'animation CSS
+    }
   }
 
   // 🔁 Chargement des articles (si zone présente)
@@ -138,69 +151,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const firebaseConfig = {
-        apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
-        authDomain: "vafm-dedicaces.firebaseapp.com",
-        databaseURL: "https://vafm-dedicaces-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "vafm-dedicaces",
-        storageBucket: "vafm-dedicaces.appspot.com",
-        messagingSenderId: "553720861929",
-        appId: "1:553720861929:web:87739d3bfa41ed5b50cc78"
-      };
-
-      firebase.initializeApp(firebaseConfig);
-      const db = firebase.database();
-
-      const form = document.getElementById("dedicaceForm");
-      const feed = document.getElementById("dedicaceFeed");
-      const marquee = document.getElementById("dedicaceMarquee");
-
-      if (form && feed && marquee) {
-        form.addEventListener("submit", e => {
-          e.preventDefault();
-          const nom = document.getElementById("nom").value.trim();
-          const message = document.getElementById("message").value.trim();
-          if (nom && message) {
-            db.ref("dedicaces").push({ nom, message });
-            form.reset();
-          }
-        });
-
-        db.ref("dedicaces").on("child_added", snapshot => {
-          const data = snapshot.val();
-
-          const div = document.createElement("div");
-          div.classList.add("dedicace-entry");
-          div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
-          feed.prepend(div);
-
-          const span = document.createElement("span");
-          span.textContent = ` 🎙️ ${data.nom} : ${data.message}  • `;
-          marquee.appendChild(span);
-        });
-      }
-
-      // Menu toggle
-      const toggleBtn = document.getElementById("menuToggle");
-      const sideMenu = document.getElementById("sideMenu");
-      if (toggleBtn && sideMenu) {
-        toggleBtn.addEventListener("click", () => {
-          sideMenu.classList.toggle("open");
-          toggleBtn.classList.toggle("open");
-        });
-      }
-
-      // Popup functions
-      window.openPopup = function(id) {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove("hidden");
-      };
-
-      window.closePopup = function(id) {
-        const el = document.getElementById(id);
-        if (el) el.classList.add("hidden");
-      };
-    });
-

@@ -55,6 +55,7 @@ img {
 }
 
 /* --- Barre du haut --- */
+/* --- Barre du haut --- */
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -66,11 +67,6 @@ img {
   z-index: 100;
 }
 
-/* --- Logo --- */
-.logo-zone img {
-  height: 60px;
-}
-
 /* --- Bouton hamburger --- */
 .hamburger {
   cursor: pointer;
@@ -80,7 +76,6 @@ img {
   align-items: flex-end;
   gap: 6px;
   padding: 10px;
-  background-color: transparent;
   z-index: 1000;
 }
 
@@ -812,6 +807,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

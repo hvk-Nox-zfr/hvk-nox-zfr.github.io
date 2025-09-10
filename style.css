@@ -16,6 +16,102 @@ img {
   max-width: 100%;
   height: auto;
 }
+/* Menu latéral caché par défaut */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #111;
+  transition: left 0.3s ease;
+  z-index: 999;
+  padding: 20px;
+}
+
+/* Menu visible quand .open est activé */
+.side-menu.open {
+  left: 0;
+}
+
+/* Bouton hamburger */
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+/* Animation du hamburger en croix */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+/* Menu latéral caché par défaut */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #111;
+  transition: left 0.3s ease;
+  z-index: 999;
+  padding: 20px;
+}
+
+/* Menu visible quand .open est activé */
+.side-menu.open {
+  left: 0;
+}
+
+/* Bouton hamburger */
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+/* Animation du hamburger en croix */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
 
 /* --- Structure principale --- */
 .page-wrapper {
@@ -693,6 +789,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

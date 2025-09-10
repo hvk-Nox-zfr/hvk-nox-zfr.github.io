@@ -70,17 +70,10 @@
         </div>
       </div>
 
-      <!-- Vidéo short -->
-<div class="short-video">
-  <video 
-    src="assets/Braderie Lille3.mp4" 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    controls>
-  </video>
+<div class="video-thumbnail" onclick="openPopup('popup-video')">
+  <img src="assets/Braderie Lille3.mp4" alt="Voir la vidéo" />
 </div>
+
 
       <!-- Bandeau défilant -->
       <div class="dedicace-marquee">
@@ -133,6 +126,20 @@
         <p>Concerts, carnaval et feu d’artifice ont animé la Place de la République pour une soirée inoubliable.</p>
       </div>
     </div>
+    
+<div id="popup-video" class="popup hidden">
+  <div class="popup-content short-popup">
+    <span class="close-btn" onclick="closePopup('popup-video')">✖</span>
+    <video 
+      src="assets/Braderie-lille.mp4" 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      controls>
+    </video>
+  </div>
+</div>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -229,6 +236,7 @@
   <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 
 
 

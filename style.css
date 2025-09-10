@@ -101,6 +101,11 @@ html, body {
       100% { transform: translateX(-100%); }
     }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -712,6 +717,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

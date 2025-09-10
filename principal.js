@@ -168,7 +168,7 @@ dedicaceForm.addEventListener("submit", e => {
   const blacklist = [
   "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
   "ta gueule", "nique", "batard", "bâtard", "bite", "couille", "pétasse", "enfoiré", "gros con",
-  "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse"
+  "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse", "slp", "putain", "hugo"
   ];
   const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
 

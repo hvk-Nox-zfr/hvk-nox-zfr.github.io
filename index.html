@@ -10,71 +10,8 @@
   <script src="principal.js" defer></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-8497430727637938">
-
 </head>
 <body>
-  <main class="container">
-  <!-- Cartes d’actualité -->
-  <div class="article-card" onclick="openPopup('popup-braderie')">
-    <img src="assets/braderie lille.jpeg" alt="Image article Braderie de Lille" class="card-image">
-    <div class="card-content">
-      <h3>Retour sur la Braderie de Lille 2025</h3>
-      <p>Ce week-end, la capitale des Flandres a vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues pour chiner, déguster les moules-frites et profiter d’une ambiance festive unique.</p>
-    </div>
-  </div>
-
-  <div class="article-card" onclick="openPopup('popup-recrutement')">
-    <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="card-image">
-    <div class="card-content">
-      <h3>VAFM recrute !</h3>
-      <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe ! Tu rêves de faire de la radio ? C’est le moment !</p>
-    </div>
-  </div>
-
-  <div class="article-card" onclick="openPopup('popup-fresnes')">
-    <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="card-image">
-    <div class="card-content">
-      <h3>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h3>
-      <p>Entre carnaval, concerts et feu d’artifice, la commune a rassemblé des milliers de spectateurs dans une ambiance festive.</p>
-    </div>
-  </div>
-
-  <!-- Vidéo short -->
-  <div class="short-video">
-    <video 
-      src="assets/Braderie-lille.mp4" 
-      autoplay 
-      muted 
-      loop 
-      playsinline 
-      controls>
-    </video>
-  </div>
-
-  <!-- Bandeau défilant -->
-  <div class="dedicace-marquee">
-    <div class="dedicace-track" id="dedicaceMarquee"></div>
-  </div>
-
-  <!-- Dédicaces en direct -->
-  <section class="live-dedicace">
-    <h2>Dédicace</h2>
-    <form id="dedicaceForm">
-      <input type="text" id="nom" placeholder="Ton prénom ou pseudo" required>
-      <textarea id="message" placeholder="Ta dédicace..." required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-    <div id="dedicaceFeed" class="dedicace-feed"></div>
-  </section>
-
-  <!-- Pub personnalisée -->
-  <div style="text-align: center; margin-top: 30px;">
-    <a href="https://www.facebook.com/la.touche.personnelle.2024" target="_blank">
-      <img src="assets/PUB thomas.png" alt="La Touche Personnelle" style="max-width: 50%; height: auto; border-radius: 12px;">
-    </a>
-  </div>
-</main>
-
   <div class="page-wrapper">
     <!-- Barre rouge -->
     <header class="top-bar">
@@ -108,8 +45,30 @@
 
     <!-- Contenu principal -->
     <main class="container">
-      <!-- Cartes d'articles -->
-      <!-- ... tes cartes inchangées ... -->
+      <!-- Cartes d’actualité -->
+      <div class="article-card" onclick="openPopup('popup-braderie')">
+        <img src="assets/braderie lille.jpeg" alt="Image article Braderie de Lille" class="card-image">
+        <div class="card-content">
+          <h3>Retour sur la Braderie de Lille 2025</h3>
+          <p>Ce week-end, la capitale des Flandres a vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues pour chiner, déguster les moules-frites et profiter d’une ambiance festive unique.</p>
+        </div>
+      </div>
+
+      <div class="article-card" onclick="openPopup('popup-recrutement')">
+        <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="card-image">
+        <div class="card-content">
+          <h3>VAFM recrute !</h3>
+          <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe ! Tu rêves de faire de la radio ? C’est le moment !</p>
+        </div>
+      </div>
+
+      <div class="article-card" onclick="openPopup('popup-fresnes')">
+        <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="card-image">
+        <div class="card-content">
+          <h3>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h3>
+          <p>Entre carnaval, concerts et feu d’artifice, la commune a rassemblé des milliers de spectateurs dans une ambiance festive.</p>
+        </div>
+      </div>
 
       <!-- Vidéo short -->
       <div class="short-video">
@@ -147,10 +106,35 @@
       </div>
     </main>
 
+    <!-- Popups -->
+    <div id="popup-braderie" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup('popup-braderie')">✖</span>
+        <img src="assets/braderie lille.jpeg" alt="Braderie de Lille" class="popup-image">
+        <h2>Retour sur la Braderie de Lille 2025</h2>
+        <p>Des stands à perte de vue, une ambiance conviviale, et des tonnes de moules-frites : la Braderie de Lille a une fois de plus conquis les foules.</p>
+      </div>
+    </div>
+
+    <div id="popup-recrutement" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup('popup-recrutement')">✖</span>
+        <img src="assets/vafm-recrute.jpg" alt="VAFM recrute" class="popup-image">
+        <h2>VAFM recrute !</h2>
+        <p>Tu veux faire de la radio ? Rejoins-nous ! Animateurs, journalistes, reporters bénévoles : envoie ta démo à contact.vafm@gmail.com</p>
+      </div>
+    </div>
+
+    <div id="popup-fresnes" class="popup hidden">
+      <div class="popup-content">
+        <span class="close-btn" onclick="closePopup('popup-fresnes')">✖</span>
+        <img src="assets/frs.jpg" alt="Fresnes-sur-Escaut" class="popup-image">
+        <h2>Fresnes-sur-Escaut a vibré pour le 15 août</h2>
+        <p>Concerts, carnaval et feu d’artifice ont animé la Place de la République pour une soirée inoubliable.</p>
+      </div>
+    </div>
+
     <!-- Footer -->
-    <!-- ... inchangé ... -->
-  </div>
-  
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-logo">
@@ -167,6 +151,9 @@
         <p>© 2025 VAFM | Tous droits réservés.</p>
       </div>
     </footer>
+  </div>
+
+  <!-- Firebase SDK version 8 -->
   <!-- Firebase SDK version 8 -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
@@ -190,38 +177,58 @@
       const feed = document.getElementById("dedicaceFeed");
       const marquee = document.getElementById("dedicaceMarquee");
 
-      form.addEventListener("submit", e => {
-        e.preventDefault();
-        const nom = document.getElementById("nom").value.trim();
-        const message = document.getElementById("message").value.trim();
-        if (nom && message) {
-          db.ref("dedicaces").push({ nom, message });
-          form.reset();
-        }
-      });
+      if (form && feed && marquee) {
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+          const nom = document.getElementById("nom").value.trim();
+          const message = document.getElementById("message").value.trim();
+          if (nom && message) {
+            db.ref("dedicaces").push({ nom, message });
+            form.reset();
+          }
+        });
 
-      db.ref("dedicaces").on("child_added", snapshot => {
-        const data = snapshot.val();
+        db.ref("dedicaces").on("child_added", snapshot => {
+          const data = snapshot.val();
 
-        const div = document.createElement("div");
-        div.classList.add("dedicace-entry");
-        div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
-        feed.prepend(div);
+          const div = document.createElement("div");
+          div.classList.add("dedicace-entry");
+          div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
+          feed.prepend(div);
 
-        const span = document.createElement("span");
-        span.textContent = ` 🎙️ ${data.nom} : ${data.message}  • `;
-        marquee.appendChild(span);
-      });
+          const span = document.createElement("span");
+          span.textContent = ` 🎙️ ${data.nom} : ${data.message}  • `;
+          marquee.appendChild(span);
+        });
+      }
+
+      // Menu toggle
+      const toggleBtn = document.getElementById("menuToggle");
+      const sideMenu = document.getElementById("sideMenu");
+      if (toggleBtn && sideMenu) {
+        toggleBtn.addEventListener("click", () => {
+          sideMenu.classList.toggle("open");
+          toggleBtn.classList.toggle("open");
+        });
+      }
+
+      // Popup functions
+      window.openPopup = function(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("hidden");
+      };
+
+      window.closePopup = function(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.add("hidden");
+      };
     });
   </script>
 
+  <!-- Statistiques GoatCounter -->
   <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
-
-
-
-
 
 
 

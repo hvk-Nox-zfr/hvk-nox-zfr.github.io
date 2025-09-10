@@ -7,6 +7,7 @@ if (toggleBtn && sideMenu) {
   toggleBtn.addEventListener("click", () => {
     sideMenu.classList.toggle("open");
     toggleBtn.classList.toggle("open");
+    console.log("Hamburger cliqué !");
   });
 }
 

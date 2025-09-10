@@ -74,11 +74,14 @@ html, body {
 
 .short-popup video {
   width: 100%;
+  max-width: 360px;
   aspect-ratio: 9 / 16;
   object-fit: cover;
   border-radius: 12px;
   background-color: black;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
+
 
 .close-btn {
   position: absolute;
@@ -717,6 +720,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

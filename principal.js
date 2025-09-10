@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 🔁 Menu latéral
-  const toggleBtn = document.getElementById("menuToggle");
-  const sideMenu = document.getElementById("sideMenu");
+const toggleBtn = document.getElementById("menuToggle");
+const sideMenu = document.getElementById("sideMenu");
 
-  if (toggleBtn && sideMenu) {
-    toggleBtn.addEventListener("click", () => {
-      sideMenu.classList.toggle("open");
-      toggleBtn.classList.toggle("open");
-    });
-  }
+if (toggleBtn && sideMenu) {
+  toggleBtn.addEventListener("click", () => {
+    sideMenu.classList.toggle("open");
+    toggleBtn.classList.toggle("open");
+  });
+}
 
   // 🔁 Popups
   window.openPopup = function(id) {

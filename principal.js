@@ -160,3 +160,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+dedicaceForm.addEventListener("submit", e => {
+  e.preventDefault();
+  const nom = document.getElementById("nom")?.value.trim();
+  const message = document.getElementById("message")?.value.trim();
+
+  const blacklist = ["con", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg"];
+  const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
+
+  if (contientGrosMot) {
+    alert("Ton message contient un mot interdit. Merci de rester respectueux !");
+    return;
+  }
+
+  if (nom && message) {
+    db.ref("dedicaces").push({ nom, message });
+    dedicaceForm.reset();
+    charCount.textContent = "50 caractères restants";
+  }
+});

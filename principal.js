@@ -151,3 +151,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+const messageInput = document.getElementById("message");
+const charCount = document.getElementById("charCount");
+
+messageInput.addEventListener("input", () => {
+  const max = messageInput.getAttribute("maxlength");
+  const current = messageInput.value.length;
+  charCount.textContent = `${max - current} caractères restants`;
+});

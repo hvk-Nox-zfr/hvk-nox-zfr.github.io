@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // 🔁 Sondage local (non Firebase)
+  // 🔁 Sondage local
   const sondageForm = document.getElementById("sondageForm");
   const sondageFeed = document.getElementById("sondageFeed");
 
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ✅ Firebase (version 8)
+  // ✅ Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
     authDomain: "vafm-dedicaces.firebaseapp.com",
@@ -93,31 +93,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const dedicaceForm = document.getElementById("dedicaceForm");
   const dedicaceFeed = document.getElementById("dedicaceFeed");
   const marquee = document.getElementById("dedicaceMarquee");
+  const messageInput = document.getElementById("message");
+  const charCount = document.getElementById("charCount");
 
   const file = [];
+
+  if (messageInput && charCount) {
+    messageInput.addEventListener("input", () => {
+      const max = messageInput.getAttribute("maxlength");
+      const current = messageInput.value.length;
+      charCount.textContent = `${max - current} caractères restants`;
+    });
+  }
 
   if (dedicaceForm && dedicaceFeed && marquee) {
     dedicaceForm.addEventListener("submit", e => {
       e.preventDefault();
       const nom = document.getElementById("nom")?.value.trim();
-      const message = document.getElementById("message")?.value.trim();
+      const message = messageInput?.value.trim();
 
       if (nom && message) {
         db.ref("dedicaces").push({ nom, message });
         dedicaceForm.reset();
+        charCount.textContent = "50 caractères restants";
       }
     });
 
     db.ref("dedicaces").on("child_added", snapshot => {
       const data = snapshot.val();
 
-      // Affichage dans le flux
       const div = document.createElement("div");
       div.classList.add("dedicace-entry");
       div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
       dedicaceFeed.prepend(div);
 
-      // Ajout dans la file du bandeau
       file.push(` 🎙️ ${data.nom} : ${data.message} `);
       if (file.length === 1) {
         afficherUneDedicace();
@@ -133,11 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         file.shift();
         afficherUneDedicace();
-      }, 30000); // Durée identique à l'animation CSS
+      }, 30000);
     }
   }
 
-  // 🔁 Chargement des articles (si zone présente)
+  // 🔁 Chargement des articles
   const articlesZone = document.getElementById("articles");
   if (articlesZone) {
     db.ref("articles").on("value", snapshot => {
@@ -150,12 +159,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-});
-const messageInput = document.getElementById("message");
-const charCount = document.getElementById("charCount");
-
-messageInput.addEventListener("input", () => {
-  const max = messageInput.getAttribute("maxlength");
-  const current = messageInput.value.length;
-  charCount.textContent = `${max - current} caractères restants`;
 });

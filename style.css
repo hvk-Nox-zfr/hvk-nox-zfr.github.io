@@ -11,6 +11,32 @@ html, body {
   background-color: #fff;
 }
 
+/* --- Images globales --- */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Structure principale --- */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+}
+
+.site-footer {
+  background-color: #111;
+  color: white;
+  padding: 40px 20px 20px;
+  font-size: 0.95em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 /* --- Publicité personnalisée --- */
 .custom-ad {
   text-align: center;
@@ -40,30 +66,6 @@ html, body {
   object-fit: cover;
   background-color: black;
   border-radius: 12px;
-}
-
-/* --- Bandeau dédicace --- */
-.dedicace-marquee {
-  width: 100%;
-  overflow: hidden;
-  background-color: #970A0A;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 10px 0;
-  position: relative;
-}
-
-.dedicace-track {
-  display: inline-block;
-  white-space: nowrap;
-  animation: defilement 30s linear infinite;
-  padding-left: 100%;
-}
-
-@keyframes defilement {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
 }
 
 /* --- Popup vidéo --- */
@@ -112,30 +114,7 @@ html, body {
   cursor: pointer;
 }
 
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.container {
-  flex: 1;
-}
-
-.site-footer {
-  background-color: #111;
-  color: white;
-  padding: 40px 20px 20px;
-  font-size: 0.95em;
-  width: 100%;
-  box-sizing: border-box;
-}
+/* --- Bandeau dédicace --- */
 .dedicace-marquee {
   width: 100%;
   overflow: hidden;
@@ -157,21 +136,6 @@ img {
 @keyframes defilement {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
-}
-
-.short-video {
-  max-width: 360px;
-  margin: 20px auto;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-.short-video video {
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  border-radius: 12px;
 }
 
 /* --- Bulles rouges flottantes --- */
@@ -729,6 +693,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

@@ -165,7 +165,11 @@ dedicaceForm.addEventListener("submit", e => {
   const nom = document.getElementById("nom")?.value.trim();
   const message = document.getElementById("message")?.value.trim();
 
-  const blacklist = ["con", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg"];
+  const blacklist = [
+  "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
+  "ta gueule", "nique", "batard", "bâtard", "bite", "couille", "pétasse", "enfoiré", "gros con",
+  "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse"
+  ];
   const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
 
   if (contientGrosMot) {

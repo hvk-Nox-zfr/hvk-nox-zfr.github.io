@@ -11,47 +11,70 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
   <meta name="google-adsense-account" content="ca-pub-8497430727637938">
 
-  <style>
-    .short-video {
-      max-width: 360px;
-      margin: 20px auto;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .short-video video {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-      background-color: black;
-    }
-
-    .dedicace-marquee {
-      width: 100%;
-      overflow: hidden;
-      background-color: #970A0A;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      padding: 10px 0;
-      position: relative;
-    }
-
-    .dedicace-track {
-      display: inline-block;
-      white-space: nowrap;
-      animation: defilement 30s linear infinite;
-      padding-left: 100%;
-    }
-
-    @keyframes defilement {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-  </style>
 </head>
 <body>
+  <main class="container">
+  <!-- Cartes d’actualité -->
+  <div class="article-card" onclick="openPopup('popup-braderie')">
+    <img src="assets/braderie lille.jpeg" alt="Image article Braderie de Lille" class="card-image">
+    <div class="card-content">
+      <h3>Retour sur la Braderie de Lille 2025</h3>
+      <p>Ce week-end, la capitale des Flandres a vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues pour chiner, déguster les moules-frites et profiter d’une ambiance festive unique.</p>
+    </div>
+  </div>
+
+  <div class="article-card" onclick="openPopup('popup-recrutement')">
+    <img src="assets/vafm-recrute.jpg" alt="Image article VAFM recrute" class="card-image">
+    <div class="card-content">
+      <h3>VAFM recrute !</h3>
+      <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe ! Tu rêves de faire de la radio ? C’est le moment !</p>
+    </div>
+  </div>
+
+  <div class="article-card" onclick="openPopup('popup-fresnes')">
+    <img src="assets/frs.jpg" alt="Image article Fresnes-sur-Escaut" class="card-image">
+    <div class="card-content">
+      <h3>Fresnes-sur-Escaut a vibré pour la soirée du 15 août 2025</h3>
+      <p>Entre carnaval, concerts et feu d’artifice, la commune a rassemblé des milliers de spectateurs dans une ambiance festive.</p>
+    </div>
+  </div>
+
+  <!-- Vidéo short -->
+  <div class="short-video">
+    <video 
+      src="assets/Braderie-lille.mp4" 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      controls>
+    </video>
+  </div>
+
+  <!-- Bandeau défilant -->
+  <div class="dedicace-marquee">
+    <div class="dedicace-track" id="dedicaceMarquee"></div>
+  </div>
+
+  <!-- Dédicaces en direct -->
+  <section class="live-dedicace">
+    <h2>Dédicace</h2>
+    <form id="dedicaceForm">
+      <input type="text" id="nom" placeholder="Ton prénom ou pseudo" required>
+      <textarea id="message" placeholder="Ta dédicace..." required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+    <div id="dedicaceFeed" class="dedicace-feed"></div>
+  </section>
+
+  <!-- Pub personnalisée -->
+  <div style="text-align: center; margin-top: 30px;">
+    <a href="https://www.facebook.com/la.touche.personnelle.2024" target="_blank">
+      <img src="assets/PUB thomas.png" alt="La Touche Personnelle" style="max-width: 50%; height: auto; border-radius: 12px;">
+    </a>
+  </div>
+</main>
+
   <div class="page-wrapper">
     <!-- Barre rouge -->
     <header class="top-bar">
@@ -179,6 +202,7 @@
   <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 
 
 

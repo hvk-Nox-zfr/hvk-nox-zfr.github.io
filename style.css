@@ -54,8 +54,6 @@ img {
   left: 0;
 }
 
-/* --- Bouton hamburger --- */
-/* --- Barre du haut --- */
 /* --- Barre du haut --- */
 .top-bar {
   display: flex;
@@ -66,6 +64,11 @@ img {
   color: white;
   position: relative;
   z-index: 100;
+}
+
+/* --- Logo --- */
+.logo-zone img {
+  height: 60px;
 }
 
 /* --- Bouton hamburger --- */
@@ -85,7 +88,7 @@ img {
   display: block;
   width: 30px;
   height: 4px;
-  background-color: white;
+  background-color: white; /* ← change en noir si fond clair */
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -102,6 +105,7 @@ img {
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
+
 
 /* --- Publicité personnalisée --- */
 .custom-ad {
@@ -808,6 +812,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

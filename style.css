@@ -4,48 +4,69 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html, body {
+  height: 100%;
+  font-family: sans-serif;
+  background-color: #fff;
+}
+
+/* --- Publicité personnalisée --- */
 .custom-ad {
   text-align: center;
   padding: 20px;
 }
 
 .custom-ad .ad-image {
+  max-width: 100%;
   width: 700px;
   border: 2px solid #970A0A;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/* --- Vidéo format short --- */
+.short-video {
+  max-width: 360px;
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
-    .short-video {
-      max-width: 360px;
-      margin: 20px auto;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
 
-    .short-video video {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-      background-color: black;
-    }
+.short-video video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background-color: black;
+  border-radius: 12px;
+}
 
-    .dedicace-marquee {
-      width: 100%;
-      overflow: hidden;
-      background-color: #970A0A;
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      padding: 10px 0;
-      position: relative;
-    }
+/* --- Bandeau dédicace --- */
+.dedicace-marquee {
+  width: 100%;
+  overflow: hidden;
+  background-color: #970A0A;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 0;
+  position: relative;
+}
+
+.dedicace-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: defilement 30s linear infinite;
+  padding-left: 100%;
+}
+
+@keyframes defilement {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* --- Popup vidéo --- */
 .popup {
   position: fixed;
   top: 0;
@@ -74,7 +95,6 @@ html, body {
 
 .short-popup video {
   width: 100%;
-  max-width: 360px;
   aspect-ratio: 9 / 16;
   object-fit: cover;
   border-radius: 12px;
@@ -82,7 +102,7 @@ html, body {
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-
+/* --- Bouton fermeture popup --- */
 .close-btn {
   position: absolute;
   top: 8px;
@@ -92,17 +112,6 @@ html, body {
   cursor: pointer;
 }
 
-    .dedicace-track {
-      display: inline-block;
-      white-space: nowrap;
-      animation: defilement 30s linear infinite;
-      padding-left: 100%;
-    }
-
-    @keyframes defilement {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
 
 img {
   max-width: 100%;
@@ -720,6 +729,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

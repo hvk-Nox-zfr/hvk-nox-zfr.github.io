@@ -23,10 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // 🔁 Animation logo audio
-  let isPlaying = false;
   const logo = document.querySelector('.clickable-logo');
   const equalizer = document.querySelector('.equalizer');
   const player = document.getElementById('audioPlayer');
+  let isPlaying = false;
 
   window.togglePlay = function () {
     if (!player || !logo || !equalizer) return;
@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (sondageForm && sondageFeed) {
     sondageForm.addEventListener("submit", e => {
       e.preventDefault();
-      const prenom = document.getElementById("prenom")?.value.trim();
-      const nom = document.getElementById("nom")?.value.trim();
-      const message = document.getElementById("message")?.value.trim();
+      const prenom = document.getElementById("prenom").value.trim();
+      const nom = document.getElementById("nom").value.trim();
+      const message = document.getElementById("message").value.trim();
 
       if (prenom && nom && message) {
         const entry = document.createElement("div");
@@ -96,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const marquee = document.getElementById("dedicaceMarquee");
   const messageInput = document.getElementById("message");
   const charCount = document.getElementById("charCount");
-
   const file = [];
 
   if (messageInput && charCount) {
@@ -110,8 +109,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (dedicaceForm && dedicaceFeed && marquee) {
     dedicaceForm.addEventListener("submit", e => {
       e.preventDefault();
-      const nom = document.getElementById("nom")?.value.trim();
-      const message = messageInput?.value.trim();
+      const nom = document.getElementById("nom").value.trim();
+      const message = messageInput.value.trim();
 
       const blacklist = [
         "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
@@ -120,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ];
 
       const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
-
       if (contientGrosMot) {
         alert("Ton message contient un mot interdit. Merci de rester respectueux !");
         return;
@@ -142,17 +140,13 @@ document.addEventListener("DOMContentLoaded", () => {
       dedicaceFeed.prepend(div);
 
       file.push(` 🎙️ ${data.nom} : ${data.message} `);
-      if (file.length === 1) {
-        afficherUneDedicace();
-      }
+      if (file.length === 1) afficherUneDedicace();
     });
 
     function afficherUneDedicace() {
       if (file.length === 0) return;
-
       marquee.textContent = file[0];
       marquee.style.animation = "defilement 30s linear";
-
       setTimeout(() => {
         file.shift();
         afficherUneDedicace();
@@ -164,9 +158,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const articlesZone = document.getElementById("articles");
   if (articlesZone) {
     db.ref("articles").on("value", snapshot => {
-      const articles = snapshot.val();
+      const articles = snapshot.val() || [];
       articlesZone.innerHTML = "";
-      (articles || []).forEach(article => {
+      articles.forEach(article => {
         const div = document.createElement("div");
         div.innerHTML = article.html;
         articlesZone.appendChild(div);
@@ -174,3 +168,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+

@@ -258,9 +258,34 @@
       };
     });
   </script>
+<script>
+    function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      const toggleBtn = document.getElementById("menuToggle");
 
+      menu.classList.toggle("open");
+      toggleBtn.classList.toggle("open");
+    }
+
+    const player = document.getElementById('radio-player');
+    const equalizer = document.getElementById('equalizer');
+    let isPlaying = false;
+
+    function togglePlay() {
+      if (!isPlaying) {
+        player.play();
+        equalizer.classList.remove('hidden');
+        isPlaying = true;
+      } else {
+        player.pause();
+        equalizer.classList.add('hidden');
+        isPlaying = false;
+      }
+    }
+  </script>
   <!-- Statistiques GoatCounter -->
   <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 

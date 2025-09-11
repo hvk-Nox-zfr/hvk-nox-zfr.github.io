@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 🔁 Menu latéral
-const toggleBtn = document.getElementById("menuToggle");
-const sideMenu = document.getElementById("sideMenu");
+  const toggleBtn = document.getElementById("menuToggle");
+  const sideMenu = document.getElementById("sideMenu");
 
-if (toggleBtn && sideMenu) {
-  toggleBtn.addEventListener("click", () => {
-    sideMenu.classList.toggle("open");
-    toggleBtn.classList.toggle("open");
-    console.log("Hamburger cliqué !");
-  });
-}
+  if (toggleBtn && sideMenu) {
+    toggleBtn.addEventListener("click", () => {
+      sideMenu.classList.toggle("open");
+      toggleBtn.classList.toggle("open");
+      console.log("Hamburger cliqué !");
+    });
+  }
 
   // 🔁 Popups
   window.openPopup = function(id) {
@@ -113,6 +113,19 @@ if (toggleBtn && sideMenu) {
       const nom = document.getElementById("nom")?.value.trim();
       const message = messageInput?.value.trim();
 
+      const blacklist = [
+        "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
+        "ta gueule", "nique", "batard", "bâtard", "bite", "couille", "pétasse", "enfoiré", "gros con",
+        "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse", "slp", "trou de balle"
+      ];
+
+      const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
+
+      if (contientGrosMot) {
+        alert("Ton message contient un mot interdit. Merci de rester respectueux !");
+        return;
+      }
+
       if (nom && message) {
         db.ref("dedicaces").push({ nom, message });
         dedicaceForm.reset();
@@ -159,29 +172,5 @@ if (toggleBtn && sideMenu) {
         articlesZone.appendChild(div);
       });
     });
-  }
-});
-dedicaceForm.addEventListener("submit", e => {
-  e.preventDefault();
-  const nom = document.getElementById("nom")?.value.trim();
-  const message = document.getElementById("message")?.value.trim();
-
-  const blacklist = [
-  "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
-  "ta gueule", "nique", "batard", "bâtard", "bite", "couille", "pétasse", "enfoiré", "gros con",
-  "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse", "slp", "putain", "hugo", "salope",
-  "trou de balle"
-  ];
-  const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
-
-  if (contientGrosMot) {
-    alert("Ton message contient un mot interdit. Merci de rester respectueux !");
-    return;
-  }
-
-  if (nom && message) {
-    db.ref("dedicaces").push({ nom, message });
-    dedicaceForm.reset();
-    charCount.textContent = "50 caractères restants";
   }
 });

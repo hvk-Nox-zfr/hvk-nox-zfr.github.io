@@ -293,7 +293,7 @@ img {
   color: #970A0A;
   margin-bottom: 20px;
 }
-
+/* --- Sondage --- */
 #sondageForm {
   display: flex;
   flex-direction: column;
@@ -340,12 +340,7 @@ img {
   animation: fadeIn 0.5s ease;
 }
 
-/* --- Animation fadeIn --- */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+/* --- Dédicace --- */
 .dedicace-entry {
   background: #ffeded;
   border-left: 5px solid #970A0A;
@@ -355,43 +350,7 @@ img {
   animation: fadeIn 0.5s ease;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-#sondageForm button {
-  background-color: #970A0A;
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#sondageForm button:hover {
-  background-color: #57081B;
-}
-
-.sondage-feed {
-  margin-top: 30px;
-  max-height: 300px;
-  overflow-y: auto;
-  border-top: 1px solid #eee;
-  padding-top: 20px;
-}
-
-.sondage-feed .entry {
-  background: #ffeded;
-  border-left: 5px solid #970A0A;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  animation: fadeIn 0.5s ease;
-}
-
+/* --- Animations --- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -670,7 +629,7 @@ header {
   letter-spacing: 1px;
 }
 
-/* --- Footer principal --- */
+/* --- Footer --- */
 .site-footer {
   background-color: #111;
   color: white;
@@ -750,11 +709,18 @@ header {
 
   .card-content {
     width: 100%;
+    padding: 15px;
   }
 
-  .popup-content {
-    padding: 20px;
-    max-height: 90vh;
+  .side-menu {
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .text {
+    font-size: 2em;
+    height: auto;
+    margin: 10px 0;
   }
 
   .footer-content {
@@ -763,7 +729,29 @@ header {
     text-align: center;
   }
 
-    .footer-links {
+  .footer-links {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card-content {
+    width: 100%;
+  }
+
+  .popup-content {
+    padding: 20px;
+    max-height: 90vh;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links {
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
@@ -783,11 +771,6 @@ header {
     margin: 10px auto;
     height: auto;
     padding: 20px 10px;
-  }
-
-  .popup-content {
-    flex-direction: column;
-    gap: 15px;
   }
 
   .popup-image {
@@ -820,40 +803,3 @@ header {
     height: 20px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -59,6 +59,28 @@ img {
   border-radius: 12px;
 }
 
+.short-video-popup {
+  background: black;
+  padding: 0;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.short-video-popup video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: black;
+}
+
 /* --- Bouton hamburger --- */
 .hamburger {
   width: 30px;
@@ -825,4 +847,5 @@ header {
     height: 20px;
   }
 }
+
 

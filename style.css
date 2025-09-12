@@ -37,6 +37,28 @@ img {
   box-sizing: border-box;
 }
 
+.short-thumbnail {
+  max-width: 360px;
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.short-thumbnail:hover {
+  transform: scale(1.02);
+}
+
+.short-thumbnail video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background-color: black;
+  border-radius: 12px;
+}
+
 /* --- Bouton hamburger --- */
 .hamburger {
   width: 30px;
@@ -803,3 +825,4 @@ header {
     height: 20px;
   }
 }
+

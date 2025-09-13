@@ -36,34 +36,34 @@
   </noscript>
 
   <div class="page-wrapper">
-    <!-- Header -->
-    <header class="top-bar">
-      <div class="logo-zone">
-        <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
-      </div>
-      <div class="hamburger" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </header>
+  <header class="top-bar">
+    <div class="logo-zone">
+      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
+    </div>
+    <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
 
-    <!-- Barre noire -->
-    <div class="sub-bar"></div>
+  <!-- Barre noire -->
+  <div class="sub-bar"></div>
 
-    <!-- Menu latéral -->
-    <nav class="side-menu" id="sideMenu">
-      <a href="index.html">Accueil</a>
-      <a href="direct.html">Écouter le direct</a>
-      <a href="programmes.html">Programmes</a>
-      <a href="histoire.html">Histoire</a>
-      <div class="social-links">
-        <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
-        <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
-        <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
-      </div>
-    </nav>
+  <!-- Menu latéral -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="index.html">Accueil</a>
+    <a href="direct.html">Écouter le direct</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="histoire.html">Histoire</a>
+
+    <div class="social-links">
+      <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
+      <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
+    </div>
+  </nav>
 
     <!-- Contenu principal -->
     <main class="container">
@@ -72,7 +72,8 @@
         <img src="assets/braderie lille.jpeg" alt="Braderie de Lille" class="card-image" />
         <div class="card-content">
           <h3>Retour sur la Braderie de Lille 2025</h3>
-          <p>Ce week-end, la capitale des Flandres a une nouvelle fois vibré au rythme de sa célèbre Braderie...</p>
+          <p>Ce week-end, la capitale des Flandres a une nouvelle fois vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues de Lille pour chiner, déguster les incontournables moules-frites et profiter d’une ambiance festive unique.
+</p>
         </div>
       </div>
 
@@ -80,7 +81,10 @@
         <img src="assets/vafm-recrute.jpg" alt="VAFM recrute" class="card-image" />
         <div class="card-content">
           <h3>VAFM recrute !</h3>
-          <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !</p>
+          <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !
+
+Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ?
+C’est le moment !</p>
         </div>
       </div>
 
@@ -91,14 +95,15 @@
           <p>Concerts, carnaval et feu d’artifice ont animé la Place de la République...</p>
         </div>
       </div>
+      
+<div class="short-thumbnail" 
+     onmouseenter="this.querySelector('video').play()" 
+     onmouseleave="this.querySelector('video').pause()" 
+     onclick="openPopup('popup-video-braderie')">
+  <video src="assets/Braderie Lille3.mp4" muted loop playsinline></video>
+</div>
 
-      <!-- Miniature vidéo format short -->
-      <div class="short-thumbnail" 
-           onmouseenter="this.querySelector('video').play()" 
-           onmouseleave="this.querySelector('video').pause()" 
-           onclick="openPopup('popup-video-braderie')">
-        <video src="assets/Braderie Lille3.mp4" muted loop playsinline></video>
-      </div>
+
 
       <!-- Bandeau défilant -->
       <div class="dedicace-marquee">
@@ -125,13 +130,17 @@
       </div>
     </main>
 
-    <!-- Popups actu -->
+    <!-- Popups -->
     <div id="popup-braderie" class="popup hidden">
       <div class="popup-content">
         <span class="close-btn" onclick="closePopup('popup-braderie')">✖</span>
         <img src="assets/braderie lille.jpeg" alt="Braderie de Lille" class="popup-image" />
         <h2>Retour sur la Braderie de Lille 2025</h2>
-        <p>Des milliers de visiteurs ont envahi les rues de Lille pour chiner, déguster les moules-frites et profiter d’une ambiance festive unique...</p>
+        <p>Ce week-end, la capitale des Flandres a une nouvelle fois vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues de Lille pour chiner, déguster les incontournables moules-frites et profiter d’une ambiance festive unique.
+🛍️ Des stands à perte de vue : brocanteurs, artisans et commerçants ont proposé une incroyable diversité d’objets, des bonnes affaires aux pièces rares.
+🎶 Une atmosphère conviviale : entre musique, rires et animations, la Braderie a rassemblé toutes les générations.
+🍟 La tradition respectée : les restaurants et brasseries ont servi des tonnes de moules-frites, symbole incontournable de l’événement.
+Cette édition a confirmé que la Braderie de Lille reste l’un des rendez-vous populaires les plus emblématiques d’Europe.</p>
       </div>
     </div>
 
@@ -140,7 +149,38 @@
         <span class="close-btn" onclick="closePopup('popup-recrutement')">✖</span>
         <img src="assets/vafm-recrute.jpg" alt="VAFM recrute" class="popup-image" />
         <h2>VAFM recrute !</h2>
-        <p>Nous recherchons des journalistes, animateurs et reporters bénévoles pour faire vibrer les ondes !</p>
+        <p>La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !
+
+Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ?
+C’est le moment !
+
+Nous recherchons :
+
+🔹 Des journalistes bénévoles pour informer, raconter, creuser les sujets
+
+🔹 Des animateurs bénévoles pour proposer des émissions originales et faire vibrer les auditeurs
+
+🔹 Des reporters bénévoles pour aller à la rencontre des gens, couvrir des événements, récolter des témoignages et donner la parole au terrain
+
+📻 Tous les animateurs, journalistes et reporters enregistrent leurs émissions depuis chez eux.
+
+🎧 Il faut juste un micro avec un son net (on veut t’entendre, pas ton grille-pain en fond sonore).
+
+🎙️ Et bien sûr, un minimum de rigueur, un max de passion… et une maquette audio pour découvrir ton style !
+
+👉 Envoie-nous une petite démo de ton talent (même 2-3 minutes suffisent), histoire qu’on voie si tu fais vibrer les ondes ou si t’as juste allumé ton micro par accident. 😄
+
+✨ Débutants motivés ou pros du micro, vous êtes tous les bienvenus !
+
+Beaucoup de créneaux libres, surtout le week-end. 📆
+
+📩 Intéressé(e) ? Contacte-nous pour rejoindre l’équipe VAFM !
+
+📧 contact.vafm@gmail.com
+🌐 https://hvk-nox-zfr.github.io/vafm/index.html
+
+À très vite dans nos oreilles !
+— L’équipe de VAFM</p>
       </div>
     </div>
 
@@ -152,12 +192,15 @@
         <p>Concerts, carnaval et feu d’artifice ont animé la Place de la République...</p>
       </div>
     </div>
+    
+<div id="popup-video-braderie" class="video-popup hidden" onclick="closePopup('popup-video-braderie')">
+  <video src="assets/Braderie Lille3.mp4" autoplay muted loop playsinline controls></video>
+</div>
 
-    <!-- Popup vidéo short -->
-    <div id="popup-video-braderie" class="video-short-popup hidden" onclick="closePopup('popup-video-braderie')">
-      <video src="assets/Braderie Lille3.mp4" autoplay muted loop playsinline controls></video>
-    </div>
-
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
           <img src="assets/logo gris vafm.png" style="height: 250px;" />
         </div>
         <div class="footer-links">
@@ -181,6 +224,7 @@
   <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 
 
 

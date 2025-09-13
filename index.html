@@ -131,9 +131,10 @@ C’est le moment !</p>
     </main>
     
 <div id="popup-video-braderie" class="video-short-popup hidden">
-  <video src="assets/Braderie Lille3.mp4" autoplay muted loop playsinline controls></video>
+  <div class="video-wrapper" onclick="closePopup('popup-video-braderie')">
+    <video src="assets/Braderie Lille3.mp4" autoplay muted loop playsinline controls onclick="event.stopPropagation()"></video>
+  </div>
 </div>
-
     
     <!-- Popups -->
     <div id="popup-braderie" class="popup hidden">
@@ -226,6 +227,7 @@ Beaucoup de créneaux libres, surtout le week-end. 📆
   <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 
 
 

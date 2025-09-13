@@ -42,7 +42,7 @@ img {
 }
 
 .video-wrapper video {
-  height: 90vh;
+  height: 70vh;
   aspect-ratio: 9 / 16;
   object-fit: cover;
   border-radius: 12px;
@@ -879,6 +879,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

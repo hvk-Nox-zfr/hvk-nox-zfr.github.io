@@ -143,28 +143,29 @@ document.addEventListener("DOMContentLoaded", () => {
       lancerDefilement();
     });
 
-function lancerDefilement() {
-  if (!marquee) return;
+    function lancerDefilement() {
+      if (!marquee) return;
 
-  // Reset position
-  marquee.style.transition = "none";
-  marquee.style.transform = "translateX(0)";
-  marquee.style.left = "100%";
+      // Reset position
+      marquee.style.transition = "none";
+      marquee.style.transform = "translateX(100%)";
 
-  setTimeout(() => {
-    const largeur = marquee.scrollWidth;
-    const vitesse = 100; // pixels par seconde
-    const duree = largeur / vitesse;
+      // Attendre que le reset soit appliqué
+      setTimeout(() => {
+        const largeur = marquee.scrollWidth;
+        const vitesse = 100; // pixels par seconde
+        const duree = largeur / vitesse;
 
-    marquee.style.transition = `transform ${duree}s linear`;
-    marquee.style.transform = `translateX(-${largeur}px)`;
+        marquee.style.transition = `transform ${duree}s linear`;
+        marquee.style.transform = `translateX(-${largeur}px)`;
 
-    // Relancer après le défilement
-    setTimeout(() => {
-      lancerDefilement();
-    }, duree * 1000);
-  }, 50);
-}
+        // Relancer après le défilement
+        setTimeout(() => {
+          lancerDefilement();
+        }, duree * 1000);
+      }, 50);
+    }
+  }
 
   // 🔁 Chargement des articles
   const articlesZone = document.getElementById("articles");

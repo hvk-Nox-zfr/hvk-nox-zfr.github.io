@@ -143,28 +143,28 @@ document.addEventListener("DOMContentLoaded", () => {
       if (file.length === 1) lancerDefilement(); // lancer au premier ajout
     });
 
-function lancerDefilement() {
-  if (!marquee || file.length === 0) return;
+    function lancerDefilement() {
+      if (!marquee || file.length === 0) return;
 
-  marquee.textContent = file[indexDedicace];
-  marquee.style.transition = "none";
-  marquee.style.transform = `translateX(${marquee.offsetWidth}px)`;
+      marquee.textContent = file[indexDedicace];
+      marquee.style.transition = "none";
+      marquee.style.transform = `translateX(${marquee.offsetWidth}px)`;
 
-  setTimeout(() => {
-    const largeur = marquee.scrollWidth;
-    const vitesse = 100; // pixels par seconde
-    const duree = (largeur + marquee.offsetWidth) / vitesse;
+      setTimeout(() => {
+        const largeur = marquee.scrollWidth;
+        const vitesse = 100; // pixels par seconde
+        const duree = (largeur + marquee.offsetWidth) / vitesse;
 
-    marquee.style.transition = `transform ${duree}s linear`;
-    marquee.style.transform = `translateX(-${largeur}px)`;
+        marquee.style.transition = `transform ${duree}s linear`;
+        marquee.style.transform = `translateX(-${largeur}px)`;
 
-    setTimeout(() => {
-      indexDedicace = (indexDedicace + 1) % file.length;
-      lancerDefilement();
-    }, duree * 1000);
-  }, 50);
-}
-
+        setTimeout(() => {
+          indexDedicace = (indexDedicace + 1) % file.length;
+          lancerDefilement();
+        }, duree * 1000);
+      }, 50);
+    }
+  }
 
   // 🔁 Chargement des articles
   const articlesZone = document.getElementById("articles");

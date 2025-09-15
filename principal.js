@@ -142,22 +142,29 @@ document.addEventListener("DOMContentLoaded", () => {
       if (file.length === 1) lancerDefilement();
     });
 
-    function lancerDefilement() {
-      if (!marquee) return;
-      const vitesse = 100; // pixels par seconde
-      const largeur = marquee.scrollWidth;
-      const duree = largeur / vitesse;
+function lancerDefilement() {
+  const track = document.getElementById("dedicaceMarquee");
+  if (!track) return;
 
-      marquee.style.transition = `transform ${duree}s linear`;
-      marquee.style.transform = `translateX(-${largeur}px)`;
+  // Reset
+  track.style.transition = "none";
+  track.style.transform = "translateX(0)";
+  track.style.left = "100%";
 
-      setTimeout(() => {
-        marquee.style.transition = "none";
-        marquee.style.transform = "translateX(0)";
-        setTimeout(lancerDefilement, 100);
-      }, duree * 1000);
-    }
-  }
+  setTimeout(() => {
+    const largeur = track.scrollWidth;
+    const vitesse = 100; // pixels par seconde
+    const duree = largeur / vitesse;
+
+    track.style.transition = `transform ${duree}s linear`;
+    track.style.transform = `translateX(-${largeur}px)`;
+
+    // Relancer après le défilement
+    setTimeout(() => {
+      lancerDefilement();
+    }, duree * 1000);
+  }, 50);
+}
 
   // 🔁 Chargement des articles
   const articlesZone = document.getElementById("articles");

@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");
   const charCount = document.getElementById("charCount");
   const file = [];
+  let indexDedicace = 0;
 
   if (messageInput && charCount) {
     messageInput.addEventListener("input", () => {
@@ -126,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (nom && message) {
         db.ref("dedicaces").push({ nom, message });
         dedicaceForm.reset();
-        charCount.textContent = "50 caractères restants";
+        charCount.textContent = "60 caractères restants";
       }
     });
 
@@ -139,28 +140,26 @@ document.addEventListener("DOMContentLoaded", () => {
       dedicaceFeed.prepend(div);
 
       file.push(` 🎙️ ${data.nom} : ${data.message} `);
-      marquee.textContent = file[0];
-      lancerDefilement();
+      if (file.length === 1) lancerDefilement(); // lancer au premier ajout
     });
 
     function lancerDefilement() {
-      if (!marquee) return;
+      if (!marquee || file.length === 0) return;
 
-      // Reset position
+      marquee.textContent = file[indexDedicace];
       marquee.style.transition = "none";
-      marquee.style.transform = "translateX(100%)";
+      marquee.style.transform = `translateX(${marquee.offsetWidth}px)`;
 
-      // Attendre que le reset soit appliqué
       setTimeout(() => {
         const largeur = marquee.scrollWidth;
-        const vitesse = 100; // pixels par seconde
-        const duree = largeur / vitesse;
+        const vitesse = 100;
+        const duree = (largeur + marquee.offsetWidth) / vitesse;
 
         marquee.style.transition = `transform ${duree}s linear`;
         marquee.style.transform = `translateX(-${largeur}px)`;
 
-        // Relancer après le défilement
         setTimeout(() => {
+          indexDedicace = (indexDedicace + 1) % file.length;
           lancerDefilement();
         }, duree * 1000);
       }, 50);

@@ -96,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("message");
   const charCount = document.getElementById("charCount");
   const file = [];
-  let indexDedicace = 0;
 
   if (messageInput && charCount) {
     messageInput.addEventListener("input", () => {
@@ -140,35 +139,31 @@ document.addEventListener("DOMContentLoaded", () => {
       dedicaceFeed.prepend(div);
 
       file.push(` 🎙️ ${data.nom} : ${data.message} `);
-      if (file.length === 1) lancerDefilement(); // lancer au premier ajout
+      lancerDefilement();
     });
 
-const file = [];
+    function lancerDefilement() {
+      if (!marquee || file.length === 0) return;
 
-function lancerDefilement() {
-  if (!marquee || file.length === 0) return;
+      marquee.textContent = file.join(" • ");
 
-  // Concatène toutes les dédicaces
-  marquee.textContent = file.join(" • ");
+      marquee.style.transition = "none";
+      marquee.style.transform = "translateX(100%)";
 
-  // Reset position à droite
-  marquee.style.transition = "none";
-  marquee.style.transform = `translateX(${marquee.offsetWidth}px)`;
+      setTimeout(() => {
+        const largeur = marquee.scrollWidth;
+        const vitesse = 100; // pixels par seconde
+        const duree = (largeur + marquee.offsetWidth) / vitesse;
 
-  setTimeout(() => {
-    const largeur = marquee.scrollWidth;
-    const vitesse = 100; // pixels par seconde
-    const duree = (largeur + marquee.offsetWidth) / vitesse;
+        marquee.style.transition = `transform ${duree}s linear`;
+        marquee.style.transform = `translateX(-${largeur}px)`;
 
-    marquee.style.transition = `transform ${duree}s linear`;
-    marquee.style.transform = `translateX(-${largeur}px)`;
-
-    // Relancer après le défilement complet
-    setTimeout(() => {
-      lancerDefilement();
-    }, duree * 1000);
-  }, 50);
-}
+        setTimeout(() => {
+          lancerDefilement();
+        }, duree * 1000);
+      }, 50);
+    }
+  }
 
   // 🔁 Chargement des articles
   const articlesZone = document.getElementById("articles");

@@ -165,7 +165,9 @@ function lancerDefilement() {
     }, duree * 1000);
   }, 50);
 }
-
+marquee.textContent = file[0];
+lancerDefilement();
+    
   // 🔁 Chargement des articles
   const articlesZone = document.getElementById("articles");
   if (articlesZone) {

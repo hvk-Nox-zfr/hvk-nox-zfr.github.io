@@ -139,17 +139,23 @@ document.addEventListener("DOMContentLoaded", () => {
       dedicaceFeed.prepend(div);
 
       file.push(` 🎙️ ${data.nom} : ${data.message} `);
-      if (file.length === 1) afficherUneDedicace();
+      if (file.length === 1) lancerDefilement();
     });
 
-    function afficherUneDedicace() {
-      if (file.length === 0) return;
-      marquee.textContent = file[0];
-      marquee.style.animation = "defilement 30s linear";
+    function lancerDefilement() {
+      if (!marquee) return;
+      const vitesse = 100; // pixels par seconde
+      const largeur = marquee.scrollWidth;
+      const duree = largeur / vitesse;
+
+      marquee.style.transition = `transform ${duree}s linear`;
+      marquee.style.transform = `translateX(-${largeur}px)`;
+
       setTimeout(() => {
-        file.shift();
-        afficherUneDedicace();
-      }, 30000);
+        marquee.style.transition = "none";
+        marquee.style.transform = "translateX(0)";
+        setTimeout(lancerDefilement, 100);
+      }, duree * 1000);
     }
   }
 
@@ -167,3 +173,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+

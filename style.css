@@ -282,10 +282,11 @@ img {
 }
 
 .dedicace-track {
-  position: absolute;
+  display: inline-block;
   white-space: nowrap;
   will-change: transform;
-  left: 0;
+  position: absolute;
+  left: 100%;
 }
 
 @keyframes defilement {
@@ -880,6 +881,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

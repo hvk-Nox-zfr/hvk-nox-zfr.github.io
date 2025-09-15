@@ -106,29 +106,40 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (dedicaceForm && dedicaceFeed && marquee) {
-    dedicaceForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const nom = document.getElementById("nom").value.trim();
-      const message = messageInput.value.trim();
+dedicaceForm.addEventListener("submit", e => {
+  e.preventDefault();
 
-      const blacklist = [
-        "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
-        "ta gueule", "nique", "batard", "bâtard", "bite", "couille", "pétasse", "enfoiré", "gros con",
-        "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse", "slp", "trou de balle"
-      ];
+  const nom = document.getElementById("nom").value.trim();
+  const message = messageInput.value.trim();
 
-      const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
-      if (contientGrosMot) {
-        alert("Ton message contient un mot interdit. Merci de rester respectueux !");
-        return;
-      }
+  const blacklist = [
+    "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
+    "ta gueule", "nique", "batard", "bâtard", "bite", "couille", "pétasse", "enfoiré", "gros con",
+    "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse", "slp", "trou de balle"
+  ];
 
-      if (nom && message) {
-        db.ref("dedicaces").push({ nom, message });
-        dedicaceForm.reset();
-        charCount.textContent = "60 caractères restants";
-      }
-    });
+  const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
+  if (contientGrosMot) {
+    alert("Ton message contient un mot interdit. Merci de rester respectueux !");
+    return;
+  }
+
+  // ✅ Vérification anti-spam par jour
+  const aujourdHui = new Date().toISOString().split("T")[0]; // format YYYY-MM-DD
+  const derniereDedicace = localStorage.getItem("dedicaceDate");
+
+  if (derniereDedicace === aujourdHui) {
+    alert("Tu as déjà envoyé une dédicace aujourd'hui. Reviens demain !");
+    return;
+  }
+
+  if (nom && message) {
+    db.ref("dedicaces").push({ nom, message });
+    dedicaceForm.reset();
+    charCount.textContent = "60 caractères restants";
+    localStorage.setItem("dedicaceDate", aujourdHui); // ✅ Enregistrement de la date
+  }
+});
 
     db.ref("dedicaces").on("child_added", snapshot => {
       const data = snapshot.val();

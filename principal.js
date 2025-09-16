@@ -1,14 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 🔁 Menu latéral
-  const toggleBtn = document.getElementById("menuToggle");
-  const sideMenu = document.getElementById("sideMenu");
+     function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      const toggleBtn = document.getElementById("menuToggle");
 
-  if (toggleBtn && sideMenu) {
-    toggleBtn.addEventListener("click", () => {
-      sideMenu.classList.toggle("open");
+      menu.classList.toggle("open");
       toggleBtn.classList.toggle("open");
-    });
-  }
+    }
+
+    const player = document.getElementById('radio-player');
+    const equalizer = document.getElementById('equalizer');
+    let isPlaying = false;
+
+    function togglePlay() {
+      if (!isPlaying) {
+        player.play();
+        equalizer.classList.remove('hidden');
+        isPlaying = true;
+      } else {
+        player.pause();
+        equalizer.classList.add('hidden');
+        isPlaying = false;
+      }
+    }
 
   // 🔁 Popups
   window.openPopup = function(id) {

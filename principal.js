@@ -1,28 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 🔁 Menu latéral
-     function toggleMenu() {
-      const menu = document.getElementById("sideMenu");
-      const toggleBtn = document.getElementById("menuToggle");
+  const toggleBtn = document.getElementById("menuToggle");
+  const sideMenu = document.getElementById("sideMenu");
 
-      menu.classList.toggle("open");
+  if (toggleBtn && sideMenu) {
+    toggleBtn.addEventListener("click", () => {
+      sideMenu.classList.toggle("open");
       toggleBtn.classList.toggle("open");
-    }
-
-    const player = document.getElementById('radio-player');
-    const equalizer = document.getElementById('equalizer');
-    let isPlaying = false;
-
-    function togglePlay() {
-      if (!isPlaying) {
-        player.play();
-        equalizer.classList.remove('hidden');
-        isPlaying = true;
-      } else {
-        player.pause();
-        equalizer.classList.add('hidden');
-        isPlaying = false;
-      }
-    }
+    });
+  }
 
   // 🔁 Popups
   window.openPopup = function(id) {
@@ -120,40 +106,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (dedicaceForm && dedicaceFeed && marquee) {
-dedicaceForm.addEventListener("submit", e => {
-  e.preventDefault();
+    dedicaceForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const nom = document.getElementById("nom").value.trim();
+      const message = messageInput.value.trim();
 
-  const nom = document.getElementById("nom").value.trim();
-  const message = messageInput.value.trim();
+      const blacklist = [
+        "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
+        "ta gueule", "nique", "batard", "bâtard", "bite", "couille", "pétasse", "enfoiré", "gros con",
+        "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse", "slp", "trou de balle"
+      ];
 
-  const blacklist = [
-    "con", "connard", "connasse", "merde", "putain", "salope", "enculé", "fdp", "ntm", "tg",
-    "ta gueule", "nique", "batard", "bâtard", "bite", "couille", "pétasse", "enfoiré", "gros con",
-    "fils de", "chier", "débile", "abruti", "crétin", "dégueulasse", "slp", "trou de balle"
-  ];
+      const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
+      if (contientGrosMot) {
+        alert("Ton message contient un mot interdit. Merci de rester respectueux !");
+        return;
+      }
 
-  const contientGrosMot = blacklist.some(mot => message.toLowerCase().includes(mot));
-  if (contientGrosMot) {
-    alert("Ton message contient un mot interdit. Merci de rester respectueux !");
-    return;
-  }
-
-  // ✅ Vérification anti-spam par jour
-  const aujourdHui = new Date().toISOString().split("T")[0]; // format YYYY-MM-DD
-  const derniereDedicace = localStorage.getItem("dedicaceDate");
-
-  if (derniereDedicace === aujourdHui) {
-    alert("Tu as déjà envoyé une dédicace aujourd'hui. Reviens demain !");
-    return;
-  }
-
-  if (nom && message) {
-    db.ref("dedicaces").push({ nom, message });
-    dedicaceForm.reset();
-    charCount.textContent = "60 caractères restants";
-    localStorage.setItem("dedicaceDate", aujourdHui); // ✅ Enregistrement de la date
-  }
-});
+      if (nom && message) {
+        db.ref("dedicaces").push({ nom, message });
+        dedicaceForm.reset();
+        charCount.textContent = "60 caractères restants";
+      }
+    });
 
     db.ref("dedicaces").on("child_added", snapshot => {
       const data = snapshot.val();
@@ -164,20 +139,19 @@ dedicaceForm.addEventListener("submit", e => {
       dedicaceFeed.prepend(div);
 
       file.push(` 🎙️ ${data.nom} : ${data.message} `);
-      lancerDefilement();
+      if (file.length === 1) lancerDefilement(); // lancer au premier ajout
     });
 
     function lancerDefilement() {
       if (!marquee || file.length === 0) return;
 
       marquee.textContent = file.join(" • ");
-
       marquee.style.transition = "none";
       marquee.style.transform = "translateX(100%)";
 
       setTimeout(() => {
         const largeur = marquee.scrollWidth;
-        const vitesse = 100; // pixels par seconde
+        const vitesse = 100;
         const duree = (largeur + marquee.offsetWidth) / vitesse;
 
         marquee.style.transition = `transform ${duree}s linear`;

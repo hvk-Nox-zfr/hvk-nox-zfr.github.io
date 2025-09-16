@@ -84,35 +84,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>© 2025 VAFM | Tous droits réservés.</p>
       </div>
     </footer>
-  <script>
-     function toggleMenu() {
-      const menu = document.getElementById("sideMenu");
-      const toggleBtn = document.getElementById("menuToggle");
-
-      menu.classList.toggle("open");
-      toggleBtn.classList.toggle("open");
-    }
-
-    const player = document.getElementById('radio-player');
-    const equalizer = document.getElementById('equalizer');
-    let isPlaying = false;
-
-    function togglePlay() {
-      if (!isPlaying) {
-        player.play();
-        equalizer.classList.remove('hidden');
-        isPlaying = true;
-      } else {
-        player.pause();
-        equalizer.classList.add('hidden');
-        isPlaying = false;
-      }
-    }
-  </script>
   </div>
-
 </body>
 </html>
+
 
 
 

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Faire un don – VAFM</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -63,6 +64,36 @@
   </style>
 </head>
 <body>
+    <div class="page-wrapper">
+  <header class="top-bar">
+    <div class="logo-zone">
+      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
+    </div>
+    <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Barre noire -->
+  <div class="sub-bar"></div>
+
+  <!-- Menu latéral -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="index.html">Accueil</a>
+    <a href="direct.html">Écouter le direct</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="histoire.html">Histoire</a>
+    <a href="don.html">Don</a>
+
+    <div class="social-links">
+      <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
+      <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
+    </div>
+  </nav>
 
   <header>
     <h1>🎧 Soutenir VAFM</h1>
@@ -81,9 +112,23 @@
     </p>
   </div>
 
-  <footer>
-    © VAFM 2025 – Tous droits réservés
-  </footer>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/logo gris vafm.png" style="height: 250px;" />
+        </div>
+        <div class="footer-links">
+          <a href="contact.html">Nous contacter</a>
+          <a href="mentions.html">Mentions légales</a>
+          <a href="a-propos.html">À propos</a>
+          <a href="accessibilite.html">Accessibilité</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 VAFM | Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
 
 </body>
 </html>

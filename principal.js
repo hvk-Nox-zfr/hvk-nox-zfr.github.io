@@ -123,10 +123,20 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // ✅ Limite : 1 dédicace par jour
+      const aujourdHui = new Date().toISOString().split("T")[0];
+      const derniereDedicace = localStorage.getItem("dedicaceDate");
+
+      if (derniereDedicace === aujourdHui) {
+        alert("Tu as déjà envoyé une dédicace aujourd'hui. Reviens demain !");
+        return;
+      }
+
       if (nom && message) {
         db.ref("dedicaces").push({ nom, message });
         dedicaceForm.reset();
         charCount.textContent = "60 caractères restants";
+        localStorage.setItem("dedicaceDate", aujourdHui);
       }
     });
 
@@ -139,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
       dedicaceFeed.prepend(div);
 
       file.push(` 🎙️ ${data.nom} : ${data.message} `);
-      if (file.length === 1) lancerDefilement(); // lancer au premier ajout
+      if (file.length === 1) lancerDefilement();
     });
 
     function lancerDefilement() {

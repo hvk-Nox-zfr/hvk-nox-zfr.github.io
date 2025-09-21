@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="script.js"></script>
-  <link rel="stylesheet" href="direct.css">
-  <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
   <title>Écoute en direct – VAFM</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo gris vafm.png">
+  <link rel="stylesheet" href="direct.css">
+  <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
   <meta name="google-adsense-account" content="ca-pub-8497430727637938">
+
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KJSC6Z4M');</script>
-<!-- End Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KJSC6Z4M');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJSC6Z4M"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJSC6Z4M"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <!-- Barre rouge -->
   <header class="top-bar">
     <div class="logo-zone">
@@ -44,7 +44,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="direct.html">Écouter le direct</a>
     <a href="programmes.html">Programmes</a>
     <a href="histoire.html">Histoire</a>
-
     <div class="social-links">
       <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
       <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
@@ -54,7 +53,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
 
   <!-- Section logo cliquable -->
-  <section class="logo-section">
+  <section class="logo-section" id="logo-section">
     <img src="assets/logo vafm 3.png" alt="Logo VA FM" class="clickable-logo" onclick="togglePlay()">
     <div class="equalizer-wrapper">
       <div id="equalizer" class="equalizer hidden">
@@ -65,33 +64,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- Audio -->
+  <!-- Lecteur audio -->
   <audio id="radio-player" src="http://vafm.ddns.net:8000/stream.mp3"></audio>
 
   <!-- Pied de page -->
-    <footer class="site-footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <img src="assets/logo gris vafm.png" style="height: 250px;">
-        </div>
-        <div class="footer-links">
-          <a href="contact.html">Nous contacter</a>
-          <a href="mentions.html">Mentions légales</a>
-          <a href="a-propos.html">À propos</a>
-          <a href="accessibilite.html">Accessibilité</a>
-        </div>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/logo gris vafm.png" style="height: 250px;">
       </div>
-      <div class="footer-bottom">
-        <p>© 2025 VAFM | Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="contact.html">Nous contacter</a>
+        <a href="mentions.html">Mentions légales</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="accessibilite.html">Accessibilité</a>
       </div>
-    </footer>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VAFM | Tous droits réservés.</p>
+    </div>
+  </footer>
 
   <!-- Script -->
   <script>
     function toggleMenu() {
       const menu = document.getElementById("sideMenu");
       const toggleBtn = document.getElementById("menuToggle");
-
       menu.classList.toggle("open");
       toggleBtn.classList.toggle("open");
     }
@@ -114,6 +112,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </script>
 </body>
 </html>
+
 
 
 

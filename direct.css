@@ -22,6 +22,17 @@ html, body {
   flex: 1;
 }
 
+#rk-top-tracks-widget {
+  margin: 40px auto;
+  max-width: 700px;
+  padding: 20px;
+  background: #111;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI', sans-serif;
+}
+
 /* --- Barre rouge --- */
 .top-bar {
   background-color: #970A0A;

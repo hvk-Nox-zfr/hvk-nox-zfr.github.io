@@ -51,13 +51,22 @@
     </div>
   </nav>
 
-  <!-- Lecteur enrichi RadioKing -->
-  <section class="radio-widget" style="text-align:center; margin: 30px 0;">
-    <iframe src="https://player.radioking.io/vafm1/?c=%239B0A0A&c2=%23FFFFFF&f=h&i=1&p=1&s=1&alb=1&li=1&popup=0&plc=1&h=150&l=470&v=2"
-      style="border-radius: 8px; width: 100%; max-width: 470px; height: 150px; box-shadow: 0 0 20px rgba(0,0,0,0.3);"
-      frameborder="0"></iframe>
-    <script src="https://player.radioking.io/scripts/iframe.bundle.js"></script>
-  </section>
+<style>
+.radio-widget iframe {
+  width: 100%;
+  max-width: 700px;
+  height: 150px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+</style>
+
+<div class="radio-widget" style="text-align:center; margin: 30px 0;">
+  <iframe src="https://player.radioking.io/vafm1/?c=%239B0A0A&c2=%23FFFFFF&f=h&i=1&p=1&s=1&alb=1&li=1&popup=0&plc=1&h=150&l=700&v=2"
+    frameborder="0"></iframe>
+</div>
+<script src="https://player.radioking.io/scripts/iframe.bundle.js"></script>
+
 
   <!-- Pied de page -->
   <footer class="site-footer">
@@ -104,4 +113,5 @@
   </script>
 </body>
 </html>
+
 

@@ -188,4 +188,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+function closePopup() {
+  document.getElementById("popupNews").classList.add("hidden");
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const alreadySeen = localStorage.getItem("popupSeen");
+
+  if (!alreadySeen) {
+    document.getElementById("popupNews").classList.remove("hidden");
+    localStorage.setItem("popupSeen", "true");
+  }
+});
 

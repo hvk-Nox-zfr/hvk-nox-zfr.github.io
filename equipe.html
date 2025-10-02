@@ -5,111 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Découvrez la nouvelle radio du valenciennois VAFM et l'équipe." />
   <title>VAFM - Notre équipe</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/logo gris vafm.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo gris vafm.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="equipe.css" />
 
-  <!-- Styles (global + page) -->
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./equipe.css" />
-
-  <!-- Fallback styles for carousel if equipe.css missing -->
   <style>
-    :root{--accent:#970A0A}
-    .team-section{max-width:1100px;margin:40px auto;padding:0 16px}
-    .team-section h2{color:var(--accent);text-align:center;margin-bottom:20px}
-    .team-carousel{display:flex;align-items:center;gap:12px;position:relative}
-    .carousel-btn{background:var(--accent);color:#fff;border:0;width:44px;height:44px;border-radius:6px;cursor:pointer;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center}
-    .carousel-btn:disabled{opacity:.4;cursor:default}
-    .carousel-track-wrapper{overflow:hidden;flex:1}
-    .carousel-track{display:flex;gap:16px;transition:transform .45s ease;list-style:none;padding:0;margin:0}
-    .carousel-item{min-width:220px;max-width:300px;background:#fff;border-radius:10px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.08);padding:8px;display:flex;flex-direction:column;align-items:center}
-    .carousel-item img{display:block;width:100%;height:220px;object-fit:cover;border-radius:8px}
-    .caption{margin-top:8px;color:#222;font-size:.95rem;line-height:1.1}
-    .carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:12px;width:100%}
-    .carousel-dot{width:10px;height:10px;background:#ccc;border-radius:50%;cursor:pointer;border:0}
-    .carousel-dot.active{background:var(--accent)}
-    @media (max-width:600px){.carousel-item img{height:160px}.carousel-btn{width:36px;height:36px;font-size:18px}}
-    /* ensure images visible even if parent has issues */
-    img{max-width:100%;height:auto;display:block}
+    :root { --accent: #970A0A; }
+    .team-section { max-width: 1100px; margin: 40px auto; padding: 0 16px; }
+    .team-section h2 { color: var(--accent); text-align: center; margin-bottom: 20px; }
+    .team-carousel { display: flex; align-items: center; gap: 12px; position: relative; }
+    .carousel-btn {
+      background: var(--accent); color: #fff; border: 0; width: 44px; height: 44px;
+      border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-btn:disabled { opacity: 0.4; cursor: default; }
+    .carousel-track-wrapper { overflow: hidden; flex: 1; }
+    .carousel-track {
+      display: flex; gap: 16px; transition: transform 0.45s ease;
+      list-style: none; padding: 0; margin: 0;
+    }
+    .carousel-item {
+      min-width: 220px; max-width: 300px; background: #fff; border-radius: 10px;
+      text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      padding: 8px; display: flex; flex-direction: column; align-items: center;
+    }
+    .carousel-item img {
+      display: block; width: 100%; height: 220px; object-fit: cover; border-radius: 8px;
+    }
+    .caption { margin-top: 8px; color: #222; font-size: 0.95rem; line-height: 1.1; }
+    .carousel-dots { display: flex; gap: 8px; justify-content: center; margin-top: 12px; width: 100%; }
+    .carousel-dot {
+      width: 10px; height: 10px; background: #ccc; border-radius: 50%;
+      cursor: pointer; border: 0;
+    }
+    .carousel-dot.active { background: var(--accent); }
+    @media (max-width: 600px) {
+      .carousel-item img { height: 160px; }
+      .carousel-btn { width: 36px; height: 36px; font-size: 18px; }
+    }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
     <!-- Header -->
-  <div class="page-wrapper">
-  <header class="top-bar">
-    <div class="logo-zone">
-      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
-    </div>
-    <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </header>
+    <header class="top-bar">
+      <div class="logo-zone">
+        <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo" />
+      </div>
+      <div class="hamburger" id="menuToggle">
+        <span></span><span></span><span></span>
+      </div>
+    </header>
 
-  <!-- Barre noire -->
-  <div class="sub-bar"></div>
+    <div class="sub-bar"></div>
 
-  <!-- Menu latéral -->
-  <nav class="side-menu" id="sideMenu">
-    <a href="index.html">Accueil</a>
-    <a href="equipe.html">Notre équipe</a>
-    <a href="direct.html">Écouter le direct</a>
-    <a href="programmes.html">Programmes</a>
-    <a href="histoire.html">Histoire</a>
-    <a href="don.html">Don</a>
+    <!-- Menu latéral -->
+    <nav class="side-menu" id="sideMenu">
+      <a href="index.html">Accueil</a>
+      <a href="equipe.html" aria-current="page">Notre équipe</a>
+      <a href="direct.html">Écouter le direct</a>
+      <a href="programmes.html">Programmes</a>
+      <a href="histoire.html">Histoire</a>
+      <a href="don.html">Don</a>
+      <div class="social-links">
+        <a href="#"><img src="assets/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="assets/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="assets/youtube.png" alt="YouTube" /></a>
+        <a href="#"><img src="assets/pinterest.png" alt="Pinterest" /></a>
+      </div>
+    </nav>
 
-    <div class="social-links">
-      <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
-      <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
-      <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
-      <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
-    </div>
-  </nav>
-    
     <!-- Contenu principal -->
-    <main class="actus-page" role="main">
-      <section class="team-section" aria-label="Galerie des animateurs">
+    <main class="actus-page">
+      <section class="team-section">
         <h2>Notre équipe</h2>
-
         <div class="team-carousel" id="teamCarousel">
-          <button class="carousel-btn prev" aria-label="Précédent" disabled>&lt;</button>
-
-          <div class="carousel-track-wrapper" aria-hidden="false">
+          <button class="carousel-btn prev" aria-label="Précédent">&lt;</button>
+          <div class="carousel-track-wrapper">
             <ul class="carousel-track">
-              <!-- Remplace les fichiers ci-dessous par les noms exacts présents dans ./assets/ -->
               <li class="carousel-item">
-                <img src="./assets/1.png" alt="Animateur 1 - Prénom Nom" loading="lazy"
-                     onerror="this.onerror=null;this.src='./assets/fallback.png';" />
+                <img src="assets/1.png" alt="Animateur 1" onerror="this.src='assets/fallback.png'" />
                 <p class="caption">Prénom Nom<br><small>Rôle</small></p>
               </li>
-
               <li class="carousel-item">
-                <img src="./assets/2.png" alt="Animateur 2 - Prénom Nom" loading="lazy"
-                     onerror="this.onerror=null;this.src='./assets/fallback.png';" />
+                <img src="assets/2.png" alt="Animateur 2" onerror="this.src='assets/fallback.png'" />
                 <p class="caption">Prénom Nom<br><small>Rôle</small></p>
               </li>
-
-              <!-- Exemples supplémentaires -->
               <li class="carousel-item">
-                <img src="./assets/3.png" alt="Animateur 3 - Prénom Nom" loading="lazy"
-                     onerror="this.onerror=null;this.src='./assets/fallback.png';" />
+                <img src="assets/3.png" alt="Animateur 3" onerror="this.src='assets/fallback.png'" />
                 <p class="caption">Prénom Nom<br><small>Rôle</small></p>
               </li>
             </ul>
           </div>
-
           <button class="carousel-btn next" aria-label="Suivant">&gt;</button>
-
-          <div class="carousel-dots" aria-hidden="false" role="tablist"></div>
+          <div class="carousel-dots"></div>
         </div>
       </section>
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer" role="contentinfo">
+    <footer class="site-footer">
       <div class="footer-content">
-        <div class="footer-logo"><img src="./assets/logo gris vafm.png" alt="VAFM" style="height:250px;" /></div>
+        <div class="footer-logo">
+          <img src="assets/logo gris vafm.png" alt="VAFM" style="height:250px;" />
+        </div>
         <div class="footer-links">
           <a href="contact.html">Nous contacter</a>
           <a href="mentions.html">Mentions légales</a>
@@ -117,111 +117,54 @@
           <a href="accessibilite.html">Accessibilité</a>
         </div>
       </div>
-      <div class="footer-bottom"><p>© 2025 VAFM | Tous droits réservés.</p></div>
+      <div class="footer-bottom">
+        <p>© 2025 VAFM | Tous droits réservés.</p>
+      </div>
     </footer>
   </div>
 
   <script>
-    // Carrousel : navigation, pastilles, responsive, diagnostics image
     document.addEventListener('DOMContentLoaded', () => {
       const track = document.querySelector('.carousel-track');
-      if (!track) return;
-
-      const items = Array.from(track.querySelectorAll('.carousel-item'));
+      const items = Array.from(track.children);
       const prevBtn = document.querySelector('.carousel-btn.prev');
       const nextBtn = document.querySelector('.carousel-btn.next');
       const dotsContainer = document.querySelector('.carousel-dots');
-      if (!prevBtn || !nextBtn || !dotsContainer) return;
-
-      // Diagnostic helper: highlight broken images in red outline and log URL
-      const imgs = Array.from(document.querySelectorAll('.carousel-item img'));
-      imgs.forEach(img => {
-        img.addEventListener('error', () => {
-          console.error('Image failed to load:', img.getAttribute('src'));
-          img.style.outline = '3px solid #e53935';
-        });
-        if (!img.complete || img.naturalWidth === 0) {
-          // try reloading once (useful if caching issues)
-          const src = img.src;
-          img.src = '';
-          setTimeout(() => { img.src = src; }, 50);
-        }
-      });
-
-      // wait for layout
-      const rafReady = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-
       let index = 0;
 
-      function createDots() {
-        dotsContainer.innerHTML = '';
-        items.forEach((_, i) => {
-          const dot = document.createElement('button');
-          dot.className = 'carousel-dot';
-          dot.type = 'button';
-          dot.setAttribute('aria-label', `Aller à ${i + 1}`);
-          dot.addEventListener('click', () => goToSlide(i));
-          dotsContainer.appendChild(dot);
-        });
-      }
-
       function visibleCount() {
-        const wrapper = document.querySelector('.carousel-track-wrapper');
-        const wrapperWidth = wrapper.offsetWidth;
-        const style = getComputedStyle(items[0]);
-        const gap = parseInt(style.marginRight) || 16;
-        const itemWidth = items[0].getBoundingClientRect().width + gap;
+        const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
+        const itemWidth = items[0].getBoundingClientRect().width + 16;
         return Math.max(1, Math.floor(wrapperWidth / itemWidth));
       }
 
       function updateButtons() {
         prevBtn.disabled = index === 0;
         nextBtn.disabled = index >= items.length - visibleCount();
-        const dots = Array.from(dotsContainer.children);
-        dots.forEach(d => d.classList.remove('active'));
-        const activeDot = dots[Math.min(index, dots.length - 1)];
+        dotsContainer.querySelectorAll('.carousel-dot').forEach(dot => dot.classList.remove('active'));
+        const activeDot = dotsContainer.children[index];
         if (activeDot) activeDot.classList.add('active');
       }
 
       function goToSlide(i) {
-        const style = getComputedStyle(items[0]);
-        const gap = parseInt(style.marginRight) || 16;
-        const itemWidth = items[0].getBoundingClientRect().width + gap;
+        const itemWidth = items[0].getBoundingClientRect().width + 16;
         index = Math.max(0, Math.min(i, items.length - visibleCount()));
         track.style.transform = `translateX(-${index * itemWidth}px)`;
         updateButtons();
       }
 
+      items.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', `Aller à ${i + 1}`);
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      });
+
       prevBtn.addEventListener('click', () => goToSlide(index - 1));
       nextBtn.addEventListener('click', () => goToSlide(index + 1));
       window.addEventListener('resize', () => goToSlide(index));
-      document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') prevBtn.click();
-        if (e.key === 'ArrowRight') nextBtn.click();
-      });
+      goToSlide(0);
 
-      // Initialize after layout ready
-      rafReady().then(() => {
-        createDots();
-        goToSlide(0);
-      });
-
-      // Menu toggle fallback
       const menuToggle = document.getElementById('menuToggle');
-      const sideMenu = document.getElementById('sideMenu');
-      if (menuToggle && sideMenu) {
-        menuToggle.addEventListener('click', () => {
-          sideMenu.classList.toggle('open');
-          menuToggle.classList.toggle('open');
-        });
-      }
-
-      // Quick user guidance if images still broken
-      const broken = imgs.filter(i => i.naturalWidth === 0);
-      if (broken.length) {
-        console.warn('Certaines images semblent cassées. Vérifie que les fichiers existent dans ./assets/ et que les noms et extensions correspondent exactement (sensible à la casse).');
-      }
-    });
-  </script>
-</body>
-</html>
+      const sideMenu = document.getElementById

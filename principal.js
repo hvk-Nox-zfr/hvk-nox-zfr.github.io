@@ -221,3 +221,64 @@ function closePopup() {
   const popup = document.getElementById("popupNews");
   if (popup) popup.classList.add("hidden");
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.querySelector('.carousel-track');
+  const items = Array.from(track.children);
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const dotsContainer = document.querySelector('.carousel-dots');
+
+  const itemWidth = items[0].getBoundingClientRect().width + parseInt(getComputedStyle(items[0]).gap || 16);
+  let index = 0;
+
+  // crée les pastilles
+  items.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot';
+    dot.setAttribute('aria-label', `Aller à ${i + 1}`);
+    if (i === 0) dot.classList.add('active');
+    dotsContainer.appendChild(dot);
+    dot.addEventListener('click', () => { goToSlide(i); });
+  });
+
+  const dots = Array.from(dotsContainer.children);
+
+  function updateButtons() {
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index >= items.length - visibleCount();
+  }
+
+  function visibleCount() {
+    const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
+    return Math.floor(wrapperWidth / itemWidth) || 1;
+  }
+
+  function goToSlide(i) {
+    index = Math.max(0, Math.min(i, items.length - visibleCount()));
+    const moveX = index * itemWidth;
+    track.style.transform = `translateX(-${moveX}px)`;
+    dots.forEach(d => d.classList.remove('active'));
+    if (dots[index]) dots[index].classList.add('active');
+    updateButtons();
+  }
+
+  prevBtn.addEventListener('click', () => goToSlide(index - 1));
+  nextBtn.addEventListener('click', () => goToSlide(index + 1));
+
+  // adapt on resize
+  window.addEventListener('resize', () => {
+    // recalcule largeur et ajuste position
+    const newItemWidth = items[0].getBoundingClientRect().width + parseInt(getComputedStyle(items[0]).gap || 16);
+    // reposition
+    goToSlide(index);
+  });
+
+  // support clavier
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') prevBtn.click();
+    if (e.key === 'ArrowRight') nextBtn.click();
+  });
+
+  // initial
+  goToSlide(0);
+});

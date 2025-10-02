@@ -1,73 +1,73 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Découvrez la nouvelle radio du valenciennois VAFM et les dernières actualités." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Découvrez la nouvelle radio du valenciennois VAFM et l'équipe." />
   <title>VAFM - Notre équipe</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/logo gris vafm.png" />
   <link rel="stylesheet" href="style.css" />
-  <script src="principal.js" defer></script>
   <link rel="stylesheet" href="equipe.css" />
-  
-<div class="page-wrapper">
-  <header class="top-bar">
-    <div class="logo-zone">
-      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
-    </div>
-    <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </header>
+  <script src="principal.js" defer></script>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="top-bar">
+      <div class="logo-zone">
+        <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo" />
+      </div>
+      <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </header>
 
-  <!-- Barre noire -->
-  <div class="sub-bar"></div>
+    <div class="sub-bar"></div>
 
-  <!-- Menu latéral -->
-  <nav class="side-menu" id="sideMenu">
-    <a href="index.html">Accueil</a>
-    <a href="direct.html">Écouter le direct</a>
-    <a href="programmes.html">Programmes</a>
-    <a href="histoire.html">Histoire</a>
-    <a href="don.html">Don</a>
-    <a href="equipe.html">Notre équipe</a>
+    <nav class="side-menu" id="sideMenu">
+      <a href="index.html">Accueil</a>
+      <a href="direct.html">Écouter le direct</a>
+      <a href="programmes.html">Programmes</a>
+      <a href="histoire.html">Histoire</a>
+      <a href="don.html">Don</a>
+      <a href="equipe.html">Notre équipe</a>
+      <div class="social-links">
+        <a href="#"><img src="assets/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="assets/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="assets/youtube.png" alt="YouTube" /></a>
+        <a href="#"><img src="assets/pinterest.png" alt="Pinterest" /></a>
+      </div>
+    </nav>
 
-    <div class="social-links">
-      <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
-      <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
-      <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
-      <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
-    </div>
-  </nav>
-  <body>
-    <section class="team-section">
-  <h2>Notre équipe</h2>
+    <main class="actus-page">
+      <section class="team-section">
+        <h2>Notre équipe</h2>
 
-  <div class="team-carousel" id="teamCarousel">
-    <button class="carousel-btn prev" aria-label="Précédent">&lt;</button>
+        <div class="team-carousel" id="teamCarousel">
+          <button class="carousel-btn prev" aria-label="Précédent">&lt;</button>
 
-    <div class="carousel-track-wrapper">
-      <ul class="carousel-track">
-        <li class="carousel-item"><img src="assets/1.png"</li>
-        <li class="carousel-item"><img src="assets/2.png"</li>
-        <!-- Ajoute autant d'items que tu veux -->
-      </ul>
-    </div>
+          <div class="carousel-track-wrapper">
+            <ul class="carousel-track">
+              <li class="carousel-item">
+                <img src="assets/1.png" alt="Animateur 1" />
+              </li>
+              <li class="carousel-item">
+                <img src="assets/2.png" alt="Animateur 2" />
+              </li>
+              <!-- Ajoute autant d'items que tu veux en respectant la structure -->
+            </ul>
+          </div>
 
-    <button class="carousel-btn next" aria-label="Suivant">&gt;</button>
+          <button class="carousel-btn next" aria-label="Suivant">&gt;</button>
 
-    <div class="carousel-dots" aria-hidden="false"></div>
-  </div>
-</section>
-  </body>
+          <div class="carousel-dots" aria-hidden="false"></div>
+        </div>
+      </section>
+    </main>
 
-    <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="assets/logo gris vafm.png" style="height: 250px;" />
+          <img src="assets/logo gris vafm.png" alt="VAFM" style="height:250px;" />
         </div>
         <div class="footer-links">
           <a href="contact.html">Nous contacter</a>
@@ -81,4 +81,63 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    // Carrousel minimal : flèches + pastilles + responsive
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.carousel-track');
+      if (!track) return;
+      const items = Array.from(track.children);
+      const prevBtn = document.querySelector('.carousel-btn.prev');
+      const nextBtn = document.querySelector('.carousel-btn.next');
+      const dotsContainer = document.querySelector('.carousel-dots');
+      let index = 0;
+
+      // build dots
+      items.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', `Aller à ${i + 1}`);
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = Array.from(dotsContainer.children);
+
+      function visibleCount() {
+        const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
+        const itemStyle = getComputedStyle(items[0]);
+        const gap = parseInt(itemStyle.marginRight) || 16;
+        const itemWidth = items[0].getBoundingClientRect().width + gap;
+        return Math.max(1, Math.floor(wrapperWidth / itemWidth));
+      }
+
+      function updateButtons() {
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index >= items.length - visibleCount();
+      }
+
+      function goToSlide(i) {
+        const gap = parseInt(getComputedStyle(items[0]).marginRight) || 16;
+        const itemWidth = items[0].getBoundingClientRect().width + gap;
+        index = Math.max(0, Math.min(i, items.length - visibleCount()));
+        track.style.transform = `translateX(-${index * itemWidth}px)`;
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[index]) dots[index].classList.add('active');
+        updateButtons();
+      }
+
+      prevBtn.addEventListener('click', () => goToSlide(index - 1));
+      nextBtn.addEventListener('click', () => goToSlide(index + 1));
+      window.addEventListener('resize', () => goToSlide(index));
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') prevBtn.click();
+        if (e.key === 'ArrowRight') nextBtn.click();
+      });
+
+      goToSlide(0);
+    });
+  </script>
+</body>
 </html>

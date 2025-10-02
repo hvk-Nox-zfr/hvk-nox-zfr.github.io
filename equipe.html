@@ -35,34 +35,38 @@
 <body>
   <div class="page-wrapper">
     <!-- Header -->
-    <header class="top-bar">
-      <div class="logo-zone">
-        <img src="./assets/erasebg-transformed.png" alt="VAFM" class="logo" />
-      </div>
-      <button class="hamburger" id="menuToggle" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-      </button>
-    </header>
+  <div class="page-wrapper">
+  <header class="top-bar">
+    <div class="logo-zone">
+      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
+    </div>
+    <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
 
-    <div class="sub-bar" aria-hidden="true"></div>
+  <!-- Barre noire -->
+  <div class="sub-bar"></div>
 
-    <!-- Menu latéral -->
-    <nav class="side-menu" id="sideMenu" aria-label="Menu principal">
-      <a href="index.html">Accueil</a>
-      <a href="direct.html">Écouter le direct</a>
-      <a href="programmes.html">Programmes</a>
-      <a href="histoire.html">Histoire</a>
-      <a href="don.html">Don</a>
-      <a href="equipe.html" aria-current="page">Notre équipe</a>
+  <!-- Menu latéral -->
+  <nav class="side-menu" id="sideMenu">
+    <a href="index.html">Accueil</a>
+    <a href="equipe.html">Notre équipe</a>
+    <a href="direct.html">Écouter le direct</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="histoire.html">Histoire</a>
+    <a href="don.html">Don</a>
 
-      <div class="social-links">
-        <a href="#"><img src="./assets/facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="./assets/instagram.png" alt="Instagram" /></a>
-        <a href="#"><img src="./assets/youtube.png" alt="YouTube" /></a>
-        <a href="#"><img src="./assets/pinterest.png" alt="Pinterest" /></a>
-      </div>
-    </nav>
-
+    <div class="social-links">
+      <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
+      <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
+      <a href="#"><img src="assets/pinterest.png" alt="Pinterest"></a>
+    </div>
+  </nav>
+    
     <!-- Contenu principal -->
     <main class="actus-page" role="main">
       <section class="team-section" aria-label="Galerie des animateurs">

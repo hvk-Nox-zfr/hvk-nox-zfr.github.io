@@ -89,6 +89,26 @@ document.addEventListener("DOMContentLoaded", () => {
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
 
+  // 🔁 Nettoyage des dédicaces de plus de 3 jours
+  function nettoyerDedicaces() {
+    const maintenant = Date.now();
+    const troisJours = 3 * 24 * 60 * 60 * 1000;
+
+    db.ref("dedicaces").once("value", snapshot => {
+      snapshot.forEach(child => {
+        const data = child.val();
+        if (data.date) {
+          const date = new Date(data.date);
+          if (maintenant - date.getTime() > troisJours) {
+            db.ref("dedicaces").child(child.key).remove();
+          }
+        }
+      });
+    });
+  }
+
+  nettoyerDedicaces();
+
   // 🔁 Dédicace en direct
   const dedicaceForm = document.getElementById("dedicaceForm");
   const dedicaceFeed = document.getElementById("dedicaceFeed");
@@ -123,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // ✅ Limite : 1 dédicace par jour
       const aujourdHui = new Date().toISOString().split("T")[0];
       const derniereDedicace = localStorage.getItem("dedicaceDate");
 
@@ -133,7 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (nom && message) {
-        db.ref("dedicaces").push({ nom, message });
+        const date = new Date().toISOString();
+        db.ref("dedicaces").push({ nom, message, date });
         dedicaceForm.reset();
         charCount.textContent = "60 caractères restants";
         localStorage.setItem("dedicaceDate", aujourdHui);
@@ -187,17 +207,17 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-});
-function closePopup() {
-  document.getElementById("popupNews").classList.add("hidden");
-}
 
-window.addEventListener("DOMContentLoaded", () => {
+  // 🔁 Popup nouveautés
   const alreadySeen = localStorage.getItem("popupSeen");
-
   if (!alreadySeen) {
-    document.getElementById("popupNews").classList.remove("hidden");
+    const popup = document.getElementById("popupNews");
+    if (popup) popup.classList.remove("hidden");
     localStorage.setItem("popupSeen", "true");
   }
 });
 
+function closePopup() {
+  const popup = document.getElementById("popupNews");
+  if (popup) popup.classList.add("hidden");
+}

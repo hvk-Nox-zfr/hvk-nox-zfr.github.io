@@ -5,42 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Découvrez la nouvelle radio du valenciennois VAFM et l'équipe." />
   <title>VAFM - Notre équipe</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo gris vafm.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/logo gris vafm.png" />
 
-  <!-- Styles (appelle ton style global + styles specific page) -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="equipe.css" />
+  <!-- Styles (global + page) -->
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./equipe.css" />
 
-  <!-- Script principal (defer pour s'exécuter après parsing) -->
-  <script src="principal.js" defer></script>
-
+  <!-- Fallback styles for carousel if equipe.css missing -->
   <style>
-    /* Styles de secours pour le carrousel si equipe.css manquant */
-    .team-section { max-width:1100px; margin:40px auto; padding:0 16px; }
-    .team-section h2 { color:#970A0A; text-align:center; margin-bottom:20px; }
-
-    .team-carousel { display:flex; align-items:center; gap:12px; position:relative; }
-    .carousel-btn {
-      background:#970A0A; color:#fff; border:none; width:44px; height:44px; border-radius:6px;
-      cursor:pointer; font-weight:bold; font-size:20px; display:flex; align-items:center; justify-content:center;
-    }
-    .carousel-btn:disabled { opacity:0.4; cursor:default; }
-
-    .carousel-track-wrapper { overflow:hidden; flex:1; }
-    .carousel-track { display:flex; gap:16px; transition:transform 0.45s ease; list-style:none; padding:0; margin:0; }
-    .carousel-item {
-      min-width:220px; max-width:260px; background:#fff; border-radius:10px; text-align:center;
-      box-shadow:0 6px 18px rgba(0,0,0,0.08); padding:8px; display:flex; flex-direction:column; align-items:center;
-    }
-    .carousel-item img { display:block; width:100%; height:220px; object-fit:cover; border-radius:8px; }
-    .carousel-dots { display:flex; gap:8px; justify-content:center; margin-top:12px; width:100%; }
-    .carousel-dot { width:10px; height:10px; background:#ccc; border-radius:50%; cursor:pointer; border:0; }
-    .carousel-dot.active { background:#970A0A; }
-
-    @media (max-width:600px) {
-      .carousel-item img { height:160px; }
-      .carousel-btn { width:36px; height:36px; font-size:18px; }
-    }
+    :root{--accent:#970A0A}
+    .team-section{max-width:1100px;margin:40px auto;padding:0 16px}
+    .team-section h2{color:var(--accent);text-align:center;margin-bottom:20px}
+    .team-carousel{display:flex;align-items:center;gap:12px;position:relative}
+    .carousel-btn{background:var(--accent);color:#fff;border:0;width:44px;height:44px;border-radius:6px;cursor:pointer;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center}
+    .carousel-btn:disabled{opacity:.4;cursor:default}
+    .carousel-track-wrapper{overflow:hidden;flex:1}
+    .carousel-track{display:flex;gap:16px;transition:transform .45s ease;list-style:none;padding:0;margin:0}
+    .carousel-item{min-width:220px;max-width:300px;background:#fff;border-radius:10px;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.08);padding:8px;display:flex;flex-direction:column;align-items:center}
+    .carousel-item img{display:block;width:100%;height:220px;object-fit:cover;border-radius:8px}
+    .caption{margin-top:8px;color:#222;font-size:.95rem;line-height:1.1}
+    .carousel-dots{display:flex;gap:8px;justify-content:center;margin-top:12px;width:100%}
+    .carousel-dot{width:10px;height:10px;background:#ccc;border-radius:50%;cursor:pointer;border:0}
+    .carousel-dot.active{background:var(--accent)}
+    @media (max-width:600px){.carousel-item img{height:160px}.carousel-btn{width:36px;height:36px;font-size:18px}}
+    /* ensure images visible even if parent has issues */
+    img{max-width:100%;height:auto;display:block}
   </style>
 </head>
 <body>
@@ -48,7 +37,7 @@
     <!-- Header -->
     <header class="top-bar">
       <div class="logo-zone">
-        <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo" />
+        <img src="./assets/erasebg-transformed.png" alt="VAFM" class="logo" />
       </div>
       <button class="hamburger" id="menuToggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
@@ -66,11 +55,11 @@
       <a href="don.html">Don</a>
       <a href="equipe.html" aria-current="page">Notre équipe</a>
 
-      <div class="social-links" aria-hidden="false">
-        <a href="#"><img src="assets/facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="assets/instagram.png" alt="Instagram" /></a>
-        <a href="#"><img src="assets/youtube.png" alt="YouTube" /></a>
-        <a href="#"><img src="assets/pinterest.png" alt="Pinterest" /></a>
+      <div class="social-links">
+        <a href="#"><img src="./assets/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="./assets/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="./assets/youtube.png" alt="YouTube" /></a>
+        <a href="#"><img src="./assets/pinterest.png" alt="Pinterest" /></a>
       </div>
     </nav>
 
@@ -84,20 +73,25 @@
 
           <div class="carousel-track-wrapper" aria-hidden="false">
             <ul class="carousel-track">
-              <!-- Exemple d'items : assure-toi que assets/1.png et assets/2.png existent -->
+              <!-- Remplace les fichiers ci-dessous par les noms exacts présents dans ./assets/ -->
               <li class="carousel-item">
-                <img src="assets/1.png" alt="Animateur 1 - Prénom Nom" loading="lazy"
-                     onerror="this.onerror=null;this.src='assets/fallback.png';" />
+                <img src="./assets/1.png" alt="Animateur 1 - Prénom Nom" loading="lazy"
+                     onerror="this.onerror=null;this.src='./assets/fallback.png';" />
                 <p class="caption">Prénom Nom<br><small>Rôle</small></p>
               </li>
 
               <li class="carousel-item">
-                <img src="assets/2.png" alt="Animateur 2 - Prénom Nom" loading="lazy"
-                     onerror="this.onerror=null;this.src='assets/fallback.png';" />
+                <img src="./assets/2.png" alt="Animateur 2 - Prénom Nom" loading="lazy"
+                     onerror="this.onerror=null;this.src='./assets/fallback.png';" />
                 <p class="caption">Prénom Nom<br><small>Rôle</small></p>
               </li>
 
-              <!-- Ajoute d'autres <li class="carousel-item"> avec images valides -->
+              <!-- Exemples supplémentaires -->
+              <li class="carousel-item">
+                <img src="./assets/3.png" alt="Animateur 3 - Prénom Nom" loading="lazy"
+                     onerror="this.onerror=null;this.src='./assets/fallback.png';" />
+                <p class="caption">Prénom Nom<br><small>Rôle</small></p>
+              </li>
             </ul>
           </div>
 
@@ -111,7 +105,7 @@
     <!-- Footer -->
     <footer class="site-footer" role="contentinfo">
       <div class="footer-content">
-        <div class="footer-logo"><img src="assets/logo gris vafm.png" alt="VAFM" style="height:250px;" /></div>
+        <div class="footer-logo"><img src="./assets/logo gris vafm.png" alt="VAFM" style="height:250px;" /></div>
         <div class="footer-links">
           <a href="contact.html">Nous contacter</a>
           <a href="mentions.html">Mentions légales</a>
@@ -124,7 +118,7 @@
   </div>
 
   <script>
-    // Carrousel robuste : vérifie présence des éléments et gère responsive
+    // Carrousel : navigation, pastilles, responsive, diagnostics image
     document.addEventListener('DOMContentLoaded', () => {
       const track = document.querySelector('.carousel-track');
       if (!track) return;
@@ -135,12 +129,23 @@
       const dotsContainer = document.querySelector('.carousel-dots');
       if (!prevBtn || !nextBtn || !dotsContainer) return;
 
-      // Ensure images have finished layout before computing widths
-      const ensureLayout = () => new Promise(resolve => {
-        requestAnimationFrame(() => {
-          requestAnimationFrame(resolve);
+      // Diagnostic helper: highlight broken images in red outline and log URL
+      const imgs = Array.from(document.querySelectorAll('.carousel-item img'));
+      imgs.forEach(img => {
+        img.addEventListener('error', () => {
+          console.error('Image failed to load:', img.getAttribute('src'));
+          img.style.outline = '3px solid #e53935';
         });
+        if (!img.complete || img.naturalWidth === 0) {
+          // try reloading once (useful if caching issues)
+          const src = img.src;
+          img.src = '';
+          setTimeout(() => { img.src = src; }, 50);
+        }
       });
+
+      // wait for layout
+      const rafReady = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
 
       let index = 0;
 
@@ -192,12 +197,12 @@
       });
 
       // Initialize after layout ready
-      ensureLayout().then(() => {
+      rafReady().then(() => {
         createDots();
         goToSlide(0);
       });
 
-      // Menu toggle (fallback if principal.js non présent)
+      // Menu toggle fallback
       const menuToggle = document.getElementById('menuToggle');
       const sideMenu = document.getElementById('sideMenu');
       if (menuToggle && sideMenu) {
@@ -206,8 +211,13 @@
           menuToggle.classList.toggle('open');
         });
       }
+
+      // Quick user guidance if images still broken
+      const broken = imgs.filter(i => i.naturalWidth === 0);
+      if (broken.length) {
+        console.warn('Certaines images semblent cassées. Vérifie que les fichiers existent dans ./assets/ et que les noms et extensions correspondent exactement (sensible à la casse).');
+      }
     });
   </script>
 </body>
 </html>
-```

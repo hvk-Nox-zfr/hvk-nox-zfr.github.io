@@ -185,47 +185,51 @@
   </footer>
 
   <script>
-    const streamUrl = "https://manager4.streamradio.fr:1565/stream";
-    const audio = new Audio(streamUrl);
-    audio.volume = 0.5;
+  const streamUrl = "https://manager4.streamradio.fr:1565/stream";
+  const audio = new Audio(streamUrl);
+  audio.volume = 0.5;
+  audio.play(); // Le flux démarre dès le chargement
 
-    const playBtn = document.getElementById("playBtn");
-    const volumeSlider = document.getElementById("volumeSlider");
-    const currentTime = document.getElementById("currentTime");
-    const radioSection = document.getElementById("radioSection");
-    const onAir = document.getElementById("onAir");
+  const playBtn = document.getElementById("playBtn");
+  const volumeSlider = document.getElementById("volumeSlider");
+  const currentTime = document.getElementById("currentTime");
+  const radioSection = document.getElementById("radioSection");
+  const onAir = document.getElementById("onAir");
 
-    let isPlaying = false;
+  let isMuted = false;
 
-    playBtn.addEventListener("click", () => {
-      if (!isPlaying) {
-        audio.play();
-        playBtn.textContent = "⏸ Pause";
-        radioSection.classList.add("playing");
-        onAir.textContent = "🔴 ON AIR";
-        isPlaying = true;
-      } else {
-        audio.pause();
-        playBtn.textContent = "▶ Écouter";
-        radioSection.classList.remove("playing");
-        onAir.textContent = "OFF AIR";
-        isPlaying = false;
-      }
-    });
-
-    volumeSlider.addEventListener("input", () => {
+  playBtn.addEventListener("click", () => {
+    if (!isMuted) {
+      audio.volume = 0;
+      playBtn.textContent = "▶ Écouter";
+      radioSection.classList.remove("playing");
+      onAir.textContent = "OFF AIR";
+      isMuted = true;
+    } else {
       audio.volume = volumeSlider.value;
-    });
+      playBtn.textContent = "⏸ Pause";
+      radioSection.classList.add("playing");
+      onAir.textContent = "🔴 ON AIR";
+      isMuted = false;
+    }
+  });
 
-    setInterval(() => {
-      const seconds = Math.floor(audio.currentTime);
-      const min = Math.floor(seconds / 60);
-      const sec = seconds % 60;
-      currentTime.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
-    }, 1000);
-  </script>
+  volumeSlider.addEventListener("input", () => {
+    if (!isMuted) {
+      audio.volume = volumeSlider.value;
+    }
+  });
+
+  setInterval(() => {
+    const seconds = Math.floor(audio.currentTime);
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    currentTime.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  }, 1000);
+</script>
 </body>
 </html>
+
 
 
 

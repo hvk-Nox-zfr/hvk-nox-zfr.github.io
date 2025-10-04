@@ -21,10 +21,6 @@
       align-items: center;
     }
 
-    .logo {
-      height: 60px;
-    }
-
     .main-content {
       padding: 40px 20px;
     }
@@ -48,22 +44,41 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(151,10,10,0.3) 0%, transparent 70%);
-      animation: pulse 3s infinite;
+      background: repeating-radial-gradient(circle, rgba(255,0,0,0.1) 0px, transparent 40px);
+      animation: waves 6s linear infinite;
       z-index: 0;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.4; }
-      50% { transform: scale(1.1); opacity: 0.6; }
-      100% { transform: scale(1); opacity: 0.4; }
+    @keyframes waves {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .radio-player-section h2 {
       color: #fff;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .on-air {
+      display: inline-block;
+      background: red;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 14px;
+      animation: blink 1s infinite;
+      box-shadow: 0 0 10px red;
       margin-bottom: 20px;
       position: relative;
       z-index: 1;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
     .player-controls {
@@ -83,13 +98,13 @@
       font-size: 20px;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 0 10px #970A0A;
-      transition: transform 0.2s ease;
+      box-shadow: 0 0 15px #ff1a1a;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .play-button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px #ff1a1a;
+      box-shadow: 0 0 25px #ff1a1a;
     }
 
     #currentTime {
@@ -100,6 +115,7 @@
 
     #volumeSlider {
       width: 100px;
+      accent-color: #ff1a1a;
     }
 
     .site-footer {
@@ -132,7 +148,8 @@
 
   <main class="main-content">
     <section class="radio-player-section" id="radioSection">
-      <h2>🔴 VAFM – La vraie vie, en direct</h2>
+      <h2>VAFM – La vraie vie, en direct</h2>
+      <div class="on-air" id="onAir">OFF AIR</div>
       <div class="player-controls">
         <button class="play-button" id="playBtn">▶ Écouter</button>
         <span id="currentTime">00:00</span>
@@ -161,6 +178,7 @@
     const volumeSlider = document.getElementById("volumeSlider");
     const currentTime = document.getElementById("currentTime");
     const radioSection = document.getElementById("radioSection");
+    const onAir = document.getElementById("onAir");
 
     let isPlaying = false;
 
@@ -169,11 +187,13 @@
         audio.play();
         playBtn.textContent = "⏸ Pause";
         radioSection.classList.add("playing");
+        onAir.textContent = "🔴 ON AIR";
         isPlaying = true;
       } else {
         audio.pause();
         playBtn.textContent = "▶ Écouter";
         radioSection.classList.remove("playing");
+        onAir.textContent = "OFF AIR";
         isPlaying = false;
       }
     });
@@ -191,5 +211,3 @@
   </script>
 </body>
 </html>
-
-

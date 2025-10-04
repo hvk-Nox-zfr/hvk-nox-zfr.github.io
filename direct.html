@@ -195,21 +195,25 @@
 
   let isMuted = false;
 
-  playBtn.addEventListener("click", () => {
-    if (!isMuted) {
-      audio.volume = 0;
-      playBtn.textContent = "▶ Écouter";
-      radioSection.classList.remove("playing");
-      onAir.textContent = "OFF AIR";
-      isMuted = true;
-    } else {
+playBtn.addEventListener("click", () => {
+  if (!isMuted) {
+    audio.volume = 0;
+    playBtn.textContent = "▶ Écouter";
+    radioSection.classList.remove("playing");
+    onAir.textContent = "OFF AIR";
+    isMuted = true;
+  } else {
+    audio.play().then(() => {
       audio.volume = volumeSlider.value;
       playBtn.textContent = "⏸ Pause";
       radioSection.classList.add("playing");
       onAir.textContent = "🔴 ON AIR";
       isMuted = false;
-    }
-  });
+    }).catch((error) => {
+      console.warn("Lecture bloquée :", error);
+    });
+  }
+});
 
   volumeSlider.addEventListener("input", () => {
     if (!isMuted) {
@@ -226,6 +230,7 @@
 </script>
 </body>
 </html>
+
 
 
 

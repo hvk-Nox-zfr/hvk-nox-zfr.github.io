@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Écoute en direct – VAFM</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo gris vafm.png">
-  <link rel="stylesheet" href="direct.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
-  <meta name="google-adsense-account" content="ca-pub-8497430727637938">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo gris vafm.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="direct.css" />
+  <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)" />
 
-  <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KJSC6Z4M');
-  </script>
-
-  <!-- Lecteur StreamRadio styles -->
+  <!-- StreamRadio styles -->
   <link rel="stylesheet" href="https://manager4.streamradio.fr:1550/media/static/css/player/base.css" />
   <link rel="stylesheet" href="https://manager4.streamradio.fr:1550/media/static/css/player/style-1.css" />
   <link rel="stylesheet" href="https://manager4.streamradio.fr:1550/media/static/css/ui/jquery.ui.slider.css" />
+
+  <style>
+    .radio-player-section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .radio-player-section h2 {
+      color: #970A0A;
+      margin-bottom: 20px;
+    }
+    .play-button {
+      display: inline-block;
+      background: #970A0A;
+      color: white;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background 0.3s ease;
+    }
+    .play-button:hover {
+      background: #b31212;
+    }
+  </style>
 </head>
 <body>
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJSC6Z4M"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-
   <div class="page-wrapper">
-    <!-- Barre rouge -->
+    <!-- Header -->
     <header class="top-bar">
       <div class="logo-zone">
-        <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
+        <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo" />
       </div>
       <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
         <span></span><span></span><span></span>
       </div>
     </header>
 
-    <!-- Barre noire -->
     <div class="sub-bar"></div>
 
     <!-- Menu latéral -->
@@ -53,17 +67,18 @@
       <a href="histoire.html">Histoire</a>
       <a href="don.html">Don</a>
       <div class="social-links">
-        <a href="#"><img src="assets/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="assets/instagram.png" alt="Instagram"></a>
-        <a href="#"><img src="assets/youtube.png" alt="YouTube"></a>
-        <a href="#"><img src="assets/tiktok.png" alt="TikTok"></a>
+        <a href="#"><img src="assets/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="assets/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="assets/youtube.png" alt="YouTube" /></a>
+        <a href="#"><img src="assets/tiktok.png" alt="TikTok" /></a>
       </div>
     </nav>
 
-    <!-- ✅ Contenu principal -->
+    <!-- Contenu principal -->
     <main class="main-content">
       <section class="radio-player-section">
         <h2>Écouter VAFM en direct</h2>
+        <div class="play-button" onclick="initRadio()">🎧 Écouter maintenant</div>
 
         <div id="rtJpID-1"></div>
         <div class="rtplwrapperForIe">
@@ -78,11 +93,11 @@
       </section>
     </main>
 
-    <!-- ✅ Footer -->
+    <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="assets/logo gris vafm.png" style="height: 250px;">
+          <img src="assets/logo gris vafm.png" style="height: 250px;" />
         </div>
         <div class="footer-links">
           <a href="contact.html">Nous contacter</a>
@@ -97,7 +112,7 @@
     </footer>
   </div>
 
-  <!-- ✅ Scripts -->
+  <!-- Scripts -->
   <script>
     function toggleMenu() {
       const menu = document.getElementById("sideMenu");
@@ -105,22 +120,8 @@
       menu.classList.toggle("open");
       toggleBtn.classList.toggle("open");
     }
-  </script>
 
-  <!-- jQuery + StreamRadio scripts -->
-  <script>
-    if (typeof jQuery === 'undefined') {
-      const script = document.createElement('script');
-      script.src = "https://code.jquery.com/jquery-2.2.4.min.js";
-      document.head.appendChild(script);
-    }
-  </script>
-  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/jquery.jplayer.min.js"></script>
-  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/jquery-ui-1.10.2.custom.min.js"></script>
-  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/modernizr.js"></script>
-  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/rt_pl.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    function initRadio() {
       if (typeof RTPlayer !== 'undefined') {
         new RTPlayer(
           1,
@@ -131,8 +132,18 @@
           { mp3: "https://manager4.streamradio.fr:1565/stream" },
           "fr"
         );
+      } else {
+        console.error("RTPlayer non disponible.");
       }
-    });
+    }
   </script>
+
+  <!-- jQuery + StreamRadio scripts -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/jquery.jplayer.min.js"></script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/jquery-ui-1.10.2.custom.min.js"></script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/modernizr.js"></script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/rt_pl.js"></script>
 </body>
 </html>
+

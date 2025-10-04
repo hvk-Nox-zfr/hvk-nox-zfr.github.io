@@ -67,19 +67,30 @@
         }
       </style>
 
-      <div class="radio-widget" style="text-align:center; margin: 30px 0;">
-        <iframe src="https://player.radioking.io/vafm1/?c=%239B0A0A&c2=%23FFFFFF&f=h&i=1&p=1&s=1&alb=1&li=1&popup=0&plc=1&h=150&l=700&v=2"
-          frameborder="0"></iframe>
-      </div>
-      <script src="https://player.radioking.io/scripts/iframe.bundle.js"></script>
-    </main>
-    <div id="rk-played-tracks-widget" data-id="vafm1" data-count="30" data-date="1" data-buy="0"></div><script type="text/javascript" src="https://widget.radioking.io/played-tracks/build/script.min.js"></script>
-    <section class="content">
-        <h2>Top titre</h2>
-    </section>
-    
-<div id="rk-top-tracks-widget" data-id="vafm1" data-buy="0" data-count="10"></div>
-<script src="https://widget.radioking.io/top-tracks/build/script.min.js"></script>
+<link href="https://manager4.streamradio.fr:1550/media/static/css/player/base.css" rel="stylesheet" type="text/css" />
+<link href="https://manager4.streamradio.fr:1550/media/static/css/player/style-1.css" rel="stylesheet" type="text/css" />
+<link href="https://manager4.streamradio.fr:1550/media/static/css/ui/jquery.ui.slider.css" rel="stylesheet" type="text/css" />
+<script>
+if (typeof jQuery == 'undefined') {
+  var i = "i";
+  document.write('<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></scr' + i + 'pt>');
+}
+</script>
+<script type="text/javascript" src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/modernizr.js"></script>
+<script type="text/javascript" src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/rt_pl.js"></script>
+<div id="rtJpID-1"></div>
+<div class="rtplwrapperForIe">
+<div id="rtplayer-1" class="rtplmain_window gradient_style-1">
+<a id="button_play_stop-1" class="rtplbutton_play_stop button_play_stop_style-1" href="#"></a>
+<div id="current_time-1" class="rtplcurrent_time">00:00:00</div>
+<a id="rtplmute-1" class="rtplmute button_mute_style-1" href="#"></a>
+<div id="rtplvolume-1" class="rtplvolume"></div>
+<a id="rtplmaxvol-1" class="rtplmaxvol button_max_vol_style-1" href="#"></a>
+</div>
+</div>
+<script>$(document).ready( function(){ new RTPlayer( 1, 50, false, "https://manager4.streamradio.fr:1550",  "mp3", {"mp3": "https://manager4.streamradio.fr:1565/stream"}, "fr")  });</script>
 
     <!-- ✅ Footer collé en bas -->
     <footer class="site-footer">
@@ -128,6 +139,7 @@
   </script>
 </body>
 </html>
+
 
 
 

@@ -11,28 +11,33 @@
   <meta name="google-adsense-account" content="ca-pub-8497430727637938">
 
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KJSC6Z4M');</script>
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KJSC6Z4M');
+  </script>
+
+  <!-- Lecteur StreamRadio styles -->
+  <link rel="stylesheet" href="https://manager4.streamradio.fr:1550/media/static/css/player/base.css" />
+  <link rel="stylesheet" href="https://manager4.streamradio.fr:1550/media/static/css/player/style-1.css" />
+  <link rel="stylesheet" href="https://manager4.streamradio.fr:1550/media/static/css/ui/jquery.ui.slider.css" />
 </head>
 <body>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJSC6Z4M"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJSC6Z4M"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
 
-  <!-- ✅ Wrapper principal -->
   <div class="page-wrapper">
-
     <!-- Barre rouge -->
     <header class="top-bar">
       <div class="logo-zone">
         <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
       </div>
       <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </div>
     </header>
 
@@ -42,8 +47,8 @@
     <!-- Menu latéral -->
     <nav class="side-menu" id="sideMenu">
       <a href="index.html">Accueil</a>
-      <a href="equipe.html" aria-current="page">Notre équipe</a>
-      <a href="direct.html">Écouter le direct</a>
+      <a href="equipe.html">Notre équipe</a>
+      <a href="direct.html" aria-current="page">Écouter le direct</a>
       <a href="programmes.html">Programmes</a>
       <a href="histoire.html">Histoire</a>
       <a href="don.html">Don</a>
@@ -55,30 +60,25 @@
       </div>
     </nav>
 
-    <!-- ✅ Contenu principal extensible -->
+    <!-- ✅ Contenu principal -->
     <main class="main-content">
-      <style>
-        .radio-widget iframe {
-          width: 100%;
-          max-width: 700px;
-          height: 150px;
-          border-radius: 8px;
-          box-shadow: 0 0 20px rgba(0,0,0,0.3);
-        }
-      </style>
+      <section class="radio-player-section">
+        <h2>Écouter VAFM en direct</h2>
 
-<link href="https://manager4.streamradio.fr:1550/media/static/css/player/base.css" rel="stylesheet" type="text/css" />
-<link href="https://manager4.streamradio.fr:1550/media/static/css/player/style-1.css" rel="stylesheet" type="text/css" />
-<link href="https://manager4.streamradio.fr:1550/media/static/css/ui/jquery.ui.slider.css" rel="stylesheet" type="text/css" />
-<script>
-if (typeof jQuery == 'undefined') {
-  var i = "i";
-  document.write('<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></scr' + i + 'pt>');
-}
-  
-<script>$(document).ready( function(){ new RTPlayer( 1, 50, false, "https://manager4.streamradio.fr:1550",  "mp3", {"mp3": "https://manager4.streamradio.fr:1565/stream"}, "fr")  });</script>
+        <div id="rtJpID-1"></div>
+        <div class="rtplwrapperForIe">
+          <div id="rtplayer-1" class="rtplmain_window gradient_style-1">
+            <a id="button_play_stop-1" class="rtplbutton_play_stop button_play_stop_style-1" href="#"></a>
+            <div id="current_time-1" class="rtplcurrent_time">00:00:00</div>
+            <a id="rtplmute-1" class="rtplmute button_mute_style-1" href="#"></a>
+            <div id="rtplvolume-1" class="rtplvolume"></div>
+            <a id="rtplmaxvol-1" class="rtplmaxvol button_max_vol_style-1" href="#"></a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    <!-- ✅ Footer collé en bas -->
+    <!-- ✅ Footer -->
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-logo">
@@ -95,10 +95,9 @@ if (typeof jQuery == 'undefined') {
         <p>© 2025 VAFM | Tous droits réservés.</p>
       </div>
     </footer>
-
   </div>
 
-  <!-- Script -->
+  <!-- ✅ Scripts -->
   <script>
     function toggleMenu() {
       const menu = document.getElementById("sideMenu");
@@ -106,33 +105,34 @@ if (typeof jQuery == 'undefined') {
       menu.classList.toggle("open");
       toggleBtn.classList.toggle("open");
     }
+  </script>
 
-    const player = document.getElementById('radio-player');
-    const equalizer = document.getElementById('equalizer');
-    let isPlaying = false;
-
-    function togglePlay() {
-      if (!isPlaying) {
-        player.play();
-        equalizer.classList.remove('hidden');
-        isPlaying = true;
-      } else {
-        player.pause();
-        equalizer.classList.add('hidden');
-        isPlaying = false;
-      }
+  <!-- jQuery + StreamRadio scripts -->
+  <script>
+    if (typeof jQuery === 'undefined') {
+      const script = document.createElement('script');
+      script.src = "https://code.jquery.com/jquery-2.2.4.min.js";
+      document.head.appendChild(script);
     }
+  </script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/jquery.jplayer.min.js"></script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/jquery-ui-1.10.2.custom.min.js"></script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/modernizr.js"></script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/jplayer/rt_pl.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof RTPlayer !== 'undefined') {
+        new RTPlayer(
+          1,
+          50,
+          false,
+          "https://manager4.streamradio.fr:1550",
+          "mp3",
+          { mp3: "https://manager4.streamradio.fr:1565/stream" },
+          "fr"
+        );
+      }
+    });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

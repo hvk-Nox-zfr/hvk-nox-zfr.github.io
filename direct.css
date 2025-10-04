@@ -113,6 +113,43 @@ html, body {
   50% { height: 40px; }
 }
 
+.vafm-player {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #970A0A;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+.vafm-player h2 {
+  color: #970A0A;
+  margin-bottom: 20px;
+}
+.player-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+#playBtn {
+  background: #970A0A;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#volumeSlider {
+  width: 100px;
+}
+#statusText {
+  font-weight: bold;
+  color: #970A0A;
+}
+
 /* --- Menu hamburger --- */
 .hamburger {
   width: 30px;

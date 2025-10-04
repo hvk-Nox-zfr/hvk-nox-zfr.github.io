@@ -10,7 +10,7 @@
   <script src="principal.js" defer></script>
 </head>
 <body>
-    <header class="top-bar">
+  <header class="top-bar">
     <div class="logo-zone">
       <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
     </div>
@@ -28,11 +28,10 @@
   <nav class="side-menu" id="sideMenu">
     <a href="index.html">Accueil</a>
     <a href="equipe.html">Notre équipe</a>
-    <a href="direct.html">Écouter le direct</a>
+    <a href="direct.html" aria-current="page">Écouter le direct</a>
     <a href="programmes.html">Programmes</a>
     <a href="histoire.html">Histoire</a>
     <a href="don.html">Don</a>
-
     <div class="social-links">
       <a href="https://www.facebook.com/profile.php?id=61573373138285"><img src="assets/facebook.png" alt="Facebook"></a>
       <a href="https://www.instagram.com/vafmlaradio/"><img src="assets/instagram.png" alt="Instagram"></a>
@@ -42,67 +41,68 @@
   </nav>
 
   <main class="main-content">
-<section class="radio-player-section">
-  <h2>VAFM – La vraie vie, en direct</h2>
-  <div style="width: 100%; max-width: 1000px; margin: auto;" id="sc-player">
-    <div
-      is="player"
-      lang="fr"
-      api-url="https://manager4.streamradio.fr:1550/api/v2"
-      server-id="1"
-      station-name="VAFM"
-      station-url=""
-      imagecontainer="left"
-      imagecontainer-bg="#78a3b5"
-      imagecontainer-bg-opacity="1"
-      controlscontainer="right"
-      controlscontainer-bg="#d6d6d6"
-      controlscontainer-bg-opacity="1"
-      controlscontainer-bg-img="https://manager4.streamradio.fr:1550/media/widgets/VAFM_8.png"
-      historycontainer="right"
-      historycontainer-bg="#ffb3b3"
-      historycontainer-bg-opacity="1"
-      :show-history="true"
-      history-limit="20"
-      sharecontainer="both"
-      sharecontainer-bg="#b30000"
-      sharecontainer-bg-opacity="1"
-      :show-share="false"
-      share-url=""
-      :share="[]"
-      :show-dj="false"
-      default-dj-img="https://manager4.streamradio.fr:1550/media/widgets/erasebg-transformed_JYxBtqn.png"
-      :show-image="false"
-      default-cover-image=""
-      play-button-color="#ffffff"
-      play-button-bg="null"
-      visualizer-outline-color="#ffffff"
-      visualizer-bar-width="1"
-      :channels-displayed="[]"
-      channels-switch-bg="#4165b9"
-      channels-switch-color="#ffffff"
-      channels-switch-bg-active="#dddddd"
-      channels-switch-color-active="#000000"
-      :show-vote="false"
-      vote-buttons-color="#ffffff"
-      vote-buttons-opacity="1"
-      vote-results-font-color="#FFFFFF"
-      vote-results-font-size="16"
-      :progress-show="false"
-      progress-bar-color="#35495e"
-      progress-bar-bg-color="#41b883"
-      progress-bar-bg-opacity="0.1"
-      progress-bar-bg-height="25"
-      progress-bar-opacity="1"
-      progress-font-color="#FFFFFF"
-      progress-font-size="12"
-      progress-bar-bg-radius="10"
-      progress-bar-bg-border="#970a0a"
-      player-width="1000px"
-    >
-    </div>
-  </div>
-</section>
+    <section class="radio-player-section">
+      <h2>VAFM – La vraie vie, en direct</h2>
+      <div style="width: 100%; max-width: 1000px; margin: auto;" id="sc-player">
+        <div
+          is="player"
+          lang="fr"
+          api-url="https://manager4.streamradio.fr:1550/api/v2"
+          server-id="1"
+          station-name="VAFM"
+          station-url=""
+          imagecontainer="left"
+          imagecontainer-bg="#78a3b5"
+          imagecontainer-bg-opacity="1"
+          controlscontainer="right"
+          controlscontainer-bg="#d6d6d6"
+          controlscontainer-bg-opacity="1"
+          controlscontainer-bg-img="https://manager4.streamradio.fr:1550/media/widgets/VAFM_8.png"
+          historycontainer="right"
+          historycontainer-bg="#ffb3b3"
+          historycontainer-bg-opacity="1"
+          :show-history="true"
+          history-limit="20"
+          sharecontainer="both"
+          sharecontainer-bg="#b30000"
+          sharecontainer-bg-opacity="1"
+          :show-share="false"
+          share-url=""
+          :share="[]"
+          :show-dj="false"
+          default-dj-img="https://manager4.streamradio.fr:1550/media/widgets/erasebg-transformed_JYxBtqn.png"
+          :show-image="false"
+          default-cover-image=""
+          play-button-color="#ffffff"
+          play-button-bg="null"
+          visualizer-outline-color="#ffffff"
+          visualizer-bar-width="1"
+          :channels-displayed="[]"
+          channels-switch-bg="#4165b9"
+          channels-switch-color="#ffffff"
+          channels-switch-bg-active="#dddddd"
+          channels-switch-color-active="#000000"
+          :show-vote="false"
+          vote-buttons-color="#ffffff"
+          vote-buttons-opacity="1"
+          vote-results-font-color="#FFFFFF"
+          vote-results-font-size="16"
+          :progress-show="false"
+          progress-bar-color="#35495e"
+          progress-bar-bg-color="#41b883"
+          progress-bar-bg-opacity="0.1"
+          progress-bar-bg-height="25"
+          progress-bar-opacity="1"
+          progress-font-color="#FFFFFF"
+          progress-font-size="12"
+          progress-bar-bg-radius="10"
+          progress-bar-bg-border="#970a0a"
+          player-width="1000px"
+        >
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <img src="assets/logo gris vafm.png" alt="Logo VAFM" />
@@ -115,15 +115,26 @@
     <p>© 2025 VAFM | Tous droits réservés.</p>
   </footer>
 
+  <!-- ✅ Script du lecteur StreamRadio -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const enablePlayer = () => {
+        if (!customElements.get("player")) {
+          const script = document.createElement("script");
+          script.src = "https://manager4.streamradio.fr:1550/media/static/js/sc_player/sc_player.js";
+          document.body.appendChild(script);
+        }
+      };
+
+      const activateOnInteraction = () => {
+        enablePlayer();
+        window.removeEventListener("click", activateOnInteraction);
+        window.removeEventListener("keydown", activateOnInteraction);
+      };
+
+      window.addEventListener("click", activateOnInteraction);
+      window.addEventListener("keydown", activateOnInteraction);
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

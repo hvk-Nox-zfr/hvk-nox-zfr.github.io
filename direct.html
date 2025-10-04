@@ -48,6 +48,7 @@
     <main class="main-content">
       <section class="radio-player-section">
         <h2>Écouter VAFM en direct</h2>
+        <button class="play-button" onclick="initRadio()">🎧 Écouter maintenant</button>
 
         <div id="rtJpID-1"></div>
         <div class="rtplwrapperForIe">
@@ -96,7 +97,7 @@
       toggleBtn.classList.toggle("open");
     }
 
-    $(document).ready(function () {
+    function initRadio() {
       if (typeof RTPlayer !== 'undefined') {
         new RTPlayer(
           1,
@@ -107,11 +108,13 @@
           { mp3: "https://manager4.streamradio.fr:1565/stream" },
           "fr"
         );
+        document.querySelector(".radio-player-section").classList.add("playing");
       } else {
         console.error("RTPlayer non disponible.");
       }
-    });
+    }
   </script>
 </body>
 </html>
+
 

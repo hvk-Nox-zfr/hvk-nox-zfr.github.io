@@ -8,123 +8,6 @@
   <link rel="stylesheet" href="direct.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="principal.js" defer></script>
-  <style>
-    
-    .radio-player-section {
-      max-width: 800px;
-      margin: auto;
-      padding: 30px;
-      background: #1a1a1a;
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(151, 10, 10, 0.6);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .radio-player-section.playing::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: repeating-radial-gradient(circle, rgba(255,0,0,0.1) 0px, transparent 40px);
-      animation: waves 6s linear infinite;
-      z-index: 0;
-    }
-
-    @keyframes waves {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .radio-player-section h2 {
-      color: #fff;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .on-air {
-      display: inline-block;
-      background: red;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 14px;
-      animation: blink 1s infinite;
-      box-shadow: 0 0 10px red;
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .player-controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .play-button {
-      background: #970A0A;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 20px;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 0 15px #ff1a1a;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .play-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px #ff1a1a;
-    }
-
-    #currentTime {
-      color: #fff;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    #volumeSlider {
-      width: 100px;
-      accent-color: #ff1a1a;
-    }
-
-    .site-footer {
-      background: #000;
-      color: #fff;
-      padding: 30px 20px;
-      text-align: center;
-    }
-
-    .site-footer img {
-      height: 80px;
-      margin-bottom: 10px;
-    }
-
-    .site-footer a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-
-    .site-footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
 <body>
     <header class="top-bar">
@@ -159,16 +42,67 @@
   </nav>
 
   <main class="main-content">
-    <section class="radio-player-section" id="radioSection">
-      <h2>VAFM – La vraie vie, en direct</h2>
-      <div class="on-air" id="onAir">OFF AIR</div>
-      <div class="player-controls">
-        <button class="play-button" id="playBtn">▶ Écouter</button>
-        <span id="currentTime">00:00</span>
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
-      </div>
-    </section>
-  </main>
+<section class="radio-player-section">
+  <h2>VAFM – La vraie vie, en direct</h2>
+  <div style="width: 100%; max-width: 1000px; margin: auto;" id="sc-player">
+    <div
+      is="player"
+      lang="fr"
+      api-url="https://manager4.streamradio.fr:1550/api/v2"
+      server-id="1"
+      station-name="VAFM"
+      station-url=""
+      imagecontainer="left"
+      imagecontainer-bg="#78a3b5"
+      imagecontainer-bg-opacity="1"
+      controlscontainer="right"
+      controlscontainer-bg="#d6d6d6"
+      controlscontainer-bg-opacity="1"
+      controlscontainer-bg-img="https://manager4.streamradio.fr:1550/media/widgets/VAFM_8.png"
+      historycontainer="right"
+      historycontainer-bg="#ffb3b3"
+      historycontainer-bg-opacity="1"
+      :show-history="true"
+      history-limit="20"
+      sharecontainer="both"
+      sharecontainer-bg="#b30000"
+      sharecontainer-bg-opacity="1"
+      :show-share="false"
+      share-url=""
+      :share="[]"
+      :show-dj="false"
+      default-dj-img="https://manager4.streamradio.fr:1550/media/widgets/erasebg-transformed_JYxBtqn.png"
+      :show-image="false"
+      default-cover-image=""
+      play-button-color="#ffffff"
+      play-button-bg="null"
+      visualizer-outline-color="#ffffff"
+      visualizer-bar-width="1"
+      :channels-displayed="[]"
+      channels-switch-bg="#4165b9"
+      channels-switch-color="#ffffff"
+      channels-switch-bg-active="#dddddd"
+      channels-switch-color-active="#000000"
+      :show-vote="false"
+      vote-buttons-color="#ffffff"
+      vote-buttons-opacity="1"
+      vote-results-font-color="#FFFFFF"
+      vote-results-font-size="16"
+      :progress-show="false"
+      progress-bar-color="#35495e"
+      progress-bar-bg-color="#41b883"
+      progress-bar-bg-opacity="0.1"
+      progress-bar-bg-height="25"
+      progress-bar-opacity="1"
+      progress-font-color="#FFFFFF"
+      progress-font-size="12"
+      progress-bar-bg-radius="10"
+      progress-bar-bg-border="#970a0a"
+      player-width="1000px"
+    >
+    </div>
+  </div>
+</section>
 
   <footer class="site-footer">
     <img src="assets/logo gris vafm.png" alt="Logo VAFM" />
@@ -181,55 +115,9 @@
     <p>© 2025 VAFM | Tous droits réservés.</p>
   </footer>
 
-  <script>
-  const streamUrl = "https://manager4.streamradio.fr:1565/stream";
-  const audio = new Audio(streamUrl);
-  audio.volume = 0.5;
-  audio.play(); // Le flux démarre dès le chargement
-
-  const playBtn = document.getElementById("playBtn");
-  const volumeSlider = document.getElementById("volumeSlider");
-  const currentTime = document.getElementById("currentTime");
-  const radioSection = document.getElementById("radioSection");
-  const onAir = document.getElementById("onAir");
-
-  let isMuted = false;
-
-playBtn.addEventListener("click", () => {
-  if (!isMuted) {
-    audio.volume = 0;
-    playBtn.textContent = "▶ Écouter";
-    radioSection.classList.remove("playing");
-    onAir.textContent = "OFF AIR";
-    isMuted = true;
-  } else {
-    audio.play().then(() => {
-      audio.volume = volumeSlider.value;
-      playBtn.textContent = "⏸ Pause";
-      radioSection.classList.add("playing");
-      onAir.textContent = "🔴 ON AIR";
-      isMuted = false;
-    }).catch((error) => {
-      console.warn("Lecture bloquée :", error);
-    });
-  }
-});
-
-  volumeSlider.addEventListener("input", () => {
-    if (!isMuted) {
-      audio.volume = volumeSlider.value;
-    }
-  });
-
-  setInterval(() => {
-    const seconds = Math.floor(audio.currentTime);
-    const min = Math.floor(seconds / 60);
-    const sec = seconds % 60;
-    currentTime.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
-  }, 1000);
-</script>
 </body>
 </html>
+
 
 
 

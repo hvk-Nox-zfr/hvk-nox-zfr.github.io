@@ -8,53 +8,49 @@
   <link rel="stylesheet" href="direct.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="principal.js" defer></script>
-</head>
   <style>
     .site-footer {
-  background: #000;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  font-size: 14px;
-}
+      background: #000;
+      color: #fff;
+      padding: 15px 10px;
+      font-size: 13px;
+      text-align: center;
+    }
 
-.footer-top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
+    .footer-content {
+      max-width: 600px;
+      margin: auto;
+    }
 
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
+    .footer-logo img {
+      height: 60px;
+      margin-bottom: 8px;
+    }
 
-.footer-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-}
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
 
-.footer-links a:hover {
-  text-decoration: underline;
-}
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-.footer-bottom {
-  font-size: 12px;
-  opacity: 0.7;
-}
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
 
-.slogan {
-  font-size: 16px;
-  font-style: italic;
-  color: #ccc;
-}
+    .footer-bottom {
+      font-size: 11px;
+      opacity: 0.6;
+    }
   </style>
+</head>
 <body>
   <header class="top-bar">
     <div class="logo-zone">
@@ -67,10 +63,8 @@
     </div>
   </header>
 
-  <!-- Barre noire -->
   <div class="sub-bar"></div>
 
-  <!-- Menu latéral -->
   <nav class="side-menu" id="sideMenu">
     <a href="index.html">Accueil</a>
     <a href="equipe.html">Notre équipe</a>
@@ -149,46 +143,27 @@
     </section>
   </main>
 
-    <footer class="site-footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <img src="assets/logo gris vafm.png" style="height: 250px;" />
-        </div>
-        <div class="footer-links">
-          <a href="contact.html">Nous contacter</a>
-          <a href="mentions.html">Mentions légales</a>
-          <a href="a-propos.html">À propos</a>
-          <a href="accessibilite.html">Accessibilité</a>
-        </div>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/logo gris vafm.png" alt="Logo VAFM" />
+      </div>
+      <div class="footer-links">
+        <a href="contact.html">Nous contacter</a>
+        <a href="mentions.html">Mentions légales</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="accessibilite.html">Accessibilité</a>
       </div>
       <div class="footer-bottom">
         <p>© 2025 VAFM | Tous droits réservés.</p>
       </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   <!-- ✅ Script du lecteur StreamRadio -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const enablePlayer = () => {
-        if (!customElements.get("player")) {
-          const script = document.createElement("script");
-          script.src = "https://manager4.streamradio.fr:1550/media/static/js/sc_player/sc_player.js";
-          document.body.appendChild(script);
-        }
-      };
-
-      const activateOnInteraction = () => {
-        enablePlayer();
-        window.removeEventListener("click", activateOnInteraction);
-        window.removeEventListener("keydown", activateOnInteraction);
-      };
-
-      window.addEventListener("click", activateOnInteraction);
-      window.addEventListener("keydown", activateOnInteraction);
-    });
-  </script>
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/sc_player/sc_player.js"></script>
 </body>
 </html>
+
 
 

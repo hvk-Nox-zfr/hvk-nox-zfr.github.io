@@ -2,6 +2,8 @@ User-agent: *
 Disallow: /BingSiteAuth.xml
 Disallow: /GoogleSiteAuth.xml
 Disallow: /accessibility.html
-Disallow: /ads.txt
 Disallow: /app-ads.txt
+
+Allow: /ads.txt
+
 Sitemap: https://hvk-nox-zfr.github.io/sitemap.xml

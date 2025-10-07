@@ -10,6 +10,12 @@ html, body {
   font-family: sans-serif;
   background-color: #fff;
 }
+
+.adsbygoogle {
+  max-height: 1200px;
+  overflow: hidden;
+}
+
 .popup {
   position: fixed;
   top: 0;
@@ -1001,6 +1007,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

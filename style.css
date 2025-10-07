@@ -52,6 +52,30 @@ html, body {
   cursor: pointer;
 }
 
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* hauteur ajustable */
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fade-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to bottom, transparent, #0a0a0a);
+  pointer-events: none;
+}
+
 .intro-vafm {
   max-width: 800px;
   margin: 40px auto;
@@ -977,6 +1001,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

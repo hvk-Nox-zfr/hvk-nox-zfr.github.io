@@ -1,8 +1,8 @@
 User-agent: *
-Disallow: /BingSiteAuth.xml
-Disallow: /GoogleSiteAuth.xml
-Disallow: /accessibility.html
-Disallow: /app-ads.txt
+Allow: /BingSiteAuth.xml
+Allow: /GoogleSiteAuth.xml
+Allow: /accessibility.html
+Allow: /app-ads.txt
 
 Allow: /ads.txt
 

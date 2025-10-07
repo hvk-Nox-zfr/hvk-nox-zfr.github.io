@@ -16,9 +16,13 @@ html, body {
   transform-origin: center top;
 }
 
-.adsbygoogle {
+.ads-container {
   max-height: 1200px;
   overflow: hidden;
+}
+
+.adsbygoogle {
+  max-height: 1200px !important;
 }
 
 .popup {
@@ -1012,6 +1016,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

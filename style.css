@@ -16,7 +16,7 @@ html, body {
   transform-origin: center top;
 }
 
-.ads-container {
+.adscontainer {
   max-height: 1200px;
   overflow: hidden;
 }
@@ -1016,6 +1016,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

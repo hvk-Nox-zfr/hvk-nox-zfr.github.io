@@ -1,18 +1,11 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-html, body {
+/* === GLOBAL === */
+body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-}
-.programme {
-  text-align: center;
-  line-height: 60px;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top left, #0a0a0a, #1a1a1a);
+  color: #eee;
 }
 
 .page-wrapper {
@@ -25,32 +18,19 @@ html, body {
   flex: 1;
 }
 
-.footer {
-  width: 100%;
-  height: 60px;
-  background-color: #000;
-  color: #fff;
-  text-align: center;
-  line-height: 60px;
-}
-
-
-@media (max-width: 768px) {
-  .popup-overlay {
-    padding-top: 80px;
-  }
-}
-
+/* === HEADER === */
 .site-header {
-  background-color: #ffffff;
+  background: linear-gradient(to right, #ff0040, #000000);
   color: white;
+  box-shadow: 0 0 20px rgba(255,0,64,0.4);
+  border-bottom: 3px solid #ff0040;
 }
 
 .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 20px 30px;
 }
 
 .logo img {
@@ -59,8 +39,8 @@ html, body {
 }
 
 .logo {
-  height: 250px;
-  margin-top: 20px; /* ajuste ici selon le rendu */
+  height: auto;
+  margin-top: 10px;
 }
 
 .socials {
@@ -79,50 +59,64 @@ html, body {
   transform: scale(1.2);
 }
 
+/* === NAVIGATION === */
 .main-nav {
   display: flex;
   justify-content: center;
   gap: 30px;
-  padding: 12px 0;
-  background-color: #970A0A;
+  padding: 14px 0;
+  background-color: #1a1a1a;
+  border-top: 2px solid #ff0040;
+  border-bottom: 2px solid #ff0040;
 }
 
 .main-nav a {
-  color: white;
+  color: #ff0040;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.95em;
-  transition: background-color 0.3s ease;
+  font-size: 1em;
+  transition: all 0.3s ease;
 }
 
 .main-nav a:hover {
-  background-color: white;
-  color: #57081B;
+  background-color: #ff0040;
+  color: #000;
   border-radius: 5px;
   padding: 6px 10px;
 }
 
+/* === INTRO === */
 .intro {
   text-align: center;
   padding: 60px 20px;
 }
 
-footer {
-  background-color: #222;
-  color: white;
+/* === PROGRAMME === */
+.programme {
+  text-align: center;
+  line-height: 60px;
+}
+
+/* === FOOTER === */
+.footer, footer {
+  width: 100%;
+  background-color: #111;
+  color: #fff;
   text-align: center;
   padding: 20px;
   font-size: 14px;
+  border-top: 2px solid #ff0040;
 }
 
+/* === NEWS SECTION === */
 .news-section {
   padding: 40px 20px;
-  background-color: #fff;
+  background-color: #1a1a1a;
   text-align: center;
 }
 
 .news-section h2 {
-  color: #57081B;
+  color: #ff0040;
   margin-bottom: 30px;
 }
 
@@ -135,10 +129,10 @@ footer {
 
 .news-card {
   width: 300px;
-  background-color: #f9f9f9;
+  background-color: #222;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(255,0,64,0.2);
   transition: transform 0.3s ease;
   cursor: pointer;
 }
@@ -160,28 +154,28 @@ footer {
 
 .news-text h3 {
   margin-top: 0;
-  color: #3e0613;
+  color: #ff0040;
   font-size: 1.1em;
 }
 
 .news-text p {
   font-size: 0.95em;
-  color: #333;
+  color: #ccc;
 }
 
-/* POPUP STYLES */
+/* === POPUP === */
 .popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   display: none;
   justify-content: center;
-  align-items: flex-start; /* place la pop-up en haut */
+  align-items: flex-start;
   z-index: 1000;
-  padding-top: 200px; /* espace depuis le haut */
+  padding-top: 200px;
   padding-left: 20px;
   padding-right: 20px;
   box-sizing: border-box;
@@ -189,12 +183,12 @@ footer {
 }
 
 .popup-content {
-  background: white;
+  background: #111;
   border-radius: 10px;
   max-width: 700px;
   width: 100%;
   max-height: 80vh;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  box-shadow: 0 0 20px rgba(255,0,64,0.3);
   animation: fadeIn 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -205,12 +199,12 @@ footer {
 .content {
   font-family: 'Rampart One', cursive;
   font-size: 1.8em;
-  color: #000; /* ou #000 si fond clair */
+  color: #ff0040;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh; /* ajuste selon ton design */
+  height: 60vh;
   margin: 0;
 }
 
@@ -237,7 +231,7 @@ footer {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #57081B;
+  background: #ff0040;
   color: white;
   border: none;
   font-size: 1.5em;
@@ -263,17 +257,17 @@ footer {
   padding: 20px;
   text-align: left;
   scrollbar-width: thin;
-  scrollbar-color: #970A0A #f9f9f9;
+  scrollbar-color: #ff0040 #1a1a1a;
 }
 
 .popup-text h3 {
   margin-top: 0;
-  color: #3e0613;
+  color: #ff0040;
 }
 
 .popup-text p {
   font-size: 1em;
-  color: #333;
+  color: #ccc;
 }
 
 /* Scrollbar for WebKit browsers */
@@ -282,11 +276,11 @@ footer {
 }
 
 .popup-text::-webkit-scrollbar-track {
-  background: #f9f9f9;
+  background: #1a1a1a;
 }
 
 .popup-text::-webkit-scrollbar-thumb {
-  background-color: #970A0A;
+  background-color: #ff0040;
   border-radius: 3px;
 }
 
@@ -298,10 +292,10 @@ footer {
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
-  color: #57081B;
+  color: #ff0040;
 }
 
-/* Responsive */
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
   .top-bar {
     flex-direction: column;
@@ -320,5 +314,9 @@ footer {
 
   .popup-text {
     max-height: 250px;
+  }
+
+  .logo img {
+    height: 60px;
   }
 }

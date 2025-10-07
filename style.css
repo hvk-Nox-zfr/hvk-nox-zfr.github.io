@@ -16,6 +16,20 @@ html, body {
   transform-origin: center top;
 }
 
+.ads-wrapper {
+  max-height: 1200px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adsbygoogle {
+  max-height: 1200px !important;
+  width: 100%;
+}
+
 .adscontainer {
   max-height: 1200px;
   overflow: hidden;
@@ -1016,6 +1030,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

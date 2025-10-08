@@ -117,65 +117,12 @@
         </div>
       </div>
 
-    <!-- Script d'initialisation unique pour tous les <ins> adsbygoogle -->
-    <script>
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          const ads = document.querySelectorAll('ins.adsbygoogle');
-          ads.forEach(ad => {
-            if (ad.dataset.adsInitialized === '1') return;
-            // Marquer d'abord pour éviter race condition si push déclenche synch callbacks
-            ad.dataset.adsInitialized = '1';
-            try {
-              (adsbygoogle = window.adsbygoogle || []).push({});
-            } catch (e) {
-              console.warn('adsbygoogle push error', e);
-              // retirer le marqueur si erreur pour permettre une nouvelle tentative plus tard
-              delete ad.dataset.adsInitialized;
-            }
-          });
-        }, 400);
-      });
-    </script>
+    <!-- Note : suppression de tout push() inline dans la première partie. 
+         L'initalisation des <ins> sera effectuée par le script unique placé avant </body>. -->
 
     <div class="dedicace-marquee">
       <div class="dedicace-track" id="dedicaceMarquee"></div>
     </div>
-<section class="live-dedicace">
-  <h2>Dédicace</h2>
-  <form id="dedicaceForm">
-    <input type="text" id="nom" placeholder="Ton prénom ou pseudo" required />
-    <textarea id="message" placeholder="Ta dédicace..." maxlength="60" required></textarea>
-    <p id="charCount">60 caractères restants</p>
-    <button type="submit">Envoyer</button>
-  </form>
-  <div id="dedicaceFeed" class="dedicace-feed"></div>
-</section>
-
-<!-- Emplacement pub (aucun script/push ici) -->
-<div class="ads-wrapper" id="ads-dedicace">
-  <div class="ads-inner">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-8497430727637938"
-         data-ad-slot="4497317318"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-  </div>
-</div>
-
-<div style="text-align: center; margin-top: 30px;">
-  <a href="https://www.facebook.com/la.touche.personnelle.2024" target="_blank" rel="noopener">
-    <img src="assets/PUB thomas.png" alt="La Touche Personnelle" style="max-width:50%;height:auto;border-radius:12px;" />
-  </a>
-</div>
-</main>
-
-<div id="popup-video-braderie" class="video-short-popup hidden">
-  <div class="video-wrapper" onclick="closePopup('popup-video-braderie')">
-    <video src="assets/Braderie Lille3.mp4" autoplay muted loop playsinline controls onclick="event.stopPropagation()"></video>
-  </div>
-</div>
 
 <!-- Popups -->
 <div id="popup-braderie" class="popup hidden">
@@ -192,7 +139,6 @@
     </p>
   </div>
 </div>
-
 <div id="popup-recrutement" class="popup hidden">
   <div class="popup-content">
     <button class="close-btn" onclick="closePopup('popup-recrutement')">✖</button>
@@ -247,85 +193,65 @@
 
 <!-- Gestion du formulaire de dédicace et du marquee -->
 <script>
-  (function(){
-    // Char counter
-    const message = document.getElementById('message');
-    const charCount = document.getElementById('charCount');
-    if (message && charCount) {
-      message.addEventListener('input', () => {
-        const remaining = 60 - message.value.length;
-        charCount.textContent = remaining + ' caractères restants';
-      });
-    }
-
-    // Dédicace form (local feed example)
-    const form = document.getElementById('dedicaceForm');
-    const feed = document.getElementById('dedicaceFeed');
-    const track = document.getElementById('dedicaceMarquee');
-
-    function addDedicace(name, text) {
-      const item = document.createElement('div');
-      item.className = 'dedicace-item';
-      item.textContent = name + ' : ' + text;
-      feed.prepend(item);
-      // update marquee text
-      if (track) {
-        track.textContent = (track.textContent ? track.textContent + '  •  ' : '') + item.textContent;
-      }
-    }
-
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const nom = document.getElementById('nom').value.trim();
-        const msg = document.getElementById('message').value.trim();
-        if (!nom || !msg) return;
-        addDedicace(nom, msg);
-        form.reset();
-        if (charCount) charCount.textContent = '60 caractères restants';
-      });
-    }
-
-    // Close popup helper (if principal.js doesn't provide)
-    window.closePopup = function(id) {
-      const el = document.getElementById(id);
-      if (el) el.classList.add('hidden');
-    };
-    window.openPopup = function(id) {
-      const el = document.getElementById(id);
-      if (el) el.classList.remove('hidden');
-    };
-  })();
-</script>
-<script>
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const ads = document.querySelectorAll('ins.adsbygoogle');
-    ads.forEach(ad => {
-      // si déjà initialisé, on skip
-      if (ad.dataset.adsInitialized === '1') return;
-
-      // si l'élément est invisible ou a width/height invalides, skip (évite availableWidth=0 / height>1200)
-      const rect = ad.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0 || rect.height > 2000) return;
-
-      // marque avant d'appeler push pour éviter doublons en cas de callbacks synchrones
-      ad.dataset.adsInitialized = '1';
-
-      try {
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (e) {
-        console.warn('adsbygoogle push error', e);
-        delete ad.dataset.adsInitialized; // permettre nouvelle tentative ultérieure
-      }
+(function(){
+  // Char counter
+  const message = document.getElementById('message');
+  const charCount = document.getElementById('charCount');
+  if (message && charCount) {
+    message.addEventListener('input', () => {
+      const remaining = 60 - message.value.length;
+      charCount.textContent = remaining + ' caractères restants';
     });
-  }, 400); // ajuster si ton layout charge lentement
-});
+  }
+
+  // Dédicace form (local feed example)
+  const form = document.getElementById('dedicaceForm');
+  const feed = document.getElementById('dedicaceFeed');
+  const track = document.getElementById('dedicaceMarquee');
+
+  function addDedicace(name, text) {
+    const item = document.createElement('div');
+    item.className = 'dedicace-item';
+    item.textContent = name + ' : ' + text;
+    if (feed) feed.prepend(item);
+    // update marquee text
+    if (track) {
+      track.textContent = (track.textContent ? track.textContent + '  •  ' : '') + item.textContent;
+    }
+  }
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nomEl = document.getElementById('nom');
+      const msgEl = document.getElementById('message');
+      const nom = nomEl ? nomEl.value.trim() : '';
+      const msg = msgEl ? msgEl.value.trim() : '';
+      if (!nom || !msg) return;
+      addDedicace(nom, msg);
+      form.reset();
+      if (charCount) charCount.textContent = '60 caractères restants';
+    });
+  }
+
+  // Close/open popup helpers (safe)
+  window.closePopup = function(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
+  };
+  window.openPopup = function(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('hidden');
+  };
+})();
 </script>
+
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
+
 
 
 

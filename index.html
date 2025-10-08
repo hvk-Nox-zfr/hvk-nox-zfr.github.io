@@ -117,13 +117,9 @@
         </div>
       </div>
 
-    <!-- Note : suppression de tout push() inline dans la première partie. 
-         L'initalisation des <ins> sera effectuée par le script unique placé avant </body>. -->
-
     <div class="dedicace-marquee">
       <div class="dedicace-track" id="dedicaceMarquee"></div>
     </div>
-
 <!-- Popups -->
 <div id="popup-braderie" class="popup hidden">
   <div class="popup-content">
@@ -139,6 +135,7 @@
     </p>
   </div>
 </div>
+
 <div id="popup-recrutement" class="popup hidden">
   <div class="popup-content">
     <button class="close-btn" onclick="closePopup('popup-recrutement')">✖</button>
@@ -246,23 +243,66 @@
 })();
 </script>
 
+<!-- AdSense Initialization (single robust init) -->
+<script>
+/* Initialisation AdSense sûre : UNE SEULE FOIS pour tout le document */
+(function safeAdsInit(){
+  function initAdsOnce() {
+    const ads = document.querySelectorAll('ins.adsbygoogle');
+    if (!ads || ads.length === 0) return;
+
+    if (typeof window.adsbygoogle === 'undefined') {
+      let tries = 0;
+      const maxTries = 3;
+      const retry = () => {
+        tries++;
+        if (typeof window.adsbygoogle !== 'undefined' || tries > maxTries) {
+          if (typeof window.adsbygoogle === 'undefined') {
+            console.warn('adsbygoogle never loaded after retries');
+            return;
+          }
+          runPushes();
+          return;
+        }
+        setTimeout(retry, 500 * tries);
+      };
+      retry();
+      return;
+    }
+
+    runPushes();
+
+    function runPushes() {
+      ads.forEach(ad => {
+        if (ad.dataset.adsInitialized === '1') return;
+
+        const rect = ad.getBoundingClientRect();
+        if (rect.width < 200 || rect.height === 0 || rect.height > 1200) {
+          console.warn('Ad skipped due to invalid size', rect);
+          return;
+        }
+
+        ad.dataset.adsInitialized = '1';
+
+        try {
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (err) {
+          console.warn('adsbygoogle push error', err);
+          delete ad.dataset.adsInitialized;
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    setTimeout(initAdsOnce, 400);
+  } else {
+    window.addEventListener('load', () => setTimeout(initAdsOnce, 400));
+  }
+})();
+</script>
+
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

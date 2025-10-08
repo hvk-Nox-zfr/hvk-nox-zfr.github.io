@@ -27,6 +27,9 @@
     gtag('js', new Date());
     gtag('config', 'G-QNVR8XET7E');
   </script>
+
+  <!-- AdSense : charger le script UNE SEULE FOIS -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -68,27 +71,23 @@
     <section class="hero-banner">
       <img src="assets/Bienvenue 3.png" alt="Bienvenue sur VAFM" class="hero-image distant">
       <div class="fade-overlay"></div>
-    
-    <div class="hero-text">
-      <h3>Bienvenue sur VAFM</h3>
-      <p>VAFM est la webradio du Valenciennois. Nous diffusons des émissions locales, des interviews, des reportages et des dédicaces en direct.</p>
-      <p>Notre équipe est composée de bénévoles passionnés qui font vibrer les ondes chaque jour.</p>
-    </div>
+
+      <div class="hero-text">
+        <h3>Bienvenue sur VAFM</h3>
+        <p>VAFM est la webradio du Valenciennois. Nous diffusons des émissions locales, des interviews, des reportages et des dédicaces en direct.</p>
+        <p>Notre équipe est composée de bénévoles passionnés qui font vibrer les ondes chaque jour.</p>
+      </div>
     </section>
 
-<div class="ads-wrapper">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-8497430727637938"
-       data-ad-slot="1895204700"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-</div>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+    <!-- Bloc publicitaire principal (format auto pour plus de tolérance) -->
+    <div class="ads-wrapper" id="ads-top">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-8497430727637938"
+           data-ad-slot="1895204700"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+    </div>
 
     <main class="container">
       <div class="article-card" onclick="openPopup('popup-braderie')">
@@ -107,39 +106,58 @@
         </div>
       </div>
 
-<div class="ads-wrapper">
-  <div class="ads-inner">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-format="fluid"
-         data-ad-layout-key="+3h+pf-l-4r+on"
-         data-ad-client="ca-pub-8497430727637938"
-         data-ad-slot="2505578791"></ins>
-  </div>
-</div>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-      <div class="dedicace-marquee">
-        <div class="dedicace-track" id="dedicaceMarquee"></div>
+      <!-- Deuxième emplacement pub : utiliser format auto pour éviter problèmes de fluid et hauteur -->
+      <div class="ads-wrapper" id="ads-middle">
+        <div class="ads-inner">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-format="auto"
+               data-ad-client="ca-pub-8497430727637938"
+               data-ad-slot="2505578791"></ins>
+        </div>
       </div>
 
-      <section class="live-dedicace">
-        <h2>Dédicace</h2>
-        <form id="dedicaceForm">
-          <input type="text" id="nom" placeholder="Ton prénom ou pseudo" required />
-          <textarea id="message" placeholder="Ta dédicace..." maxlength="60" required></textarea>
-          <p id="charCount">60 caractères restants</p>
-          <button type="submit">Envoyer</button>
-        </form>
-        <div id="dedicaceFeed" class="dedicace-feed"></div>
-      </section>
+<!-- NOTE : le script d'initialisation des pubs est placé une seule fois ci-dessous
+         et exécute push() pour chaque <ins> visible après le chargement complet. -->
+<script>
+  // Attendre que la page soit complètement chargée et que le layout soit stable
+  window.addEventListener('load', () => {
+    // Petit délai pour laisser les images et le layout se stabiliser
+    setTimeout(() => {
+      // Sélectionne tous les éléments ins.adsbygoogle non initialisés
+      const ads = document.querySelectorAll('ins.adsbygoogle');
+      ads.forEach((ad) => {
+        // Skip if already initialized (some browsers set dataset.adsbygoogle)
+        if (ad.dataset.adsInitialized) return;
+        try {
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          // Marque l'élément comme initialisé pour éviter doublons
+          ad.dataset.adsInitialized = '1';
+        } catch (e) {
+          // ignore errors to avoid console spam
+          console.warn('adsbygoogle push error', e);
+        }
+      });
+    }, 400); // délai 400ms
+  });
+</script>
+<div class="dedicace-marquee">
+  <div class="dedicace-track" id="dedicaceMarquee"></div>
+</div>
 
-<div class="ads-wrapper">
+<section class="live-dedicace">
+  <h2>Dédicace</h2>
+  <form id="dedicaceForm">
+    <input type="text" id="nom" placeholder="Ton prénom ou pseudo" required />
+    <textarea id="message" placeholder="Ta dédicace..." maxlength="60" required></textarea>
+    <p id="charCount">60 caractères restants</p>
+    <button type="submit">Envoyer</button>
+  </form>
+  <div id="dedicaceFeed" class="dedicace-feed"></div>
+</section>
+
+<!-- Emplacement pub : ne contient pas de script ni de push ici -->
+<div class="ads-wrapper" id="ads-dedicace">
   <div class="ads-inner">
     <ins class="adsbygoogle"
          style="display:block"
@@ -150,105 +168,93 @@
   </div>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+<div style="text-align: center; margin-top: 30px;">
+  <a href="https://www.facebook.com/la.touche.personnelle.2024" target="_blank">
+    <img src="assets/PUB thomas.png" alt="La Touche Personnelle" style="max-width: 50%; height: auto; border-radius: 12px;" />
+  </a>
+</div>
+</main>
 
-
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="https://www.facebook.com/la.touche.personnelle.2024" target="_blank">
-          <img src="assets/PUB thomas.png" alt="La Touche Personnelle" style="max-width: 50%; height: auto; border-radius: 12px;" />
-        </a>
-      </div>
-    </main>
-
-    <div id="popup-video-braderie" class="video-short-popup hidden">
-      <div class="video-wrapper" onclick="closePopup('popup-video-braderie')">
-        <video src="assets/Braderie Lille3.mp4" autoplay muted loop playsinline controls onclick="event.stopPropagation()"></video>
-      </div>
-    </div>
-
-    <!-- Popups -->
-    <div id="popup-braderie" class="popup hidden">
-      <div class="popup-content">
-        <span class="close-btn" onclick="closePopup('popup-braderie')">✖</span>
-        <img src="assets/braderie lille.jpeg" alt="Braderie de Lille" class="popup-image" />
-        <h2>Retour sur la Braderie de Lille 2025</h2>
-        <p>
-          Ce week-end, la capitale des Flandres a une nouvelle fois vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues de Lille pour chiner, déguster les incontournables moules-frites et profiter d’une ambiance festive unique.
-          🛍️ Des stands à perte de vue : brocanteurs, artisans et commerçants ont proposé une incroyable diversité d’objets, des bonnes affaires aux pièces rares.
-          🎶 Une atmosphère conviviale : entre musique, rires et animations, la Braderie a rassemblé toutes les générations.
-          🍟 La tradition respectée : les restaurants et brasseries ont servi des tonnes de moules-frites, symbole incontournable de l’événement.
-          Cette édition a confirmé que la Braderie de Lille reste l’un des rendez-vous populaires les plus emblématiques d’Europe.
-        </p>
-      </div>
-    </div>
-
-    <div id="popup-recrutement" class="popup hidden">
-      <div class="popup-content">
-        <span class="close-btn" onclick="closePopup('popup-recrutement')">✖</span>
-        <img src="assets/vafm-recrute.jpg" alt="VAFM recrute" class="popup-image" />
-        <h2>VAFM recrute !</h2>
-        <p>
-          La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !<br><br>
-          Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ?<br>
-          C’est le moment !<br><br>
-          Nous recherchons :<br>
-          🔹 Des journalistes bénévoles<br>
-          🔹 Des animateurs bénévoles<br>
-          🔹 Des reporters bénévoles<br><br>
-          📻 Tous les animateurs enregistrent depuis chez eux.<br>
-          🎧 Il faut juste un micro avec un son net.<br>
-          🎙️ Et bien sûr, un minimum de rigueur, un max de passion… et une maquette audio !<br><br>
-          👉 Envoie-nous une démo (2-3 minutes suffisent) pour qu’on découvre ton style 😄<br><br>
-          ✨ Débutants motivés ou pros du micro, vous êtes tous les bienvenus !<br>
-          📆 Beaucoup de créneaux libres, surtout le week-end.<br><br>
-          📩 Intéressé(e) ? Contacte-nous :<br>
-          📧 contact.vafm@gmail.com<br>
-          🌐 <a href="https://hvk-nox-zfr.github.io/vafm/index.html" target="_blank">Site VAFM</a><br><br>
-          À très vite dans nos oreilles !<br>
-          — L’équipe de VAFM
-        </p>
-      </div>
-    </div>
-    
-<script>
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    }, 500); // demi-seconde pour laisser le layout se stabiliser
-  });
-</script>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <img src="assets/logo gris vafm.png" style="height: 250px;" alt="Logo VAFM" />
-        </div>
-        <div class="footer-links">
-          <a href="contact.html">Nous contacter</a>
-          <a href="mentions.html">Mentions légales</a>
-          <a href="a-propos.html">À propos</a>
-          <a href="accessibilite.html">Accessibilité</a>
-          <a href="politique.html">Politique de confidentialité</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 VAFM | Tous droits réservés.</p>
-      </div>
-    </footer>
+<div id="popup-video-braderie" class="video-short-popup hidden">
+  <div class="video-wrapper" onclick="closePopup('popup-video-braderie')">
+    <video src="assets/Braderie Lille3.mp4" autoplay muted loop playsinline controls onclick="event.stopPropagation()"></video>
   </div>
+</div>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<!-- Popups -->
+<div id="popup-braderie" class="popup hidden">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup('popup-braderie')">✖</span>
+    <img src="assets/braderie lille.jpeg" alt="Braderie de Lille" class="popup-image" />
+    <h2>Retour sur la Braderie de Lille 2025</h2>
+    <p>
+      Ce week-end, la capitale des Flandres a une nouvelle fois vibré au rythme de sa célèbre Braderie. Des milliers de visiteurs ont envahi les rues de Lille pour chiner, déguster les incontournables moules-frites et profiter d’une ambiance festive unique.
+      🛍️ Des stands à perte de vue : brocanteurs, artisans et commerçants ont proposé une incroyable diversité d’objets, des bonnes affaires aux pièces rares.
+      🎶 Une atmosphère conviviale : entre musique, rires et animations, la Braderie a rassemblé toutes les générations.
+      🍟 La tradition respectée : les restaurants et brasseries ont servi des tonnes de moules-frites, symbole incontournable de l'événement.
+      Cette édition a confirmé que la Braderie de Lille reste l’un des rendez-vous populaires les plus emblématiques d’Europe.
+    </p>
+  </div>
+</div>
 
-  <!-- Statistiques GoatCounter -->
-  <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<div id="popup-recrutement" class="popup hidden">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup('popup-recrutement')">✖</span>
+    <img src="assets/vafm-recrute.jpg" alt="VAFM recrute" class="popup-image" />
+    <h2>VAFM recrute !</h2>
+    <p>
+      La radio VAFM recrute des bénévoles passionnés pour rejoindre son équipe !<br><br>
+      Tu rêves de faire de la radio ? Tu parles plus vite qu’un animateur de jeu télé ? Tu as des choses à dire (ou à faire dire) ?<br>
+      C’est le moment !<br><br>
+      Nous recherchons :<br>
+      🔹 Des journalistes bénévoles<br>
+      🔹 Des animateurs bénévoles<br>
+      🔹 Des reporters bénévoles<br><br>
+      📻 Tous les animateurs enregistrent depuis chez eux.<br>
+      🎧 Il faut juste un micro avec un son net.<br>
+      🎙️ Et bien sûr, un minimum de rigueur, un max de passion… et une maquette audio !<br><br>
+      👉 Envoie-nous une démo (2-3 minutes suffisent) pour qu’on découvre ton style 😄<br><br>
+      ✨ Débutants motivés ou pros du micro, vous êtes tous les bienvenus !<br>
+      📆 Beaucoup de créneaux libres, surtout le week-end.<br><br>
+      📩 Intéressé(e) ? Contacte-nous :<br>
+      📧 contact.vafm@gmail.com<br>
+      🌐 <a href="https://hvk-nox-zfr.github.io/vafm/index.html" target="_blank">Site VAFM</a><br><br>
+      À très vite dans nos oreilles !<br>
+      — L’équipe de VAFM
+    </p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="assets/logo gris vafm.png" style="height: 250px;" alt="Logo VAFM" />
+    </div>
+    <div class="footer-links">
+      <a href="contact.html">Nous contacter</a>
+      <a href="mentions.html">Mentions légales</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="accessibilite.html">Accessibilité</a>
+      <a href="politique.html">Politique de confidentialité</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 VAFM | Tous droits réservés.</p>
+  </div>
+</footer>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<!-- Statistiques GoatCounter -->
+<script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
+
 
 
 

@@ -38,15 +38,15 @@ html, body {
   font-size: 1.2em;
   font-weight: 500;
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 2s ease-out forwards;
-  animation-delay: 1s;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease-out forwards;
+  animation-delay: 0.5s;
 }
 
 @keyframes fadeUp {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
@@ -1080,6 +1080,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

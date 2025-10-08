@@ -54,7 +54,7 @@
       <div class="logo-zone">
         <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo" />
       </div>
-      <div class="hamburger" id="menuToggle">
+      <div class="hamburger" id="menuToggle" aria-label="Ouvrir le menu" role="button" tabindex="0">
         <span></span><span></span><span></span>
       </div>
     </header>
@@ -62,7 +62,7 @@
     <div class="sub-bar"></div>
 
     <!-- Menu latéral -->
-    <nav class="side-menu" id="sideMenu">
+    <nav class="side-menu" id="sideMenu" aria-hidden="true">
       <a href="index.html">Accueil</a>
       <a href="equipe.html" aria-current="page">Notre équipe</a>
       <a href="direct.html">Écouter le direct</a>
@@ -82,25 +82,27 @@
       <section class="team-section">
         <h2>Notre équipe</h2>
         <div class="team-carousel" id="teamCarousel">
-          <button class="carousel-btn prev" aria-label="Précédent">&lt;</button>
+          <button class="carousel-btn prev" aria-label="Précédent" type="button">&lt;</button>
+
           <div class="carousel-track-wrapper">
-            <ul class="carousel-track">
+            <ul class="carousel-track" aria-live="polite">
+              <!-- chaque membre = un seul <li> -->
               <li class="carousel-item">
-                <li class="carousel-item">
-                <img src="assets/1.png" alt="Animateur 1" />
+                <img src="assets/1.png" srcset="assets/1.png 1x, assets/1@2x.png 2x" sizes="(max-width:600px) 160px, 300px" alt="Thomas - Directeur Général" />
                 <p class="caption">Thomas<br><small>Directeur Général, Fondateur, Animateur</small></p>
               </li>
-              </li>
+
               <li class="carousel-item">
-                <li class="carousel-item">
-                  <img src="assets/2.png" alt="Animateur 1" />
-                  <p class="caption">Hugo<br><small>Directeur adjoint, cofondateur, webmaster</small></p>
-                </li>
+                <img src="assets/2.png" srcset="assets/2.png 1x, assets/2@2x.png 2x" sizes="(max-width:600px) 160px, 300px" alt="Hugo - Directeur adjoint" />
+                <p class="caption">Hugo<br><small>Directeur adjoint, cofondateur, webmaster</small></p>
               </li>
+
+              <!-- Ajoute d'autres membres ici en copiant la structure <li class="carousel-item"> -->
             </ul>
           </div>
-          <button class="carousel-btn next" aria-label="Suivant">&gt;</button>
-          <div class="carousel-dots"></div>
+
+          <button class="carousel-btn next" aria-label="Suivant" type="button">&gt;</button>
+          <div class="carousel-dots" aria-hidden="false" role="tablist"></div>
         </div>
       </section>
     </main>
@@ -126,46 +128,75 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // menu toggle safe
+      const menuToggle = document.getElementById('menuToggle');
+      const sideMenu = document.getElementById('sideMenu');
+      if (menuToggle && sideMenu) {
+        menuToggle.addEventListener('click', () => {
+          sideMenu.classList.toggle('open');
+          const open = sideMenu.classList.contains('open');
+          sideMenu.setAttribute('aria-hidden', (!open).toString());
+          menuToggle.setAttribute('aria-pressed', open.toString());
+        });
+        menuToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') menuToggle.click();
+        });
+      }
+
+      // carousel
       const track = document.querySelector('.carousel-track');
-      const items = Array.from(track.children);
+      const items = Array.from(track?.children || []);
       const prevBtn = document.querySelector('.carousel-btn.prev');
       const nextBtn = document.querySelector('.carousel-btn.next');
       const dotsContainer = document.querySelector('.carousel-dots');
       let index = 0;
 
+      if (!items.length || !prevBtn || !nextBtn || !dotsContainer) return;
+
+      function itemWidth() {
+        const gap = parseInt(getComputedStyle(track).gap || 16, 10) || 16;
+        return items[0].getBoundingClientRect().width + gap;
+      }
+
       function visibleCount() {
         const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
-        const itemWidth = items[0].getBoundingClientRect().width + 16;
-        return Math.max(1, Math.floor(wrapperWidth / itemWidth));
+        return Math.max(1, Math.floor(wrapperWidth / itemWidth()));
       }
 
       function updateButtons() {
         prevBtn.disabled = index === 0;
         nextBtn.disabled = index >= items.length - visibleCount();
         dotsContainer.querySelectorAll('.carousel-dot').forEach(dot => dot.classList.remove('active'));
-        const activeDot = dotsContainer.children[index];
+        const activeDot = dotsContainer.children[Math.min(index, dotsContainer.children.length - 1)];
         if (activeDot) activeDot.classList.add('active');
       }
 
       function goToSlide(i) {
-        const itemWidth = items[0].getBoundingClientRect().width + 16;
         index = Math.max(0, Math.min(i, items.length - visibleCount()));
-        track.style.transform = `translateX(-${index * itemWidth}px)`;
+        track.style.transform = `translateX(-${index * itemWidth()}px)`;
         updateButtons();
       }
 
-      items.forEach((_, i) => {
+      // create dots (one per item group)
+      const groups = Math.max(1, Math.ceil(items.length / visibleCount()));
+      for (let i = 0; i < groups; i++) {
         const dot = document.createElement('button');
         dot.className = 'carousel-dot';
+        dot.type = 'button';
         dot.setAttribute('aria-label', `Aller à ${i + 1}`);
-        dot.addEventListener('click', () => goToSlide(i));
+        dot.addEventListener('click', () => goToSlide(i * visibleCount()));
         dotsContainer.appendChild(dot);
-      });
+      }
 
       prevBtn.addEventListener('click', () => goToSlide(index - 1));
       nextBtn.addEventListener('click', () => goToSlide(index + 1));
       window.addEventListener('resize', () => goToSlide(index));
       goToSlide(0);
+    });
+  </script>
+</body>
+</html>
+
 
       const menuToggle = document.getElementById('menuToggle');
       const sideMenu = document.getElementById

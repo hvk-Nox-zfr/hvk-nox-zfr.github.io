@@ -216,84 +216,120 @@
 
 <!-- Gestion du formulaire de dédicace et du marquee -->
 <script>
-(function(){
-  const message = document.getElementById('message');
-  const charCount = document.getElementById('charCount');
-  if (message && charCount) {
-    message.addEventListener('input', () => {
-      const remaining = 60 - message.value.length;
-      charCount.textContent = remaining + ' caractères restants';
-    });
-  }
+(function initDedicaces() {
+  const db = firebase.database();
 
   const form = document.getElementById('dedicaceForm');
   const feed = document.getElementById('dedicaceFeed');
-  const track = document.getElementById('dedicaceMarquee');
+  const marquee = document.getElementById('dedicaceMarquee');
+  const msgInput = document.getElementById('message');
+  const nomInput = document.getElementById('nom');
+  const charCount = document.getElementById('charCount');
+  const file = [];
 
-  function addDedicace(name, text) {
-    const item = document.createElement('div');
-    item.className = 'dedicace-item';
-    item.textContent = name + ' : ' + text;
-    if (feed) feed.prepend(item);
-    if (track) {
-      track.textContent = (track.textContent ? track.textContent + '  •  ' : '') + item.textContent;
+  if (!form || !feed || !marquee || !msgInput || !nomInput) return;
+
+  // compteur de caractères
+  msgInput.addEventListener('input', () => {
+    const max = parseInt(msgInput.getAttribute('maxlength') || '60', 10);
+    const rem = Math.max(0, max - msgInput.value.length);
+    charCount.textContent = rem + ' caractères restants';
+  });
+
+  // échappement simple
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // affichage local d'une dédicace
+  function displayDedicace(obj) {
+    const div = document.createElement('div');
+    div.className = 'dedicace-entry';
+    div.innerHTML = `<strong>${escapeHtml(obj.nom)} :</strong> ${escapeHtml(obj.message)}`;
+    feed.prepend(div);
+
+    file.push(` 🎙️ ${obj.nom} : ${obj.message} `);
+    if (file.length === 1) lancerDefilement();
+  }
+
+  // lecture initiale (les N dernières)
+  db.ref('dedicaces').orderByChild('date').limitToLast(100).once('value')
+    .then(snap => {
+      const items = [];
+      snap.forEach(child => {
+        const d = child.val();
+        if (d && d.nom && d.message) items.push(d);
+      });
+      items.reverse().forEach(displayDedicace);
+    })
+    .catch(err => console.warn('Erreur lecture initiale dedicaces:', err));
+
+  // écoute des nouveaux ajouts (en plus de la lecture initiale)
+  db.ref('dedicaces').orderByChild('date').limitToLast(10).on('child_added', snap => {
+    const d = snap.val();
+    if (!d || !d.nom || !d.message) return;
+    // éviter doublons : si la dédicace a un timestamp très ancien, probablement déjà affichée
+    // ici on affiche toujours (ok si duplication minime)
+    displayDedicace(d);
+  });
+
+  // envoi
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const nom = nomInput.value.trim();
+    const message = msgInput.value.trim();
+    if (!nom || !message) return alert('Nom et message requis.');
+
+    // blacklist courte
+    const blacklist = ["con","connard","merde","putain","salope","enculé","fdp","tg","nique","bite","couille"];
+    if (blacklist.some(m => message.toLowerCase().includes(m))) {
+      return alert('Ton message contient un mot interdit. Merci de rester respectueux !');
     }
-  }
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nom = document.getElementById('nom')?.value.trim();
-      const msg = document.getElementById('message')?.value.trim();
-      if (!nom || !msg) return;
-      addDedicace(nom, msg);
-      form.reset();
-      if (charCount) charCount.textContent = '60 caractères restants';
-    });
-  }
+    const today = new Date().toISOString().split('T')[0];
+    const last = localStorage.getItem('dedicaceDate');
+    if (last === today) return alert("Tu as déjà envoyé une dédicace aujourd'hui.");
 
-  window.closePopup = function(id) {
-    const el = document.getElementById(id);
-    if (el) el.classList.add('hidden');
-  };
-  window.openPopup = function(id) {
-    const el = document.getElementById(id);
-    if (el) el.classList.remove('hidden');
-  };
-})();
-</script>
+    const payload = { nom, message, date: Date.now() };
 
-<!-- Initialisation AdSense unique et robuste -->
-<script>
-(function initAdsSafely() {
-  function runAdsInit() {
-    const ads = document.querySelectorAll('ins.adsbygoogle');
-    if (!ads.length || typeof window.adsbygoogle === 'undefined') return;
-
-    ads.forEach(ad => {
-      if (ad.dataset.adsInitialized === '1') return;
-      const rect = ad.getBoundingClientRect();
-      if (rect.width < 200 || rect.height === 0 || rect.height > 1200) return;
-
-      ad.dataset.adsInitialized = '1';
-      try {
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      } catch (e) {
-        console.warn('adsbygoogle push error', e);
-        delete ad.dataset.adsInitialized;
+    db.ref('dedicaces').push(payload, err => {
+      if (err) {
+        console.error('Erreur push dedicace', err);
+        alert('Erreur lors de l\'envoi. Réessaie plus tard.');
+      } else {
+        // affichage immédiat (la listener realtime ajoutera aussi, mais on évite d'attendre)
+        displayDedicace(payload);
+        form.reset();
+        charCount.textContent = '60 caractères restants';
+        localStorage.setItem('dedicaceDate', today);
       }
     });
-  }
+  });
 
-  if (document.readyState === 'complete') {
-    setTimeout(runAdsInit, 400);
-  } else {
-    window.addEventListener('load', () => setTimeout(runAdsInit, 400));
+  // défilement marquee
+  function lancerDefilement() {
+    if (!marquee || file.length === 0) return;
+    marquee.textContent = file.join(' • ');
+    marquee.style.transition = 'none';
+    marquee.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+      const largeur = marquee.scrollWidth;
+      const vitesse = 100; // px par seconde
+      const duree = (largeur + marquee.offsetWidth) / vitesse;
+      marquee.style.transition = `transform ${duree}s linear`;
+      marquee.style.transform = `translateX(-${largeur}px)`;
+      setTimeout(lancerDefilement, duree * 1000 + 200);
+    }, 50);
   }
-})();
+})(firebase.database());
 </script>
-
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+

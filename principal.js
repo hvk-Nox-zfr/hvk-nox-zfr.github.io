@@ -97,11 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
     db.ref("dedicaces").once("value", snapshot => {
       snapshot.forEach(child => {
         const data = child.val();
-        if (data.date) {
-          const date = new Date(data.date);
-          if (maintenant - date.getTime() > troisJours) {
-            db.ref("dedicaces").child(child.key).remove();
-          }
+        if (typeof data.date === "number" && maintenant - data.date > troisJours) {
+          db.ref("dedicaces").child(child.key).remove();
         }
       });
     });
@@ -152,17 +149,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (nom && message) {
-        const date = new Date().toISOString();
-        db.ref("dedicaces").push({ nom, message, date });
-        dedicaceForm.reset();
-        charCount.textContent = "60 caractères restants";
-        localStorage.setItem("dedicaceDate", aujourdHui);
+        const date = Date.now();
+        db.ref("dedicaces").push({ nom, message, date }, error => {
+          if (!error) {
+            dedicaceForm.reset();
+            charCount.textContent = "60 caractères restants";
+            localStorage.setItem("dedicaceDate", aujourdHui);
+          } else {
+            alert("Erreur lors de l'envoi de la dédicace. Réessaie plus tard.");
+          }
+        });
       }
     });
 
     db.ref("dedicaces").on("child_added", snapshot => {
       const data = snapshot.val();
-
       const div = document.createElement("div");
       div.classList.add("dedicace-entry");
       div.innerHTML = `<strong>${data.nom} :</strong> ${data.message}`;
@@ -215,70 +216,62 @@ document.addEventListener("DOMContentLoaded", () => {
     if (popup) popup.classList.remove("hidden");
     localStorage.setItem("popupSeen", "true");
   }
-});
 
-function closePopup() {
-  const popup = document.getElementById("popupNews");
-  if (popup) popup.classList.add("hidden");
-}
-document.addEventListener('DOMContentLoaded', () => {
+  // 🔁 Carousel
   const track = document.querySelector('.carousel-track');
-  const items = Array.from(track.children);
+  const items = Array.from(track?.children || []);
   const prevBtn = document.querySelector('.carousel-btn.prev');
   const nextBtn = document.querySelector('.carousel-btn.next');
   const dotsContainer = document.querySelector('.carousel-dots');
 
-  const itemWidth = items[0].getBoundingClientRect().width + parseInt(getComputedStyle(items[0]).gap || 16);
-  let index = 0;
+  if (track && items.length && prevBtn && nextBtn && dotsContainer) {
+    let itemWidth = items[0].getBoundingClientRect().width + parseInt(getComputedStyle(items[0]).gap || 16);
+    let index = 0;
 
-  // crée les pastilles
-  items.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'carousel-dot';
-    dot.setAttribute('aria-label', `Aller à ${i + 1}`);
-    if (i === 0) dot.classList.add('active');
-    dotsContainer.appendChild(dot);
-    dot.addEventListener('click', () => { goToSlide(i); });
-  });
+    // Crée les pastilles
+    items.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Aller à ${i + 1}`);
+      if (i === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+      dot.addEventListener('click', () => goToSlide(i));
+    });
 
-  const dots = Array.from(dotsContainer.children);
+    const dots = Array.from(dotsContainer.children);
 
-  function updateButtons() {
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index >= items.length - visibleCount();
+    function visibleCount() {
+      const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
+      return Math.floor(wrapperWidth / itemWidth) || 1;
+    }
+
+    function updateButtons() {
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index >= items.length - visibleCount();
+    }
+
+    function goToSlide(i) {
+      index = Math.max(0, Math.min(i, items.length - visibleCount()));
+      const moveX = index * itemWidth;
+      track.style.transform = `translateX(-${moveX}px)`;
+      dots.forEach(d => d.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+      updateButtons();
+    }
+
+    prevBtn.addEventListener('click', () => goToSlide(index - 1));
+    nextBtn.addEventListener('click', () => goToSlide(index + 1));
+
+    window.addEventListener('resize', () => {
+      itemWidth = items[0].getBoundingClientRect().width + parseInt(getComputedStyle(items[0]).gap || 16);
+      goToSlide(index);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') prevBtn.click();
+      if (e.key === 'ArrowRight') nextBtn.click();
+    });
+
+    goToSlide(0);
   }
-
-  function visibleCount() {
-    const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
-    return Math.floor(wrapperWidth / itemWidth) || 1;
-  }
-
-  function goToSlide(i) {
-    index = Math.max(0, Math.min(i, items.length - visibleCount()));
-    const moveX = index * itemWidth;
-    track.style.transform = `translateX(-${moveX}px)`;
-    dots.forEach(d => d.classList.remove('active'));
-    if (dots[index]) dots[index].classList.add('active');
-    updateButtons();
-  }
-
-  prevBtn.addEventListener('click', () => goToSlide(index - 1));
-  nextBtn.addEventListener('click', () => goToSlide(index + 1));
-
-  // adapt on resize
-  window.addEventListener('resize', () => {
-    // recalcule largeur et ajuste position
-    const newItemWidth = items[0].getBoundingClientRect().width + parseInt(getComputedStyle(items[0]).gap || 16);
-    // reposition
-    goToSlide(index);
-  });
-
-  // support clavier
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') prevBtn.click();
-    if (e.key === 'ArrowRight') nextBtn.click();
-  });
-
-  // initial
-  goToSlide(0);
 });

@@ -80,6 +80,9 @@ html, body {
 .adscontainer {
   max-height: 1200px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .adsbygoogle {
@@ -1077,6 +1080,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

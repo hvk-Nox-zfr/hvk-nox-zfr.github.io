@@ -297,11 +297,36 @@
     };
   })();
 </script>
+<script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const ads = document.querySelectorAll('ins.adsbygoogle');
+    ads.forEach(ad => {
+      // si déjà initialisé, on skip
+      if (ad.dataset.adsInitialized === '1') return;
 
+      // si l'élément est invisible ou a width/height invalides, skip (évite availableWidth=0 / height>1200)
+      const rect = ad.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0 || rect.height > 2000) return;
+
+      // marque avant d'appeler push pour éviter doublons en cas de callbacks synchrones
+      ad.dataset.adsInitialized = '1';
+
+      try {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      } catch (e) {
+        console.warn('adsbygoogle push error', e);
+        delete ad.dataset.adsInitialized; // permettre nouvelle tentative ultérieure
+      }
+    });
+  }, 400); // ajuster si ton layout charge lentement
+});
+</script>
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 
 
 

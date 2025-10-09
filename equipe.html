@@ -41,6 +41,11 @@
       cursor: pointer; border: 0;
     }
     .carousel-dot.active { background: var(--accent); }
+    /* fallback style when image fails */
+    .img-error {
+      background: #f4f4f4 url('assets/fallback.png') center/contain no-repeat;
+      min-height: 160px;
+    }
     @media (max-width: 600px) {
       .carousel-item img { height: 160px; }
       .carousel-btn { width: 36px; height: 36px; font-size: 18px; }
@@ -85,15 +90,27 @@
           <button class="carousel-btn prev" aria-label="Précédent" type="button">&lt;</button>
 
           <div class="carousel-track-wrapper">
-            <ul class="carousel-track" aria-live="polite">
+            <ul class="carousel-track" aria-live="polite" id="carouselTrack">
               <!-- chaque membre = un seul <li> -->
               <li class="carousel-item">
-                <img src="assets/1.png" srcset="assets/1.png 1x, assets/1@2x.png 2x" sizes="(max-width:600px) 160px, 300px" alt="Thomas - Directeur Général" />
+                <img
+                  src="assets/1.png"
+                  alt="Thomas - Directeur Général"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.onerror=null;this.classList.add('img-error');this.removeAttribute('src');"
+                />
                 <p class="caption">Thomas<br><small>Directeur Général, Fondateur, Animateur</small></p>
               </li>
 
               <li class="carousel-item">
-                <img src="assets/2.png" srcset="assets/2.png 1x, assets/2@2x.png 2x" sizes="(max-width:600px) 160px, 300px" alt="Hugo - Directeur adjoint" />
+                <img
+                  src="assets/2.png"
+                  alt="Hugo - Directeur adjoint"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.onerror=null;this.classList.add('img-error');this.removeAttribute('src');"
+                />
                 <p class="caption">Hugo<br><small>Directeur adjoint, cofondateur, webmaster</small></p>
               </li>
 
@@ -102,7 +119,7 @@
           </div>
 
           <button class="carousel-btn next" aria-label="Suivant" type="button">&gt;</button>
-          <div class="carousel-dots" aria-hidden="false" role="tablist"></div>
+          <div class="carousel-dots" aria-hidden="false" role="tablist" id="carouselDots"></div>
         </div>
       </section>
     </main>
@@ -144,11 +161,11 @@
       }
 
       // carousel
-      const track = document.querySelector('.carousel-track');
+      const track = document.getElementById('carouselTrack');
       const items = Array.from(track?.children || []);
       const prevBtn = document.querySelector('.carousel-btn.prev');
       const nextBtn = document.querySelector('.carousel-btn.next');
-      const dotsContainer = document.querySelector('.carousel-dots');
+      const dotsContainer = document.getElementById('carouselDots');
       let index = 0;
 
       if (!items.length || !prevBtn || !nextBtn || !dotsContainer) return;
@@ -178,19 +195,28 @@
       }
 
       // create dots (one per item group)
-      const groups = Math.max(1, Math.ceil(items.length / visibleCount()));
-      for (let i = 0; i < groups; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot';
-        dot.type = 'button';
-        dot.setAttribute('aria-label', `Aller à ${i + 1}`);
-        dot.addEventListener('click', () => goToSlide(i * visibleCount()));
-        dotsContainer.appendChild(dot);
+      function createDots() {
+        dotsContainer.innerHTML = '';
+        const groups = Math.max(1, Math.ceil(items.length / visibleCount()));
+        for (let i = 0; i < groups; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot';
+          dot.type = 'button';
+          dot.setAttribute('aria-label', `Aller à ${i + 1}`);
+          dot.addEventListener('click', () => goToSlide(i * visibleCount()));
+          dotsContainer.appendChild(dot);
+        }
       }
 
       prevBtn.addEventListener('click', () => goToSlide(index - 1));
       nextBtn.addEventListener('click', () => goToSlide(index + 1));
-      window.addEventListener('resize', () => goToSlide(index));
+      window.addEventListener('resize', () => {
+        createDots();
+        goToSlide(index);
+      });
+
+      // init
+      createDots();
       goToSlide(0);
     });
   </script>

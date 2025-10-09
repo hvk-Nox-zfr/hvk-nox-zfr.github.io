@@ -9,13 +9,6 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/VAFM logo rouge.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="equipe.css" />
-
-  <!-- Précharger la première image pour priorité d'affichage -->
-  <link rel="preload" as="image" href="assets/1.png">
-
-  <style>
-    .img-error { background:#f4f4f4 url('assets/fallback.png') center/contain no-repeat; min-height:160px; }
-  </style>
   
 </head>
 <body>
@@ -47,6 +40,7 @@
         <a href="https://www.tiktok.com/@vafmlaradio"><img src="assets/tiktok.png" alt="TikTok"></a>
       </div>
     </nav>
+    
 <!-- Galerie horizontale centrée -->
 <section class="team-row" aria-label="Notre équipe">
   <div class="team-row-inner">
@@ -144,117 +138,5 @@
   </div>
 </footer>
   </div>
-
-  <script>
-  // Principal JS pour carousel et menu (autonome)
-  (function(){
-    // menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const sideMenu = document.getElementById('sideMenu');
-    if (menuToggle && sideMenu) {
-      menuToggle.addEventListener('click', () => {
-        const isOpen = sideMenu.style.display === 'block';
-        sideMenu.style.display = isOpen ? 'none' : 'block';
-        sideMenu.setAttribute('aria-hidden', String(isOpen));
-      });
-      menuToggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') menuToggle.click();
-      });
-    }
-
-    // carousel
-    const track = document.getElementById('carouselTrack');
-    if (!track) return;
-    const items = Array.from(track.children);
-    const prevBtn = document.querySelector('.carousel-btn.prev');
-    const nextBtn = document.querySelector('.carousel-btn.next');
-    const dotsContainer = document.getElementById('carouselDots');
-    let index = 0;
-    let autoplayId = null;
-    const AUTOPLAY_DELAY = 4000; // ms
-    const PAUSE_ON_HOVER = true;
-
-    function itemWidth() {
-      const gap = parseInt(getComputedStyle(track).gap || 16, 10) || 16;
-      return items[0].getBoundingClientRect().width + gap;
-    }
-
-    function visibleCount() {
-      const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
-      return Math.max(1, Math.floor(wrapperWidth / itemWidth()));
-    }
-
-    function createDots() {
-      if (!dotsContainer) return;
-      dotsContainer.innerHTML = '';
-      const groups = Math.max(1, Math.ceil(items.length / visibleCount()));
-      for (let i=0;i<groups;i++){
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'carousel-dot';
-        dot.setAttribute('aria-label', `Aller à ${i+1}`);
-        dot.addEventListener('click', () => goToSlide(i * visibleCount()));
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    function updateButtons() {
-      if (prevBtn) prevBtn.disabled = index === 0;
-      if (nextBtn) nextBtn.disabled = index >= items.length - visibleCount();
-      const dots = Array.from(dotsContainer?.children || []);
-      dots.forEach(d=>d.classList.remove('active'));
-      const activeDot = dots[Math.min(index, dots.length-1)];
-      if (activeDot) activeDot.classList.add('active');
-    }
-
-    function goToSlide(i) {
-      index = Math.max(0, Math.min(i, items.length - visibleCount()));
-      track.style.transform = `translateX(-${index * itemWidth()}px)`;
-      updateButtons();
-    }
-
-    prevBtn && prevBtn.addEventListener('click', ()=> goToSlide(index - 1));
-    nextBtn && nextBtn.addEventListener('click', ()=> goToSlide(index + 1));
-
-    // keyboard navigation
-    document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') prevBtn && prevBtn.click();
-      if (e.key === 'ArrowRight') nextBtn && nextBtn.click();
-    });
-
-    // autoplay
-    function startAutoplay(){
-      stopAutoplay();
-      autoplayId = setInterval(()=> {
-        const next = (index + visibleCount()) >= items.length ? 0 : index + visibleCount();
-        goToSlide(next);
-      }, AUTOPLAY_DELAY);
-    }
-    function stopAutoplay(){ if (autoplayId) { clearInterval(autoplayId); autoplayId = null; } }
-
-    // pause on hover
-    if (PAUSE_ON_HOVER){
-      const carousel = document.getElementById('teamCarouselEnhanced');
-      if (carousel) {
-        carousel.addEventListener('mouseenter', stopAutoplay);
-        carousel.addEventListener('mouseleave', startAutoplay);
-      }
-    }
-
-    // responsive init
-    window.addEventListener('resize', () => {
-      createDots();
-      goToSlide(index);
-    });
-
-    // init
-    createDots();
-    goToSlide(0);
-    startAutoplay();
-
-    // ensure images are loaded for layout stability: if first images not loaded, retry transform after a short delay
-    window.addEventListener('load', () => setTimeout(()=> goToSlide(index), 120));
-  })();
-  </script>
 </body>
 </html>

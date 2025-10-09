@@ -5,11 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Découvrez la nouvelle radio du valenciennois VAFM et l'équipe." />
   <title>VAFM - Notre équipe</title>
+
   <link rel="icon" type="image/png" sizes="32x32" href="assets/VAFM logo rouge.png" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="equipe.css" />
-  <script src="principal.js" defer></script>
-  
+
+  <!-- Précharger la première image pour priorité d'affichage -->
+  <link rel="preload" as="image" href="assets/1.png">
+
+  <style>
+    :root { --accent: #970A0A; --bg:#fff; --muted:#ccc; }
+    body { background:#fafafa; color:#222; font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; }
+    .page-wrapper { min-height:100vh; display:flex; flex-direction:column; }
+
+    /* Header / menu minimal */
+    .top-bar { display:flex; align-items:center; gap:12px; padding:10px 16px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.04); }
+    .logo { height:48px; display:block; }
+    .hamburger { margin-left:auto; width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+    .hamburger span { display:block; width:22px; height:2px; background:#333; margin:3px 0; }
+
+    .sub-bar { height:6px; background:var(--accent); }
+
+    /* Team */
+    .team-section { max-width:1100px; margin:28px auto; padding:20px; }
+    .team-section h2 { color:var(--accent); text-align:center; margin:0 0 18px; font-size:1.6rem; }
+
+    .team-carousel { display:flex; align-items:center; gap:12px; position:relative; }
+    .carousel-track-wrapper { overflow:hidden; flex:1; }
+    .carousel-track { display:flex; gap:16px; transition:transform .45s ease; list-style:none; padding:0; margin:0; }
+    .carousel-item { min-width:220px; max-width:300px; background:var(--bg); border-radius:10px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.08); padding:8px; display:flex; flex-direction:column; align-items:center; }
+    .carousel-item img { display:block; width:100%; height:220px; object-fit:cover; border-radius:8px; }
+    .caption { margin-top:8px; color:#222; font-size:0.95rem; line-height:1.1; }
+    .carousel-btn { background:var(--accent); color:#fff; border:0; width:44px; height:44px; border-radius:6px; cursor:pointer; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; }
+    .carousel-btn:disabled { opacity:.4; cursor:default; }
+    .carousel-dots { display:flex; gap:8px; justify-content:center; margin-top:12px; width:100%; padding-top:12px; }
+    .carousel-dot { width:10px; height:10px; background:var(--muted); border-radius:50%; cursor:pointer; border:0; }
+    .carousel-dot.active { background:var(--accent); }
+
+    .img-error { background:#f4f4f4 url('assets/fallback.png') center/contain no-repeat; min-height:160px; }
+
+    @media (max-width:760px) {
+      .carousel-item img { height:160px; }
+      .carousel-btn { width:36px; height:36px; font-size:18px; }
+    }
+
+    /* Footer minimal */
+    .site-footer { margin-top:auto; background:#111; color:#fff; padding:24px 16px; }
+    .footer-content { max-width:1100px; margin:0 auto; display:flex; gap:20px; align-items:flex-start; }
+    .footer-links a { color:#fff; display:block; margin:6px 0; text-decoration:none; }
+    .footer-bottom { text-align:center; margin-top:18px; color:#ddd; font-size:0.9rem; }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -26,172 +71,69 @@
     <div class="sub-bar"></div>
 
     <!-- Menu latéral -->
-    <nav class="side-menu" id="sideMenu" aria-hidden="true">
+    <nav class="side-menu" id="sideMenu" aria-hidden="true" style="display:none;">
       <a href="index.html">Accueil</a>
       <a href="equipe.html" aria-current="page">Notre équipe</a>
       <a href="direct.html">Écouter le direct</a>
       <a href="programmes.html">Programmes</a>
       <a href="histoire.html">Histoire</a>
       <a href="don.html">Don</a>
-      <div class="social-links">
-        <a href="https://www.facebook.com/profile.php?id=61573373138285"><img src="assets/facebook.png" alt="Facebook" /></a>
-        <a href="https://www.instagram.com/vafmlaradio/"><img src="assets/instagram.png" alt="Instagram" /></a>
-        <a href="https://www.youtube.com/@VAFMlaradio"><img src="assets/youtube.png" alt="YouTube" /></a>
-        <a href="https://www.tiktok.com/@vafmlaradio"><img src="assets/tiktok.png" alt="TikTok" /></a>
-      </div>
     </nav>
 
     <!-- Contenu principal -->
-<!-- Carousel équipe (remplace l'ancien bloc team-carousel) -->
-<section class="team-section">
-  <h2>Notre équipe</h2>
+    <main class="actus-page">
+      <!-- Carousel équipe -->
+      <section class="team-section" aria-label="Équipe VAFM">
+        <h2>Notre équipe</h2>
 
-  <div class="team-carousel" id="teamCarouselEnhanced" aria-roledescription="carousel">
-    <button class="carousel-btn prev" aria-label="Précédent" type="button">&lt;</button>
+        <div class="team-carousel" id="teamCarouselEnhanced" aria-roledescription="carousel">
+          <button class="carousel-btn prev" aria-label="Précédent" type="button">&lt;</button>
 
-    <div class="carousel-track-wrapper">
-      <ul class="carousel-track" id="carouselTrack" aria-live="polite">
-        <li class="carousel-item">
-          <img src="assets/1.png" alt="Thomas - Directeur Général" loading="lazy" decoding="async"
-               onerror="this.onerror=null;this.classList.add('img-error');this.src='assets/fallback.png'"/>
-          <p class="caption">Thomas<br><small>Directeur Général, Fondateur, Animateur</small></p>
-        </li>
+          <div class="carousel-track-wrapper">
+            <ul class="carousel-track" id="carouselTrack" aria-live="polite">
+              <!-- Assure-toi que assets/1.png et assets/2.png existent exactement -->
+              <li class="carousel-item" role="group" aria-label="Membre 1">
+                <img
+                  src="assets/1.png"
+                  alt="Thomas - Directeur Général"
+                  loading="eager"
+                  decoding="async"
+                  width="300" height="220"
+                  onerror="this.onerror=null;this.classList.add('img-error');this.removeAttribute('src');"
+                />
+                <p class="caption">Thomas<br><small>Directeur Général, Fondateur, Animateur</small></p>
+              </li>
 
-        <li class="carousel-item">
-          <img src="assets/2.png" alt="Hugo - Directeur adjoint" loading="lazy" decoding="async"
-               onerror="this.onerror=null;this.classList.add('img-error');this.src='assets/fallback.png'"/>
-          <p class="caption">Hugo<br><small>Directeur adjoint, cofondateur, webmaster</small></p>
-        </li>
+              <li class="carousel-item" role="group" aria-label="Membre 2">
+                <img
+                  src="assets/2.png"
+                  alt="Hugo - Directeur adjoint"
+                  loading="eager"
+                  decoding="async"
+                  width="300" height="220"
+                  onerror="this.onerror=null;this.classList.add('img-error');this.removeAttribute('src');"
+                />
+                <p class="caption">Hugo<br><small>Directeur adjoint, cofondateur, webmaster</small></p>
+              </li>
 
-        <!-- Ajoute d'autres membres ici en copiant la structure <li class="carousel-item"> -->
-      </ul>
-    </div>
+              <!-- Copie-colle d'autres <li class="carousel-item"> si nécessaire -->
+            </ul>
+          </div>
 
-    <button class="carousel-btn next" aria-label="Suivant" type="button">&gt;</button>
+          <button class="carousel-btn next" aria-label="Suivant" type="button">&gt;</button>
+        </div>
 
-    <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Navigation du carousel"></div>
-  </div>
-</section>
-
-<!-- Styles nécessaires (colle dans <head> ou dans ton CSS) -->
-<style>
-  /* Carousel styles (minimal, adapté à ta charte) */
-  .team-carousel { display:flex; align-items:center; gap:12px; position:relative; }
-  .carousel-track-wrapper { overflow:hidden; flex:1; }
-  .carousel-track { display:flex; gap:16px; transition:transform 0.45s ease; list-style:none; padding:0; margin:0; }
-  .carousel-item { min-width:220px; max-width:300px; background:#fff; border-radius:10px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.08); padding:8px; display:flex; flex-direction:column; align-items:center; }
-  .carousel-item img { display:block; width:100%; height:220px; object-fit:cover; border-radius:8px; }
-  .caption { margin-top:8px; color:#222; font-size:0.95rem; line-height:1.1; }
-  .carousel-btn { background:var(--accent,#970A0A); color:#fff; border:0; width:44px; height:44px; border-radius:6px; cursor:pointer; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; }
-  .carousel-btn:disabled { opacity:.4; cursor:default; }
-  .carousel-dots { display:flex; gap:8px; justify-content:center; margin-top:12px; width:100%; padding-top:12px; }
-  .carousel-dot { width:10px; height:10px; background:#ccc; border-radius:50%; cursor:pointer; border:0; }
-  .carousel-dot.active { background:var(--accent,#970A0A); }
-  .img-error { background:#f4f4f4 url('assets/fallback.png') center/contain no-repeat; min-height:160px; }
-  @media (max-width:600px) { .carousel-item img{height:160px;} .carousel-btn{width:36px;height:36px;font-size:18px;} }
-</style>
-
-<!-- Script (colle juste avant </body> ou dans principal.js) -->
-<script>
-(function(){
-  const track = document.getElementById('carouselTrack');
-  if (!track) return;
-  const items = Array.from(track.children);
-  const prevBtn = document.querySelector('.carousel-btn.prev');
-  const nextBtn = document.querySelector('.carousel-btn.next');
-  const dotsContainer = document.getElementById('carouselDots');
-  let index = 0;
-  let autoplayId = null;
-  const AUTOPLAY_DELAY = 4000; // ms
-  const PAUSE_ON_HOVER = true;
-
-  function itemWidth() {
-    const gap = parseInt(getComputedStyle(track).gap || 16, 10) || 16;
-    return items[0].getBoundingClientRect().width + gap;
-  }
-
-  function visibleCount() {
-    const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
-    return Math.max(1, Math.floor(wrapperWidth / itemWidth()));
-  }
-
-  function createDots() {
-    dotsContainer.innerHTML = '';
-    const groups = Math.max(1, Math.ceil(items.length / visibleCount()));
-    for (let i=0;i<groups;i++){
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'carousel-dot';
-      dot.setAttribute('aria-label', `Aller à ${i+1}`);
-      dot.addEventListener('click', () => goToSlide(i * visibleCount()));
-      dotsContainer.appendChild(dot);
-    }
-  }
-
-  function updateButtons() {
-    if (!prevBtn || !nextBtn) return;
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index >= items.length - visibleCount();
-    const dots = Array.from(dotsContainer.children);
-    dots.forEach(d=>d.classList.remove('active'));
-    const activeDot = dots[Math.min(index, dots.length-1)];
-    if (activeDot) activeDot.classList.add('active');
-  }
-
-  function goToSlide(i) {
-    index = Math.max(0, Math.min(i, items.length - visibleCount()));
-    track.style.transform = `translateX(-${index * itemWidth()}px)`;
-    updateButtons();
-  }
-
-  prevBtn && prevBtn.addEventListener('click', ()=> goToSlide(index - 1));
-  nextBtn && nextBtn.addEventListener('click', ()=> goToSlide(index + 1));
-
-  // keyboard
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') prevBtn && prevBtn.click();
-    if (e.key === 'ArrowRight') nextBtn && nextBtn.click();
-  });
-
-  // autoplay
-  function startAutoplay(){
-    stopAutoplay();
-    autoplayId = setInterval(()=> {
-      const next = (index + visibleCount()) >= items.length ? 0 : index + visibleCount();
-      goToSlide(next);
-    }, AUTOPLAY_DELAY);
-  }
-  function stopAutoplay(){
-    if (autoplayId) { clearInterval(autoplayId); autoplayId = null; }
-  }
-
-  // pause on hover
-  if (PAUSE_ON_HOVER){
-    const carousel = document.getElementById('teamCarouselEnhanced');
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-  }
-
-  // responsive init
-  window.addEventListener('resize', () => {
-    createDots();
-    goToSlide(index);
-  });
-
-  // init
-  createDots();
-  goToSlide(0);
-  startAutoplay();
-})();
-</script>
+        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Navigation du carousel"></div>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="assets/VAFM logo gris.png" alt="VAFM" style="height:250px;" />
+          <img src="assets/VAFM logo gris.png" alt="VAFM" style="height:120px;" />
         </div>
-        <div class="footer-links">
+        <div class="footer-links" style="margin-left:18px;">
           <a href="contact.html">Nous contacter</a>
           <a href="mentions.html">Mentions légales</a>
           <a href="a-propos.html">À propos</a>
@@ -203,5 +145,117 @@
       </div>
     </footer>
   </div>
+
+  <script>
+  // Principal JS pour carousel et menu (autonome)
+  (function(){
+    // menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const sideMenu = document.getElementById('sideMenu');
+    if (menuToggle && sideMenu) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = sideMenu.style.display === 'block';
+        sideMenu.style.display = isOpen ? 'none' : 'block';
+        sideMenu.setAttribute('aria-hidden', String(isOpen));
+      });
+      menuToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') menuToggle.click();
+      });
+    }
+
+    // carousel
+    const track = document.getElementById('carouselTrack');
+    if (!track) return;
+    const items = Array.from(track.children);
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const dotsContainer = document.getElementById('carouselDots');
+    let index = 0;
+    let autoplayId = null;
+    const AUTOPLAY_DELAY = 4000; // ms
+    const PAUSE_ON_HOVER = true;
+
+    function itemWidth() {
+      const gap = parseInt(getComputedStyle(track).gap || 16, 10) || 16;
+      return items[0].getBoundingClientRect().width + gap;
+    }
+
+    function visibleCount() {
+      const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
+      return Math.max(1, Math.floor(wrapperWidth / itemWidth()));
+    }
+
+    function createDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      const groups = Math.max(1, Math.ceil(items.length / visibleCount()));
+      for (let i=0;i<groups;i++){
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', `Aller à ${i+1}`);
+        dot.addEventListener('click', () => goToSlide(i * visibleCount()));
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateButtons() {
+      if (prevBtn) prevBtn.disabled = index === 0;
+      if (nextBtn) nextBtn.disabled = index >= items.length - visibleCount();
+      const dots = Array.from(dotsContainer?.children || []);
+      dots.forEach(d=>d.classList.remove('active'));
+      const activeDot = dots[Math.min(index, dots.length-1)];
+      if (activeDot) activeDot.classList.add('active');
+    }
+
+    function goToSlide(i) {
+      index = Math.max(0, Math.min(i, items.length - visibleCount()));
+      track.style.transform = `translateX(-${index * itemWidth()}px)`;
+      updateButtons();
+    }
+
+    prevBtn && prevBtn.addEventListener('click', ()=> goToSlide(index - 1));
+    nextBtn && nextBtn.addEventListener('click', ()=> goToSlide(index + 1));
+
+    // keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') prevBtn && prevBtn.click();
+      if (e.key === 'ArrowRight') nextBtn && nextBtn.click();
+    });
+
+    // autoplay
+    function startAutoplay(){
+      stopAutoplay();
+      autoplayId = setInterval(()=> {
+        const next = (index + visibleCount()) >= items.length ? 0 : index + visibleCount();
+        goToSlide(next);
+      }, AUTOPLAY_DELAY);
+    }
+    function stopAutoplay(){ if (autoplayId) { clearInterval(autoplayId); autoplayId = null; } }
+
+    // pause on hover
+    if (PAUSE_ON_HOVER){
+      const carousel = document.getElementById('teamCarouselEnhanced');
+      if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoplay);
+        carousel.addEventListener('mouseleave', startAutoplay);
+      }
+    }
+
+    // responsive init
+    window.addEventListener('resize', () => {
+      createDots();
+      goToSlide(index);
+    });
+
+    // init
+    createDots();
+    goToSlide(0);
+    startAutoplay();
+
+    // ensure images are loaded for layout stability: if first images not loaded, retry transform after a short delay
+    window.addEventListener('load', () => setTimeout(()=> goToSlide(index), 120));
+  })();
+  </script>
 </body>
 </html>

@@ -83,7 +83,148 @@
     </nav>
 
     <!-- Contenu principal -->
-    <img src="assets/1.png" alt="Animateur"/>
+<!-- Carousel équipe (remplace l'ancien bloc team-carousel) -->
+<section class="team-section">
+  <h2>Notre équipe</h2>
+
+  <div class="team-carousel" id="teamCarouselEnhanced" aria-roledescription="carousel">
+    <button class="carousel-btn prev" aria-label="Précédent" type="button">&lt;</button>
+
+    <div class="carousel-track-wrapper">
+      <ul class="carousel-track" id="carouselTrack" aria-live="polite">
+        <li class="carousel-item">
+          <img src="assets/1.png" alt="Thomas - Directeur Général" loading="lazy" decoding="async"
+               onerror="this.onerror=null;this.classList.add('img-error');this.src='assets/fallback.png'"/>
+          <p class="caption">Thomas<br><small>Directeur Général, Fondateur, Animateur</small></p>
+        </li>
+
+        <li class="carousel-item">
+          <img src="assets/2.png" alt="Hugo - Directeur adjoint" loading="lazy" decoding="async"
+               onerror="this.onerror=null;this.classList.add('img-error');this.src='assets/fallback.png'"/>
+          <p class="caption">Hugo<br><small>Directeur adjoint, cofondateur, webmaster</small></p>
+        </li>
+
+        <!-- Ajoute d'autres membres ici en copiant la structure <li class="carousel-item"> -->
+      </ul>
+    </div>
+
+    <button class="carousel-btn next" aria-label="Suivant" type="button">&gt;</button>
+
+    <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Navigation du carousel"></div>
+  </div>
+</section>
+
+<!-- Styles nécessaires (colle dans <head> ou dans ton CSS) -->
+<style>
+  /* Carousel styles (minimal, adapté à ta charte) */
+  .team-carousel { display:flex; align-items:center; gap:12px; position:relative; }
+  .carousel-track-wrapper { overflow:hidden; flex:1; }
+  .carousel-track { display:flex; gap:16px; transition:transform 0.45s ease; list-style:none; padding:0; margin:0; }
+  .carousel-item { min-width:220px; max-width:300px; background:#fff; border-radius:10px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.08); padding:8px; display:flex; flex-direction:column; align-items:center; }
+  .carousel-item img { display:block; width:100%; height:220px; object-fit:cover; border-radius:8px; }
+  .caption { margin-top:8px; color:#222; font-size:0.95rem; line-height:1.1; }
+  .carousel-btn { background:var(--accent,#970A0A); color:#fff; border:0; width:44px; height:44px; border-radius:6px; cursor:pointer; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; }
+  .carousel-btn:disabled { opacity:.4; cursor:default; }
+  .carousel-dots { display:flex; gap:8px; justify-content:center; margin-top:12px; width:100%; padding-top:12px; }
+  .carousel-dot { width:10px; height:10px; background:#ccc; border-radius:50%; cursor:pointer; border:0; }
+  .carousel-dot.active { background:var(--accent,#970A0A); }
+  .img-error { background:#f4f4f4 url('assets/fallback.png') center/contain no-repeat; min-height:160px; }
+  @media (max-width:600px) { .carousel-item img{height:160px;} .carousel-btn{width:36px;height:36px;font-size:18px;} }
+</style>
+
+<!-- Script (colle juste avant </body> ou dans principal.js) -->
+<script>
+(function(){
+  const track = document.getElementById('carouselTrack');
+  if (!track) return;
+  const items = Array.from(track.children);
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const dotsContainer = document.getElementById('carouselDots');
+  let index = 0;
+  let autoplayId = null;
+  const AUTOPLAY_DELAY = 4000; // ms
+  const PAUSE_ON_HOVER = true;
+
+  function itemWidth() {
+    const gap = parseInt(getComputedStyle(track).gap || 16, 10) || 16;
+    return items[0].getBoundingClientRect().width + gap;
+  }
+
+  function visibleCount() {
+    const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
+    return Math.max(1, Math.floor(wrapperWidth / itemWidth()));
+  }
+
+  function createDots() {
+    dotsContainer.innerHTML = '';
+    const groups = Math.max(1, Math.ceil(items.length / visibleCount()));
+    for (let i=0;i<groups;i++){
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Aller à ${i+1}`);
+      dot.addEventListener('click', () => goToSlide(i * visibleCount()));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateButtons() {
+    if (!prevBtn || !nextBtn) return;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index >= items.length - visibleCount();
+    const dots = Array.from(dotsContainer.children);
+    dots.forEach(d=>d.classList.remove('active'));
+    const activeDot = dots[Math.min(index, dots.length-1)];
+    if (activeDot) activeDot.classList.add('active');
+  }
+
+  function goToSlide(i) {
+    index = Math.max(0, Math.min(i, items.length - visibleCount()));
+    track.style.transform = `translateX(-${index * itemWidth()}px)`;
+    updateButtons();
+  }
+
+  prevBtn && prevBtn.addEventListener('click', ()=> goToSlide(index - 1));
+  nextBtn && nextBtn.addEventListener('click', ()=> goToSlide(index + 1));
+
+  // keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') prevBtn && prevBtn.click();
+    if (e.key === 'ArrowRight') nextBtn && nextBtn.click();
+  });
+
+  // autoplay
+  function startAutoplay(){
+    stopAutoplay();
+    autoplayId = setInterval(()=> {
+      const next = (index + visibleCount()) >= items.length ? 0 : index + visibleCount();
+      goToSlide(next);
+    }, AUTOPLAY_DELAY);
+  }
+  function stopAutoplay(){
+    if (autoplayId) { clearInterval(autoplayId); autoplayId = null; }
+  }
+
+  // pause on hover
+  if (PAUSE_ON_HOVER){
+    const carousel = document.getElementById('teamCarouselEnhanced');
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+  }
+
+  // responsive init
+  window.addEventListener('resize', () => {
+    createDots();
+    goToSlide(index);
+  });
+
+  // init
+  createDots();
+  goToSlide(0);
+  startAutoplay();
+})();
+</script>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -103,83 +244,5 @@
       </div>
     </footer>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // menu toggle safe
-      const menuToggle = document.getElementById('menuToggle');
-      const sideMenu = document.getElementById('sideMenu');
-      if (menuToggle && sideMenu) {
-        menuToggle.addEventListener('click', () => {
-          sideMenu.classList.toggle('open');
-          const open = sideMenu.classList.contains('open');
-          sideMenu.setAttribute('aria-hidden', (!open).toString());
-          menuToggle.setAttribute('aria-pressed', open.toString());
-        });
-        menuToggle.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') menuToggle.click();
-        });
-      }
-
-      // carousel
-      const track = document.getElementById('carouselTrack');
-      const items = Array.from(track?.children || []);
-      const prevBtn = document.querySelector('.carousel-btn.prev');
-      const nextBtn = document.querySelector('.carousel-btn.next');
-      const dotsContainer = document.getElementById('carouselDots');
-      let index = 0;
-
-      if (!items.length || !prevBtn || !nextBtn || !dotsContainer) return;
-
-      function itemWidth() {
-        const gap = parseInt(getComputedStyle(track).gap || 16, 10) || 16;
-        return items[0].getBoundingClientRect().width + gap;
-      }
-
-      function visibleCount() {
-        const wrapperWidth = document.querySelector('.carousel-track-wrapper').offsetWidth;
-        return Math.max(1, Math.floor(wrapperWidth / itemWidth()));
-      }
-
-      function updateButtons() {
-        prevBtn.disabled = index === 0;
-        nextBtn.disabled = index >= items.length - visibleCount();
-        dotsContainer.querySelectorAll('.carousel-dot').forEach(dot => dot.classList.remove('active'));
-        const activeDot = dotsContainer.children[Math.min(index, dotsContainer.children.length - 1)];
-        if (activeDot) activeDot.classList.add('active');
-      }
-
-      function goToSlide(i) {
-        index = Math.max(0, Math.min(i, items.length - visibleCount()));
-        track.style.transform = `translateX(-${index * itemWidth()}px)`;
-        updateButtons();
-      }
-
-      // create dots (one per item group)
-      function createDots() {
-        dotsContainer.innerHTML = '';
-        const groups = Math.max(1, Math.ceil(items.length / visibleCount()));
-        for (let i = 0; i < groups; i++) {
-          const dot = document.createElement('button');
-          dot.className = 'carousel-dot';
-          dot.type = 'button';
-          dot.setAttribute('aria-label', `Aller à ${i + 1}`);
-          dot.addEventListener('click', () => goToSlide(i * visibleCount()));
-          dotsContainer.appendChild(dot);
-        }
-      }
-
-      prevBtn.addEventListener('click', () => goToSlide(index - 1));
-      nextBtn.addEventListener('click', () => goToSlide(index + 1));
-      window.addEventListener('resize', () => {
-        createDots();
-        goToSlide(index);
-      });
-
-      // init
-      createDots();
-      goToSlide(0);
-    });
-  </script>
 </body>
 </html>

@@ -14,24 +14,7 @@
   <link rel="preload" as="image" href="assets/1.png">
 
   <style>
-    .team-carousel { display:flex; align-items:center; gap:12px; position:relative; }
-    .carousel-track-wrapper { overflow:hidden; flex:1; }
-    .carousel-track { display:flex; gap:16px; transition:transform .45s ease; list-style:none; padding:0; margin:0; }
-    .carousel-item { min-width:220px; max-width:300px; background:var(--bg); border-radius:10px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.08); padding:8px; display:flex; flex-direction:column; align-items:center; }
-    .carousel-item img { display:block; width:100%; height:220px; object-fit:cover; border-radius:8px; }
-    .caption { margin-top:8px; color:#222; font-size:0.95rem; line-height:1.1; }
-    .carousel-btn { background:var(--accent); color:#fff; border:0; width:44px; height:44px; border-radius:6px; cursor:pointer; font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; }
-    .carousel-btn:disabled { opacity:.4; cursor:default; }
-    .carousel-dots { display:flex; gap:8px; justify-content:center; margin-top:12px; width:100%; padding-top:12px; }
-    .carousel-dot { width:10px; height:10px; background:var(--muted); border-radius:50%; cursor:pointer; border:0; }
-    .carousel-dot.active { background:var(--accent); }
-
     .img-error { background:#f4f4f4 url('assets/fallback.png') center/contain no-repeat; min-height:160px; }
-
-    @media (max-width:760px) {
-      .carousel-item img { height:160px; }
-      .carousel-btn { width:36px; height:36px; font-size:18px; }
-    }
   </style>
   
 </head>
@@ -64,20 +47,6 @@
         <a href="https://www.tiktok.com/@vafmlaradio"><img src="assets/tiktok.png" alt="TikTok"></a>
       </div>
     </nav>
-
-    <!-- Contenu principal -->
-    <main class="actus-page">
-      <!-- Carousel équipe -->
-      <section class="team-section" aria-label="Équipe VAFM">
-        <h2>Notre équipe</h2>
-
-        <div class="team-carousel" id="teamCarouselEnhanced" aria-roledescription="carousel">
-          <button class="carousel-btn prev" aria-label="Précédent" type="button">&lt;</button>
-
-          <div class="carousel-track-wrapper">
-            <ul class="carousel-track" id="carouselTrack" aria-live="polite">
-              <!-- Assure-toi que assets/1.png et assets/2.png existent exactement -->
-              <li class="carousel-item" role="group" aria-label="Membre 1">
                 <img
                   src="assets/1.png"
                   alt="Thomas - Directeur Général"
@@ -87,9 +56,7 @@
                   onerror="this.onerror=null;this.classList.add('img-error');this.removeAttribute('src');"
                 />
                 <p class="caption">Thomas<br><small>Directeur Général, Fondateur, Animateur</small></p>
-              </li>
 
-              <li class="carousel-item" role="group" aria-label="Membre 2">
                 <img
                   src="assets/2.png"
                   alt="Hugo - Directeur adjoint"
@@ -99,18 +66,10 @@
                   onerror="this.onerror=null;this.classList.add('img-error');this.removeAttribute('src');"
                 />
                 <p class="caption">Hugo<br><small>Directeur adjoint, cofondateur, webmaster</small></p>
-              </li>
 
               <!-- Copie-colle d'autres <li class="carousel-item"> si nécessaire -->
             </ul>
           </div>
-
-          <button class="carousel-btn next" aria-label="Suivant" type="button">&gt;</button>
-        </div>
-
-        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Navigation du carousel"></div>
-      </section>
-    </main>
 
     <!-- Footer -->
 <footer class="site-footer">

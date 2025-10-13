@@ -43,6 +43,27 @@ html, body {
   animation-delay: 0.5s;
 }
 
+/* Bouton direct dans la top-bar */
+.top-bar { display:flex; align-items:center; gap:12px; padding:10px 16px; background:#fff; }
+.btn-direct {
+  background: var(--accent,#970A0A);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(151,10,10,0.15);
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.btn-direct:focus { outline:3px solid rgba(151,10,10,0.18); outline-offset:2px; }
+.btn-direct:hover { transform:translateY(-1px); transition:transform .12s ease; }
+@media (max-width:600px) {
+  .btn-direct { padding:8px 10px; font-size:0.9rem; }
+}
+
 @keyframes fadeUp {
   0% {
     opacity: 0;
@@ -1080,6 +1101,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

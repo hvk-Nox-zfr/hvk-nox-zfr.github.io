@@ -25,6 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function cleanText(s) {
     return String(s || "").trim().replace(/\s+/g, " ");
   }
+function normalizeForRegex(s) {
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // retire accents
+}
+
+function hasBlacklistedWord(text) {
+  const norm = normalizeForRegex(text);
+  if (!norm) return false;
+  // construit une regex du type: \b(con|merde|putain)\b
+  const pattern = '\\b(' + blacklist.map(w => w.replace(/[-/\\^$*+?.()|[\]{}]/g,'\\$&')).join('|') + ')\\b';
+  const re = new RegExp(pattern, 'i');
+  return re.test(norm);
+}
 
   // ------------------------
   // Menu, popups, audio

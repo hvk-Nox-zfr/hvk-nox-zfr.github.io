@@ -25,19 +25,21 @@ document.addEventListener("DOMContentLoaded", () => {
   function cleanText(s) {
     return String(s || "").trim().replace(/\s+/g, " ");
   }
-function normalizeForRegex(s) {
+  
+function normalizeText(s) {
   return String(s || '')
     .toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // retire accents
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // retire accents
+    .replace(/[^a-z0-9_\-\s]/g, ' ')                 // garde lettres, chiffres, _, -, espaces
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function hasBlacklistedWord(text) {
-  const norm = normalizeForRegex(text);
-  if (!norm) return false;
-  // construit une regex du type: \b(con|merde|putain)\b
-  const pattern = '\\b(' + blacklist.map(w => w.replace(/[-/\\^$*+?.()|[\]{}]/g,'\\$&')).join('|') + ')\\b';
-  const re = new RegExp(pattern, 'i');
-  return re.test(norm);
+  const clean = normalizeText(text);
+  if (!clean) return false;
+  const words = new Set(clean.split(' '));
+  return blacklist.some(b => words.has(b));
 }
 
   // ------------------------

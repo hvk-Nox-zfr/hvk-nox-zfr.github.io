@@ -43,25 +43,57 @@ html, body {
   animation-delay: 0.5s;
 }
 
-/* Bouton direct dans la top-bar */
-.top-bar { display:flex; align-items:center; gap:12px; padding:10px 16px; background:#fff; }
+/* structure de la top-bar pour centrer l'élément */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centre tous les éléments par défaut */
+  gap: 12px;
+  padding: 10px 16px;
+  background: #fff;
+  position: relative;
+}
+
+/* si tu gardes .logo-zone et hamburger à gauche/droite, on repositionne */
+.top-bar .logo-zone { position: absolute; left: 16px; display:flex; align-items:center; }
+.top-bar .hamburger { position: absolute; right: 16px; display:flex; align-items:center; }
+
+/* bouton centré */
 .btn-direct {
-  background: var(--accent,#970A0A);
+  background: var(--accent, #970A0A);
   color: #fff;
   text-decoration: none;
-  padding: 10px 14px;
+  padding: 10px 16px;
   border-radius: 8px;
   font-weight: 700;
   font-size: 0.95rem;
-  box-shadow: 0 4px 10px rgba(151,10,10,0.15);
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 14px rgba(151,10,10,0.15);
+  transition: transform .12s ease, box-shadow .12s ease;
 }
-.btn-direct:focus { outline:3px solid rgba(151,10,10,0.18); outline-offset:2px; }
-.btn-direct:hover { transform:translateY(-1px); transition:transform .12s ease; }
-@media (max-width:600px) {
-  .btn-direct { padding:8px 10px; font-size:0.9rem; }
+
+/* play triangle */
+.btn-direct .play-icon {
+  width: 0;
+  height: 0;
+  border-left: 10px solid #fff;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  display: inline-block;
+}
+
+/* hover / focus */
+.btn-direct:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(151,10,10,0.18); }
+.btn-direct:focus { outline: 3px solid rgba(151,10,10,0.18); outline-offset: 2px; }
+
+/* responsive : sur petits écrans on replace logo/hamburger inline and reduce padding */
+@media (max-width: 700px) {
+  .top-bar { justify-content: center; padding: 8px 12px; }
+  .top-bar .logo-zone { position: static; margin-right: auto; }
+  .top-bar .hamburger { position: static; margin-left: auto; }
+  .btn-direct { padding: 8px 10px; font-size: 0.9rem; gap:8px; }
 }
 
 @keyframes fadeUp {
@@ -1101,6 +1133,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

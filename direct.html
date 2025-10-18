@@ -106,61 +106,65 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
   <!-- 🔺 Contenu principal -->
-  <main class="main-content">
-    <section class="radio-player-section">
-      <div style="width: 100%; max-width: 1000px; margin: auto;" id="sc-player">
-        <div
-          is="player"
-          lang="fr"
-          api-url="https://manager4.streamradio.fr:1550/api/v2"
-          server-id="1"
-          station-name="VAFM"
-          imagecontainer="left"
-          imagecontainer-bg="#78a3b5"
-          imagecontainer-bg-opacity="1"
-          controlscontainer="right"
-          controlscontainer-bg="#d6d6d6"
-          controlscontainer-bg-opacity="1"
-          controlscontainer-bg-img="https://manager4.streamradio.fr:1550/media/widgets/VAFM_8.png"
-          historycontainer="right"
-          historycontainer-bg="#ffb3b3"
-          historycontainer-bg-opacity="1"
-          :show-history="true"
-          history-limit="20"
-          sharecontainer="both"
-          sharecontainer-bg="#b30000"
-          sharecontainer-bg-opacity="1"
-          :show-share="false"
-          :show-dj="false"
-          default-dj-img="https://manager4.streamradio.fr:1550/media/widgets/erasebg-transformed_JYxBtqn.png"
-          :show-image="false"
-          play-button-color="#ffffff"
-          visualizer-outline-color="#ffffff"
-          visualizer-bar-width="1"
-          :channels-displayed="[]"
-          channels-switch-bg="#4165b9"
-          channels-switch-color="#ffffff"
-          channels-switch-bg-active="#dddddd"
-          channels-switch-color-active="#000000"
-          :show-vote="false"
-          vote-buttons-color="#ffffff"
-          vote-buttons-opacity="1"
-          vote-results-font-color="#FFFFFF"
-          vote-results-font-size="16"
-          :progress-show="false"
-          progress-bar-color="#35495e"
-          progress-bar-bg-color="#41b883"
-          progress-bar-bg-opacity="0.1"
-          progress-bar-bg-height="25"
-          progress-bar-opacity="1"
-          progress-font-color="#FFFFFF"
-          progress-font-size="12"
-          progress-bar-bg-radius="10"
-          progress-bar-bg-border="#970a0a"
-          player-width="1000px"
-        ></div>
-      </div>
-    </section>
+<div style="width: 1000px;"  id="sc-player">
+<div
+is="player"
+lang="fr"
+api-url="https://manager4.streamradio.fr:1130/api/v2"
+server-id="1"
+station-name="VAFM"
+station-url=""
+imagecontainer="right"
+imagecontainer-bg="#970a0a"
+imagecontainer-bg-opacity="1"
+controlscontainer="left"
+controlscontainer-bg="#e6e6e6"
+controlscontainer-bg-opacity="1"
+controlscontainer-bg-img="https://manager4.streamradio.fr:1130/media/widgets/VAFM_10_rzoRyHy.png"
+historycontainer="bottom"
+historycontainer-bg="#ededed"
+historycontainer-bg-opacity="1"
+:show-history="true"
+history-limit="50"
+sharecontainer="both"
+sharecontainer-bg="#ffffff"
+sharecontainer-bg-opacity="1"
+:show-share="false"
+share-url=""
+:share="['facebook','telegram','twitter']"
+:show-dj="false"
+default-dj-img="https://manager4.streamradio.fr:1130/media/widgets/logo_VAFM.png"
+:show-image="true"
+default-cover-image="https://manager4.streamradio.fr:1130/media/widgets/logo_VAFM_FIZLZDI.png"
+play-button-color="#ffffff"
+play-button-bg="null"
+visualizer-outline-color="#ffffff"
+visualizer-bar-width="1"
+:channels-displayed="[1]"
+channels-switch-bg="#4165b9"
+channels-switch-color="#ffffff"
+channels-switch-bg-active="#ffffff"
+channels-switch-color-active="#000000"
+:show-vote="true"
+vote-buttons-color="#ffffff"
+vote-buttons-opacity="1"
+vote-results-font-color="#FFFFFF"
+vote-results-font-size="16"
+:progress-show="false"
+progress-bar-color="#35495e"
+progress-bar-bg-color="#41b883"
+progress-bar-bg-opacity="0.1"
+progress-bar-bg-height="25"
+progress-bar-opacity="1"
+progress-font-color="#FFFFFF"
+progress-font-size="12"
+progress-bar-bg-radius="10"
+progress-bar-bg-border="#F5F5F5"
+player-width="1000px"
+>
+</div>
+</div>
+<script type="text/javascript" src="https://manager4.streamradio.fr:1130/media/static/js/sc_player/sc_player.js"></script>
 
     <!-- 🔺 Publicité bas -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
@@ -195,3 +199,4 @@
   <script src="https://manager4.streamradio.fr:1550/media/static/js/sc_player/sc_player.js"></script>
 </body>
 </html>
+

@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="style.css" />
   <script src="principal.js" defer></script>
   <style>
+    body {
+      background-color: #9b0a0a;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+    }
+
     .site-footer {
       background: #000;
       color: #fff;
@@ -49,31 +55,31 @@
       font-size: 11px;
       opacity: 0.6;
     }
+
     .adsbygoogle {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 12px;
       width: 90%;
+      margin: auto;
     }
-
   </style>
 </head>
 <body>
-  <body style="background-color: #9b0a0a;">
+  <!-- 🔺 Barre supérieure -->
   <header class="top-bar">
     <div class="logo-zone">
-      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo">
+      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo" />
     </div>
     <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
   </header>
 
   <div class="sub-bar"></div>
 
+  <!-- 🔺 Menu latéral -->
   <nav class="side-menu" id="sideMenu">
     <a href="index.html">Accueil</a>
     <a href="equipe.html">Notre équipe</a>
@@ -82,26 +88,24 @@
     <a href="histoire.html">Histoire</a>
     <a href="don.html">Don</a>
     <div class="social-links">
-      <a href="https://www.facebook.com/profile.php?id=61573373138285"><img src="assets/facebook.png" alt="Facebook"></a>
-      <a href="https://www.instagram.com/vafmlaradio/"><img src="assets/instagram.png" alt="Instagram"></a>
-      <a href="https://www.youtube.com/@VAFMlaradio"><img src="assets/youtube.png" alt="YouTube"></a>
-      <a href="https://www.tiktok.com/@vafmlaradio"><img src="assets/tiktok.png" alt="TikTok"></a>
+      <a href="https://www.facebook.com/profile.php?id=61573373138285"><img src="assets/facebook.png" alt="Facebook" /></a>
+      <a href="https://www.instagram.com/vafmlaradio/"><img src="assets/instagram.png" alt="Instagram" /></a>
+      <a href="https://www.youtube.com/@VAFMlaradio"><img src="assets/youtube.png" alt="YouTube" /></a>
+      <a href="https://www.tiktok.com/@vafmlaradio"><img src="assets/tiktok.png" alt="TikTok" /></a>
     </div>
   </nav>
-    
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938"
-     crossorigin="anonymous"></script>
-<!-- haut equipe -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8497430727637938"
-     data-ad-slot="9934185634"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-  
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
+  <!-- 🔺 Publicité haut -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-8497430727637938"
+       data-ad-slot="9934185634"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+  <!-- 🔺 Contenu principal -->
   <main class="main-content">
     <section class="radio-player-section">
       <div style="width: 100%; max-width: 1000px; margin: auto;" id="sc-player">
@@ -111,7 +115,6 @@
           api-url="https://manager4.streamradio.fr:1550/api/v2"
           server-id="1"
           station-name="VAFM"
-          station-url=""
           imagecontainer="left"
           imagecontainer-bg="#78a3b5"
           imagecontainer-bg-opacity="1"
@@ -128,14 +131,10 @@
           sharecontainer-bg="#b30000"
           sharecontainer-bg-opacity="1"
           :show-share="false"
-          share-url=""
-          :share="[]"
           :show-dj="false"
           default-dj-img="https://manager4.streamradio.fr:1550/media/widgets/erasebg-transformed_JYxBtqn.png"
           :show-image="false"
-          default-cover-image=""
           play-button-color="#ffffff"
-          play-button-bg="null"
           visualizer-outline-color="#ffffff"
           visualizer-bar-width="1"
           :channels-displayed="[]"
@@ -159,26 +158,22 @@
           progress-bar-bg-radius="10"
           progress-bar-bg-border="#970a0a"
           player-width="1000px"
-        >
-        </div>
+        ></div>
       </div>
     </section>
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938"
-     crossorigin="anonymous"></script>
-<!-- bas direct -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8497430727637938"
-     data-ad-slot="8673074855"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    
+
+    <!-- 🔺 Publicité bas -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8497430727637938"
+         data-ad-slot="8673074855"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </main>
 
+  <!-- 🔺 Pied de page -->
   <footer class="site-footer">
     <div class="footer-content">
       <div class="footer-logo">
@@ -196,26 +191,7 @@
     </div>
   </footer>
 
-  <!-- ✅ Script du lecteur StreamRadio -->
+  <!-- 🔺 Script du lecteur StreamRadio -->
   <script src="https://manager4.streamradio.fr:1550/media/static/js/sc_player/sc_player.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

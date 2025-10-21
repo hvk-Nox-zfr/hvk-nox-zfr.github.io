@@ -4,6 +4,9 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -23,6 +26,7 @@ html, body {
   flex: 1;
 }
 
+/* widget example */
 #rk-top-tracks-widget {
   margin: 40px auto;
   max-width: 700px;
@@ -42,11 +46,14 @@ html, body {
   align-items: center;
   padding: 15px 20px;
   height: 80px;
+  position: relative;
+  z-index: 1200;
 }
 
 .logo {
   height: 250px;
   margin-top: 50px;
+  display: block;
 }
 
 /* --- Barre noire --- */
@@ -78,6 +85,7 @@ html, body {
   animation: pulse 1s infinite ease-in-out;
 }
 
+/* --- Player wrapper generic --- */
 .player-wrapper {
   max-width: 1000px;
   margin: auto;
@@ -85,29 +93,15 @@ html, body {
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  .player-wrapper {
-    padding: 10px;
-  }
-
-  #sc-player [is="player"] {
-    transform: scale(0.95);
-    transform-origin: top center;
-  }
+/* Scale fallbacks for embedded custom player */
+#sc-player,
+#sc-player [is="player"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
 }
 
-@media (max-width: 480px) {
-  #sc-player [is="player"] {
-    transform: scale(0.85);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-/* --- Égaliseur --- */
+/* --- Equalizer --- */
 .equalizer-wrapper {
   display: flex;
   justify-content: center;
@@ -128,6 +122,7 @@ html, body {
   height: 20px;
   background: #970A0A;
   animation: bounce 1s infinite ease-in-out;
+  border-radius: 3px;
 }
 
 .bar:nth-child(2) { animation-delay: 0.2s; }
@@ -138,6 +133,7 @@ html, body {
   50% { height: 40px; }
 }
 
+/* --- VAFM player card --- */
 .vafm-player {
   max-width: 800px;
   margin: 40px auto;
@@ -195,21 +191,21 @@ html, body {
   top: 0; left: 0; right: 0; bottom: 0;
   background: radial-gradient(circle at center, #ff0000 0%, #970A0A 100%);
   opacity: 0;
-  animation: pulse 2s infinite;
+  animation: pulse-bg 2s infinite;
   z-index: 1;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .vafm-player.playing .player-visual {
-  opacity: 0.3;
+  opacity: 0.22;
 }
 
-@keyframes pulse {
+@keyframes pulse-bg {
   0% { transform: scale(1); opacity: 0.3; }
   50% { transform: scale(1.05); opacity: 0.5; }
   100% { transform: scale(1); opacity: 0.3; }
 }
-
 
 /* --- Menu hamburger --- */
 .hamburger {
@@ -373,43 +369,155 @@ html, body {
   opacity: 0.7;
 }
 
-/* --- Responsive --- */
+/* --- Bloc EN DIRECT (VAFM) --- */
+.player-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(26,26,26,0.95), rgba(20,20,20,0.95));
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.35);
+  color: #fff;
+}
+
+.player-left {
+  flex: 1;
+  min-width: 240px;
+  text-align: center;
+}
+
+.player-left img {
+  width: 100%;
+  max-width: 240px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.player-left h2 {
+  font-size: 20px;
+  color: #ffb3b3;
+  margin-bottom: 10px;
+}
+
+.player-left h3 {
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.player-left p {
+  font-size: 15px;
+  opacity: 0.85;
+  color: #ddd;
+}
+
+.player-right {
+  flex: 2;
+  min-width: 300px;
+}
+
+.player-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px;
+  background: transparent;
+}
+
+/* small helper for controlled ad/promo areas */
+.ad-area {
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Buttons & small UI --- */
+.dedicace-btn {
+  display: inline-block;
+  background: #ffb3b3;
+  color: #000;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* --- Responsive tweaks for embedded player --- */
+@media (max-width: 1024px) {
+  .player-section { padding: 18px; gap: 18px; }
+  .player-left img { max-width: 220px; }
+}
+
 @media (max-width: 768px) {
   .top-bar {
     flex-direction: column;
     gap: 10px;
     height: auto;
+    padding: 12px;
   }
 
   .logo {
     height: 150px;
+    margin-top: 0;
   }
 
-  .clickable-logo {
-    max-width: 150px;
-  }
+  .clickable-logo { max-width: 150px; }
 
-  .bar {
-    width: 4px;
-  }
-
-  .news-card {
-    width: 100%;
-  }
-
-  .footer-content {
+  .player-section {
     flex-direction: column;
-    align-items: center;
     text-align: center;
+    padding: 15px;
   }
 
-  .footer-links {
-    justify-content: center;
+  .player-left { order: 1; }
+  .player-right { order: 2; }
+
+  /* Scale embedded player slightly for mobile */
+  #sc-player [is="player"] {
+    transform: scale(0.93);
+    transform-origin: top center;
   }
 
-  .hamburger {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+  .player-left img { max-width: 180px; }
+  .player-left h2 { font-size: 18px; }
+  .player-left h3 { font-size: 20px; }
+  .player-left p { font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+  #sc-player [is="player"] {
+    transform: scale(0.85);
   }
+
+  .player-section { padding: 12px; gap: 12px; }
+  .player-left img { max-width: 140px; }
+  .player-left h3 { font-size: 18px; }
+}
+
+/* Accessibility focus states */
+a:focus, button:focus, input:focus {
+  outline: 3px solid rgba(255,179,179,0.6);
+  outline-offset: 2px;
+}
+
+/* Utility helpers */
+.hide-mobile { display: block; }
+@media (max-width: 480px) { .hide-mobile { display: none !important; } }
+
+.text-muted { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+
+/* Final safety: avoid overflow caused by embeds */
+iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  display: block;
 }

@@ -5,6 +5,17 @@
   box-sizing: border-box;
 }
 
+.widget-zone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 100%;
+}
+.sc-status-widget {
+  width: 300px;
+}
+
 sc-status-widget {
   text-align: center;
 }
@@ -1142,6 +1153,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

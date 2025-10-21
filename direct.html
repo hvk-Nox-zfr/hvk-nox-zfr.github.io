@@ -1,198 +1,201 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Écoute en direct – VAFM</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/VAFM logo rouge.png" />
   <link rel="stylesheet" href="direct.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="principal.js" defer></script>
-
-  <!-- minimal inline styles to avoid layout flash before external css loads -->
   <style>
-    body { background:#9b0a0a; margin:0; font-family:system-ui, sans-serif; color:#fff; }
-    .top-bar { background:#970A0A; display:flex; align-items:center; justify-content:space-between; padding:12px 16px; }
-    .logo { height:68px; object-fit:contain; display:block; }
-    .sub-bar { height:6px; background:#111; }
-    .player-section { max-width:1100px; margin:28px auto; padding:0 16px; box-sizing:border-box; }
-    .hamburger { width:30px; height:22px; display:flex; flex-direction:column; justify-content:space-between; cursor:pointer; }
-    .hamburger span { display:block; height:4px; background:#fff; border-radius:2px; }
-    img { max-width:100%; height:auto; display:block; }
+    body {
+      background-color: #9b0a0a;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+    }
+
+    .site-footer {
+      background: #000;
+      color: #fff;
+      padding: 15px 10px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .footer-logo img {
+      height: 300px;
+      margin-bottom: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      font-size: 11px;
+      opacity: 0.6;
+    }
+
+    .adsbygoogle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+      width: 90%;
+      margin: auto;
+    }
   </style>
 </head>
 <body>
-  <header class="top-bar" role="banner">
+  <!-- 🔺 Barre supérieure -->
+  <header class="top-bar">
     <div class="logo-zone">
-      <a href="index.html" aria-label="Accueil VAFM">
-        <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo" />
-      </a>
+      <img src="assets/erasebg-transformed.png" alt="VAFM" class="logo" />
     </div>
-    <button id="menuToggle" class="hamburger" aria-expanded="false" aria-controls="sideMenu" onclick="toggleMenu()">
+    <div class="hamburger" id="menuToggle" onclick="toggleMenu()">
       <span></span><span></span><span></span>
-    </button>
+    </div>
   </header>
 
-  <div class="sub-bar" aria-hidden="true"></div>
+  <div class="sub-bar"></div>
 
-  <nav id="sideMenu" class="side-menu" aria-hidden="true" aria-label="Navigation principale">
+  <!-- 🔺 Menu latéral -->
+  <nav class="side-menu" id="sideMenu">
     <a href="index.html">Accueil</a>
     <a href="equipe.html">Notre équipe</a>
     <a href="direct.html" aria-current="page">Écouter le direct</a>
     <a href="programmes.html">Programmes</a>
     <a href="histoire.html">Histoire</a>
     <a href="don.html">Don</a>
-
     <div class="social-links">
-      <a href="https://www.facebook.com/profile.php?id=61573373138285" aria-label="Facebook"><img src="assets/facebook.png" alt="Facebook" /></a>
-      <a href="https://www.instagram.com/vafmlaradio/" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram" /></a>
-      <a href="https://www.youtube.com/@VAFMlaradio" aria-label="YouTube"><img src="assets/youtube.png" alt="YouTube" /></a>
-      <a href="https://www.tiktok.com/@vafmlaradio" aria-label="TikTok"><img src="assets/tiktok.png" alt="TikTok" /></a>
+      <a href="https://www.facebook.com/profile.php?id=61573373138285"><img src="assets/facebook.png" alt="Facebook" /></a>
+      <a href="https://www.instagram.com/vafmlaradio/"><img src="assets/instagram.png" alt="Instagram" /></a>
+      <a href="https://www.youtube.com/@VAFMlaradio"><img src="assets/youtube.png" alt="YouTube" /></a>
+      <a href="https://www.tiktok.com/@vafmlaradio"><img src="assets/tiktok.png" alt="TikTok" /></a>
     </div>
   </nav>
 
-  <!-- AdSense script: include once -->
+  <!-- 🔺 Publicité haut -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-8497430727637938"
+       data-ad-slot="9934185634"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-  <!-- Top ad (controlled placement) -->
-  <section class="player-section" aria-hidden="false">
+<div style="width: 1000px;"  id="sc-player">
+<div
+is="player"
+lang="fr"
+api-url="https://manager4.streamradio.fr:1130/api/v2"
+server-id="1"
+station-name="VAFM"
+station-url=""
+imagecontainer="right"
+imagecontainer-bg="#9b0a0a"
+imagecontainer-bg-opacity="1"
+controlscontainer="left"
+controlscontainer-bg="#e6e6e6"
+controlscontainer-bg-opacity="1"
+controlscontainer-bg-img="https://manager4.streamradio.fr:1130/media/widgets/VAFM_2_xb7vz7t.png"
+historycontainer="bottom"
+historycontainer-bg="#ededed"
+historycontainer-bg-opacity="1"
+:show-history="true"
+history-limit="50"
+sharecontainer="both"
+sharecontainer-bg="#ffffff"
+sharecontainer-bg-opacity="1"
+:show-share="false"
+share-url=""
+:share="['facebook','telegram','twitter']"
+:show-dj="false"
+default-dj-img="https://manager4.streamradio.fr:1130/media/widgets/logo_VAFM.png"
+:show-image="true"
+default-cover-image="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png"
+play-button-color="#ffffff"
+play-button-bg="null"
+visualizer-outline-color="#ffffff"
+visualizer-bar-width="1"
+:channels-displayed="[1]"
+channels-switch-bg="#4165b9"
+channels-switch-color="#ffffff"
+channels-switch-bg-active="#ffffff"
+channels-switch-color-active="#000000"
+:show-vote="true"
+vote-buttons-color="#ffffff"
+vote-buttons-opacity="1"
+vote-results-font-color="#FFFFFF"
+vote-results-font-size="16"
+:progress-show="false"
+progress-bar-color="#35495e"
+progress-bar-bg-color="#41b883"
+progress-bar-bg-opacity="0.1"
+progress-bar-bg-height="25"
+progress-bar-opacity="1"
+progress-font-color="#FFFFFF"
+progress-font-size="12"
+progress-bar-bg-radius="10"
+progress-bar-bg-border="#F5F5F5"
+player-width="1000px"
+>
+</div>
+</div>
+<script type="text/javascript" src="https://manager4.streamradio.fr:1130/media/static/js/sc_player/sc_player.js"></script>
+</div>
+
+    <!-- 🔺 Publicité bas -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8497430727637938" crossorigin="anonymous"></script>
     <ins class="adsbygoogle"
-         style="display:block; max-width:100%;"
-         data-ad-client="ca-pub-8497430727637938"
-         data-ad-slot="9934185634"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </section>
-
-  <!-- EN DIRECT : structure propre (styles in direct.css) -->
-  <main class="player-section" role="main" aria-label="Écoute en direct">
-    <div class="player-left" style="min-width:260px; max-width:320px;">
-      <img src="assets/logo_VAFM.png" alt="VAFM cover" style="border-radius:8px;">
-      <h2 style="margin:12px 0 6px;">🎙️ EN DIRECT</h2>
-      <h3 style="margin:0 0 6px;">CELUI QUI PART</h3>
-      <p style="margin:0 0 12px;">Joseph Kamel</p>
-    </div>
-
-    <div class="player-right" style="flex:1; min-width:260px;">
-      <div class="player-wrapper" style="width:100%;">
-        <div id="sc-player" aria-label="Lecteur radio">
-          <div
-            is="player"
-            lang="fr"
-            api-url="https://manager4.streamradio.fr:1130/api/v2"
-            server-id="1"
-            station-name="VAFM"
-            imagecontainer="right"
-            imagecontainer-bg="#9b0a0a"
-            imagecontainer-bg-opacity="1"
-            controlscontainer="left"
-            controlscontainer-bg="#e6e6e6"
-            controlscontainer-bg-opacity="1"
-            controlscontainer-bg-img="https://manager4.streamradio.fr:1130/media/widgets/VAFM_2_xb7vz7t.png"
-            historycontainer="bottom"
-            historycontainer-bg="#ededed"
-            historycontainer-bg-opacity="1"
-            :show-history="true"
-            history-limit="50"
-            sharecontainer="both"
-            sharecontainer-bg="#ffffff"
-            sharecontainer-bg-opacity="1"
-            :show-share="false"
-            :share="['facebook','telegram','twitter']"
-            :show-dj="false"
-            default-dj-img="https://manager4.streamradio.fr:1130/media/widgets/logo_VAFM.png"
-            :show-image="true"
-            default-cover-image="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png"
-            play-button-color="#ffffff"
-            visualizer-outline-color="#ffffff"
-            visualizer-bar-width="1"
-            :channels-displayed="[1]"
-            channels-switch-bg="#4165b9"
-            channels-switch-color="#ffffff"
-            channels-switch-bg-active="#ffffff"
-            channels-switch-color-active="#000000"
-            :show-vote="true"
-            vote-buttons-color="#ffffff"
-            vote-buttons-opacity="1"
-            vote-results-font-color="#FFFFFF"
-            vote-results-font-size="16"
-            :progress-show="false"
-            progress-bar-color="#35495e"
-            progress-bar-bg-color="#41b883"
-            progress-bar-bg-opacity="0.1"
-            progress-bar-bg-height="25"
-            progress-bar-opacity="1"
-            progress-font-color="#FFFFFF"
-            progress-font-size="12"
-            progress-bar-bg-radius="10"
-            progress-bar-bg-border="#F5F5F5"
-            player-width="100%"
-          ></div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Bottom ad (controlled placement) -->
-  <section class="player-section" aria-hidden="false">
-    <ins class="adsbygoogle"
-         style="display:block; max-width:100%;"
+         style="display:block"
          data-ad-client="ca-pub-8497430727637938"
          data-ad-slot="8673074855"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </section>
+  </main>
 
-  <!-- Footer -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-content" style="max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:24px 16px;">
+  <!-- 🔺 Pied de page -->
+  <footer class="site-footer">
+    <div class="footer-content">
       <div class="footer-logo">
-        <img src="assets/VAFM logo gris.png" alt="Logo VAFM" style="height:60px;object-fit:contain;">
+        <img src="assets/VAFM logo gris.png" alt="Logo VAFM" />
       </div>
-      <nav class="footer-links" aria-label="Liens utiles" style="display:flex;gap:12px;flex-wrap:wrap;">
+      <div class="footer-links">
         <a href="contact.html">Nous contacter</a>
         <a href="mentions.html">Mentions légales</a>
         <a href="a-propos.html">À propos</a>
         <a href="accessibilite.html">Accessibilité</a>
-      </nav>
-      <div class="footer-bottom" style="width:100%;text-align:center;margin-top:12px;color:#fff;opacity:0.85;">
-        <p style="margin:0;">© 2025 VAFM | Tous droits réservés.</p>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 VAFM | Tous droits réservés.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Include the StreamRadio player script ONCE, matching api-url host/port -->
-  <script src="https://manager4.streamradio.fr:1130/media/static/js/sc_player/sc_player.js"></script>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('sideMenu');
-      const btn = document.getElementById('menuToggle');
-      if (!menu || !btn) return;
-      const opened = menu.classList.toggle('open');
-      menu.setAttribute('aria-hidden', String(!opened));
-      btn.setAttribute('aria-expanded', String(opened));
-      btn.classList.toggle('open', opened);
-    }
-
-    // close side menu on escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        const menu = document.getElementById('sideMenu');
-        const btn = document.getElementById('menuToggle');
-        if (menu && menu.classList.contains('open')) {
-          menu.classList.remove('open');
-          menu.setAttribute('aria-hidden','true');
-          if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-        }
-      }
-    });
-  </script>
+  <!-- 🔺 Script du lecteur StreamRadio -->
+  <script src="https://manager4.streamradio.fr:1550/media/static/js/sc_player/sc_player.js"></script>
 </body>
 </html>
-
-
-
-

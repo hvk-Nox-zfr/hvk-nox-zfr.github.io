@@ -78,6 +78,30 @@ html, body {
   animation: pulse 1s infinite ease-in-out;
 }
 
+.player-wrapper {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .player-wrapper {
+    padding: 10px;
+  }
+
+  #sc-player [is="player"] {
+    transform: scale(0.95);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 480px) {
+  #sc-player [is="player"] {
+    transform: scale(0.85);
+  }
+}
+
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }

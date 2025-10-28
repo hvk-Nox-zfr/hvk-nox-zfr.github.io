@@ -20,6 +20,20 @@ html, body {
   background-color: #fff;
 }
 
+.mini-player-zone {
+  position: relative;
+  z-index: 10; /* ✅ Assure que le player est au-dessus */
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.mini-player-zone audio,
+.mini-player-zone .mini-player-card {
+  position: relative;
+  z-index: 11;
+}
+
 .mini-player {
   display: flex;
   justify-content: center;
@@ -1190,6 +1204,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

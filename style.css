@@ -21,11 +21,17 @@ html, body {
 }
 
 .mini-player-zone {
-  position: relative;
-  z-index: 10; /* ✅ Assure que le player est au-dessus */
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5; /* ✅ au-dessus de l'image (z-index: 1) */
   display: flex;
   justify-content: center;
-  margin: 30px auto;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  padding: 10px 16px;
+  border-radius: 12px;
 }
 
 .mini-player-zone audio,
@@ -1204,6 +1210,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

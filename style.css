@@ -20,6 +20,54 @@ html, body {
   background-color: #fff;
 }
 
+.mini-player {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+.mini-player-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #111;
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  max-width: 400px;
+  color: #fff;
+}
+
+.mini-cover {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.mini-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #ffb3b3;
+}
+
+.mini-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.play-btn {
+  background: #ffb3b3;
+  color: #000;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
 .hero-image {
   position: absolute;
   top: 0;
@@ -1142,6 +1190,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

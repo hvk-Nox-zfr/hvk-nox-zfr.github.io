@@ -68,28 +68,32 @@
       </div>
     </nav>
 
-    <section class="hero-banner">
-      <img src="assets/vafm logo ha.png" alt="Bienvenue sur VAFM" class="hero-image distant">
-      <div class="fade-overlay"></div>
+<section class="hero-banner">
+  <img src="assets/vafm logo ha.png" alt="Bienvenue sur VAFM" class="hero-image distant">
+  <div class="fade-overlay"></div>
 
-      <div class="hero-text">
-        <h3>Bienvenue sur VAFM</h3>
-        <p>VAFM est la webradio du Valenciennois. Nous diffusons des émissions locales, des interviews, des reportages et des dédicaces en direct.</p>
-        <p>Notre équipe est composée de bénévoles passionnés qui font vibrer les ondes chaque jour.</p>
-        <section class="mini-player">
-  <div class="mini-player-card">
-    <img src="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png" alt="VAFM" class="mini-cover" />
-    <div class="mini-info">
-      <h3>VAFM</h3>
-      <p>Écoute en direct</p>
-      <button onclick="document.getElementById('miniAudio').play()" class="play-btn">▶ Écouter</button>
-    </div>
+  <div class="hero-text">
+    <h3>Bienvenue sur VAFM</h3>
+    <p>VAFM est la webradio du Valenciennois. Nous diffusons des émissions locales, des interviews, des reportages et des dédicaces en direct.</p>
+    <p>Notre équipe est composée de bénévoles passionnés qui font vibrer les ondes chaque jour.</p>
   </div>
 
-  <!-- Audio stream -->
-  <audio id="miniAudio" src="https://manager4.streamradio.fr:1130/live.mp3" preload="none"></audio>
-</section>
+  <!-- ✅ Mini player bien placé en bas de la bannière -->
+  <div class="mini-player-zone">
+    <div class="mini-player-card">
+      <img src="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png" alt="VAFM" class="mini-cover" />
+      <div class="mini-info">
+        <h3>VAFM</h3>
+        <p>Écoute en direct</p>
+        <button id="playBtn" class="play-btn">▶ Écouter</button>
       </div>
+    </div>
+    <audio id="miniAudio" preload="none">
+      <source src="https://manager4.streamradio.fr:1130/live.mp3" type="audio/mpeg">
+      Ton navigateur ne supporte pas l’audio HTML5.
+    </audio>
+  </div>
+</section>
   
 </div> 
     <link rel="stylesheet" 
@@ -347,6 +351,7 @@
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 
 
 

@@ -21,67 +21,51 @@ html, body {
 }
 
 .mini-player-zone {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   z-index: 5;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: rgba(0,0,0,0.6);
-  padding: 10px 16px;
-  border-radius: 12px;
-}
-
-.mini-player-zone audio,
-.mini-player-zone .mini-player-card {
-  position: relative;
-  z-index: 11;
-}
-
-.mini-player {
-  display: flex;
-  justify-content: center;
-  margin: 30px auto;
+  margin: 20px auto 10px;
+  width: 100%;
 }
 
 .mini-player-card {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   background: #111;
-  padding: 12px 18px;
+  padding: 14px 24px;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0,0,0,0.4);
-  max-width: 400px;
+  max-width: 600px; /* ✅ Allongé horizontalement */
+  width: 90%;
   color: #fff;
 }
 
 .mini-cover {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 8px;
   object-fit: cover;
 }
 
 .mini-info h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
   color: #ffb3b3;
 }
 
 .mini-info p {
   margin: 4px 0;
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 15px;
+  opacity: 0.85;
 }
 
 .play-btn {
   background: #ffb3b3;
   color: #000;
   border: none;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
@@ -1210,6 +1194,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

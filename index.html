@@ -246,7 +246,7 @@
     // Fonction pour récupérer le titre en cours
     async function fetchCurrentTrack() {
       try {
-        const res = await fetch("https://manager4.streamradio.fr:1130/api/v2/nowplaying/1");
+        const res = await fetch("https://manager4.streamradio.fr:1130/api/v2");
         const data = await res.json();
         if (data && data.now_playing && data.now_playing.song) {
           trackEl.textContent = data.now_playing.song.text;
@@ -259,19 +259,6 @@
     // Mise à jour toutes les 15 secondes
     fetchCurrentTrack();
     setInterval(fetchCurrentTrack, 15000);
-  });
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const playBtn = document.getElementById("playBtn");
-    const audio = document.getElementById("miniAudio");
-
-    playBtn.addEventListener("click", function () {
-      audio.play().catch(function (error) {
-        console.error("Erreur de lecture :", error);
-      });
-    });
   });
 </script>
 
@@ -393,6 +380,7 @@
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 
 
 

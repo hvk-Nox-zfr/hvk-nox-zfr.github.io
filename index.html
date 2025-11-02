@@ -80,12 +80,18 @@
       <h3>VAFM</h3>
       <p id="currentTrack">Chargement du titre...</p>
       <button id="playBtn" class="play-btn">▶ Écouter</button>
-    </div>
-  </div>
+<button id="pauseBtn" class="play-btn">⏸ Pause</button>
 
-  <audio id="miniAudio" preload="none">
-    <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
-  </audio>
+<audio id="miniAudio" preload="none">
+  <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById("miniAudio");
+
+  document.getElementById("playBtn").addEventListener("click", () => audio.play());
+  document.getElementById("pauseBtn").addEventListener("click", () => audio.pause());
+</script>
 </div>
 
   <div class="hero-text">
@@ -387,6 +393,7 @@
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 
 
 

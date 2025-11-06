@@ -79,15 +79,10 @@
       <h3>VAFM</h3>
       <p id="currentTrack">Chargement du titre...</p>
       <button id="playBtn" class="play-btn">▶ Écouter</button>
-    </div>
-  </div>
 
-  <!-- Flux audio -->
-  <audio id="miniAudio" preload="none">
-    <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
-    Ton navigateur ne supporte pas l’audio HTML5.
-  </audio>
-</div>
+<audio id="miniAudio" preload="none">
+  <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
+</audio>
 
   <div class="hero-text">
     <h3>Bienvenue sur VAFM</h3>
@@ -225,14 +220,19 @@
   document.addEventListener("DOMContentLoaded", function () {
     const playBtn = document.getElementById("playBtn");
     const audio = document.getElementById("miniAudio");
+    const streamUrl = "https://manager10.streamradio.fr:1555/stream";
 
     playBtn.addEventListener("click", function () {
       if (audio.paused) {
+        // relance toujours le flux depuis le direct
+        audio.src = streamUrl + "?t=" + Date.now(); 
         audio.play().catch(err => console.error("Erreur de lecture :", err));
-        playBtn.textContent = "⏸ Pause"; // change le texte du bouton
+        playBtn.textContent = "⏹ Stop";
       } else {
+        // coupe le flux
         audio.pause();
-        playBtn.textContent = "▶ Écouter"; // remet le texte initial
+        audio.src = "";
+        playBtn.textContent = "▶ Écouter";
       }
     });
   });
@@ -356,4 +356,5 @@
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
 

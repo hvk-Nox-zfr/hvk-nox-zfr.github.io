@@ -69,10 +69,9 @@
     </nav>
 
 <section class="hero-banner">
-  <img src="assets/vafm logo ha.png" alt="Bienvenue sur VAFM" class="hero-image distant">
+  <img src="assets/logo vafm 3.png" alt="Bienvenue sur VAFM" class="hero-image distant">
   <div class="fade-overlay"></div>
 
-  <!-- ✅ Mini lecteur repositionné -->
 <div class="mini-player-zone">
   <div class="mini-player-card">
     <img src="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png" alt="VAFM" class="mini-cover" />
@@ -83,8 +82,10 @@
     </div>
   </div>
 
+  <!-- Flux audio -->
   <audio id="miniAudio" preload="none">
     <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
+    Ton navigateur ne supporte pas l’audio HTML5.
   </audio>
 </div>
 
@@ -224,47 +225,15 @@
   document.addEventListener("DOMContentLoaded", function () {
     const playBtn = document.getElementById("playBtn");
     const audio = document.getElementById("miniAudio");
-    const trackEl = document.getElementById("currentTrack");
 
-    // Bouton Play/Pause
     playBtn.addEventListener("click", function () {
       if (audio.paused) {
         audio.play().catch(err => console.error("Erreur de lecture :", err));
-        playBtn.textContent = "⏸ Pause";
+        playBtn.textContent = "⏸ Pause"; // change le texte du bouton
       } else {
         audio.pause();
-        playBtn.textContent = "▶ Écouter";
+        playBtn.textContent = "▶ Écouter"; // remet le texte initial
       }
-    });
-
-    // Fonction pour récupérer le titre en cours
-    async function fetchCurrentTrack() {
-      try {
-        const res = await fetch("https://manager4.streamradio.fr:1130/api/v2/nowplaying/1");
-        const data = await res.json();
-        if (data && data.now_playing && data.now_playing.song) {
-          trackEl.textContent = data.now_playing.song.text;
-        }
-      } catch (err) {
-        console.error("Erreur API :", err);
-      }
-    }
-
-    // Mise à jour toutes les 15 secondes
-    fetchCurrentTrack();
-    setInterval(fetchCurrentTrack, 15000);
-  });
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const playBtn = document.getElementById("playBtn");
-    const audio = document.getElementById("miniAudio");
-
-    playBtn.addEventListener("click", function () {
-      audio.play().catch(function (error) {
-        console.error("Erreur de lecture :", error);
-      });
     });
   });
 </script>
@@ -387,3 +356,4 @@
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+

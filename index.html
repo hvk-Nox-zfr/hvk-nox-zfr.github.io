@@ -236,6 +236,26 @@
       }
     });
   });
+  
+  async function fetchCurrentTrack() {
+  try {
+    const res = await fetch("https://manager4.streamradio.fr:1130/api/v2/nowplaying/1");
+    const data = await res.json();
+
+    if (data && data.now_playing && data.now_playing.song) {
+      document.getElementById("currentTrack").textContent = data.now_playing.song.text;
+    } else {
+      document.getElementById("currentTrack").textContent = "Titre indisponible";
+    }
+  } catch (err) {
+    console.error("Erreur API :", err);
+    document.getElementById("currentTrack").textContent = "Erreur de connexion";
+  }
+}
+
+// Mise à jour toutes les 15 secondes
+fetchCurrentTrack();
+setInterval(fetchCurrentTrack, 15000);
 </script>
 
 <!-- Gestion du formulaire de dédicace et du marquee -->
@@ -356,3 +376,4 @@
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+

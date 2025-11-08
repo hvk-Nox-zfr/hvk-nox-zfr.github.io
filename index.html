@@ -82,6 +82,23 @@
   <img src="assets/3.png" alt="Bienvenue sur VAFM" class="hero-image distant">
   <div class="fade-overlay"></div>
 
+<div class="mini-player-zone">
+  <div class="mini-player-card">
+    <img src="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png" alt="VAFM" class="mini-cover" />
+    <div class="mini-info">
+      <h3>VAFM</h3>
+      <p id="currentTrack">Chargement du titre...</p>
+      <button id="playBtn" class="play-btn">▶ Écouter</button>
+    </div>
+  </div>
+
+  <!-- Flux audio -->
+  <audio id="miniAudio" preload="none">
+    <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
+    Ton navigateur ne supporte pas l’audio HTML5.
+  </audio>
+</div>
+
   <div class="hero-text">
     <h2>Bienvenue sur VAFM</h2>
     <h3>VAFM est la webradio du Valenciennois. Nous diffusons des émissions locales, des interviews, des reportages et des dédicaces en direct.</h3>
@@ -365,35 +382,10 @@ setInterval(fetchCurrentTrack, 15000);
   }
 })(firebase.database());
 </script>
-  
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  <div class="mini-player-zone">
-  <div class="mini-player-card">
-    <img src="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png" alt="VAFM" class="mini-cover" />
-    <div class="mini-info">
-      <h3>VAFM</h3>
-      <p id="currentTrack">Chargement du titre...</p>
-      <button id="playBtn" class="play-btn">▶ Écouter</button>
-    </div>
-  </div>
-
-  <!-- Flux audio -->
-  <audio id="miniAudio" preload="none">
-    <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
-    Ton navigateur ne supporte pas l’audio HTML5.
-  </audio>
-</div>
-  
 </body>
 </html>
-
-
-
-
-
-
-
 
 
 

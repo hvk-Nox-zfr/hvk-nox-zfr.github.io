@@ -12,21 +12,6 @@ sc-status-widget {
 .adsbygoogle {
   margin: 20px auto;
   text-align: center;
-}
-.mini-player-zone {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #111;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  z-index: 9999;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-}
 
 .mini-player-card {
   display: flex;
@@ -1250,6 +1235,22 @@ header {
     height: 20px;
   }
 }
+  
+.mini-player-zone {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #111;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  z-index: 9999;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+}
+
 
 
 

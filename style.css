@@ -70,6 +70,7 @@ sc-status-widget {
 }
 
 html, body {
+  margin-bottom: 80px; /* hauteur du lecteur */
   height: 100%;
   font-family: sans-serif;
   background-color: #fff;
@@ -1249,4 +1250,5 @@ header {
     height: 20px;
   }
 }
+
 

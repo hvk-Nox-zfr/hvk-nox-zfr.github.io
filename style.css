@@ -58,12 +58,12 @@ body { padding-bottom: 110px; }
 .simple-play{
   background: transparent;
   border: none;
-  padding: 6px;
+  padding: 12px;
   display:flex;
   align-items:center;
   justify-content:center;
   cursor: pointer;
-  color: #ff3b30; /* couleur du triangle play */
+  color: #fff; /* couleur du triangle play */
   transition: transform .06s ease, color .12s ease;
 }
 .simple-play:active { transform: scale(.98); }
@@ -1249,6 +1249,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

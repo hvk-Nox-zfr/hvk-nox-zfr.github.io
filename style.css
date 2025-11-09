@@ -58,7 +58,7 @@ body { padding-bottom: 110px; }
 .simple-play{
   background: transparent;
   border: none;
-  padding: 6px;
+  padding: 10px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -1249,6 +1249,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

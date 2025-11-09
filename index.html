@@ -422,7 +422,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   
-<!-- Lecteur VAFM — logo à gauche, play/pause centré -->
+<!-- Lecteur VAFM — logo à gauche, play au centre (bouton simple) -->
 <div class="mini-player-zone" aria-label="Lecteur audio VAFM">
   <div class="mini-player-inner">
     <div class="left-block">
@@ -430,9 +430,15 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <div class="center-block">
-      <button id="playBtn" class="center-play" aria-pressed="false" aria-label="Lire la radio">
-        <svg class="icon-play" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="#fff" d="M8 5v14l11-7z"/></svg>
-        <svg class="icon-pause" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" style="display:none"><path fill="#fff" d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      <button id="playBtn" class="simple-play" aria-pressed="false" aria-label="Lire la radio">
+        <!-- play icon -->
+        <svg class="icon-play" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path fill="currentColor" d="M8 5v14l11-7z"/>
+        </svg>
+        <!-- pause icon (hidden by default) -->
+        <svg class="icon-pause" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" style="display:none">
+          <path fill="currentColor" d="M6 5h4v14H6zM14 5h4v14h-4z"/>
+        </svg>
       </button>
     </div>
 
@@ -450,6 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
 </body>
 </html>
+
 
 
 

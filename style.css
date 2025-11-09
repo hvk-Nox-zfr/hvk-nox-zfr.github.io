@@ -81,15 +81,6 @@ html, body {
   background-color: #fff;
 }
 
-.mini-player-zone {
-  position: relative;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  margin: 20px auto 10px;
-  width: 100%;
-}
-
 .mini-player-card {
   display: flex;
   align-items: center;
@@ -1255,6 +1246,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

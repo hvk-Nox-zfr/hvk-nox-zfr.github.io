@@ -78,6 +78,55 @@ body { padding-bottom: 110px; }
   body { padding-bottom:100px; }
 }
 
+/* wrapper pour bouton + barres */
+.play-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espace entre bouton et barres */
+}
+
+/* conteneur des deux barres */
+.bars {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  height: 36px; /* hauteur totale des barres */
+  padding-left: 2px;
+  box-sizing: border-box;
+}
+
+/* chaque barre */
+.bar {
+  display: block;
+  width: 4px;
+  height: 12px;
+  background: rgba(255,255,255,0.5); /* semi-transparente quand pausing */
+  border-radius: 2px;
+  transition: background .12s ease, transform .12s ease;
+}
+
+/* positionnement fin pour ressembler à des "barres" côte à côte */
+.b1 { transform: translateY(-2px); }
+.b2 { transform: translateY(2px); }
+
+/* état playing : barres bien visibles et légèrement agrandies */
+.simple-play.playing + .bars .bar,
+.simple-play.playing ~ .bars .bar {
+  background: #ffffff;
+  transform: scaleY(1.05);
+}
+
+/* variante animée si tu veux un effet "equalizer" */
+.simple-play.playing .bar-animate .bar { /* pas utilisé par défaut */ }
+
+/* responsive */
+@media (max-width:700px){
+  .bars { height: 30px; gap:5px; }
+  .bar { width:3px; height:10px; }
+}
+
+
 html, body {
   height: 100%;
   font-family: sans-serif;
@@ -1249,6 +1298,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

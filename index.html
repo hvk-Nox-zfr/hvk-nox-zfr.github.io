@@ -216,39 +216,108 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
   
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const playBtn = document.getElementById("playBtn");
-    const audio = document.getElementById("miniAudio");
+document.addEventListener("DOMContentLoaded", function () {
+  const playBtn = document.getElementById("playBtn");
+  const audio = document.getElementById("miniAudio");
+  const trackEl = document.getElementById("currentTrack");
 
-    playBtn.addEventListener("click", function () {
+  // --- Play / Pause (avec gestion d'erreurs)
+  async function togglePlay() {
+    try {
       if (audio.paused) {
-        audio.play().catch(err => console.error("Erreur de lecture :", err));
-        playBtn.textContent = "⏸ Pause"; // change le texte du bouton
+        await audio.play();
+        setPlayingState(true);
       } else {
         audio.pause();
-        playBtn.textContent = "▶ Écouter"; // remet le texte initial
+        setPlayingState(false);
       }
-    });
-  });
-  
-  async function fetchCurrentTrack() {
-  try {
-    const res = await fetch("https://manager10.streamradio.fr:1555/status-json.xsl");
-    const data = await res.json();
-
-    if (data.icestats && data.icestats.source && data.icestats.source.title) {
-      document.getElementById("currentTrack").textContent = data.icestats.source.title;
-    } else {
-      document.getElementById("currentTrack").textContent = "Titre indisponible";
+    } catch (err) {
+      console.error("Erreur de lecture :", err);
+      // message discret pour l'utilisateur
+      playBtn.textContent = "▶ Écouter";
+      playBtn.setAttribute('aria-pressed', 'false');
     }
-  } catch (err) {
-    console.error("Erreur API :", err);
-    document.getElementById("currentTrack").textContent = "Erreur de connexion";
   }
-}
 
-fetchCurrentTrack();
-setInterval(fetchCurrentTrack, 15000);
+  function setPlayingState(isPlaying) {
+    if (isPlaying) {
+      playBtn.textContent = '⏸ Pause';
+      playBtn.setAttribute('aria-pressed', 'true');
+    } else {
+      playBtn.textContent = '▶ Écouter';
+      playBtn.setAttribute('aria-pressed', 'false');
+    }
+  }
+
+  // si l'utilisateur clique
+  playBtn.addEventListener("click", togglePlay);
+
+  // mise à jour bouton si lecture démarrée/arrêtée depuis autre part
+  audio.addEventListener('play', () => setPlayingState(true));
+  audio.addEventListener('pause', () => setPlayingState(false));
+  audio.addEventListener('ended', () => setPlayingState(false));
+
+  // --- Récupération des métadonnées (status-json.xsl)
+  const METADATA_URL = "https://manager10.streamradio.fr:1555/status-json.xsl";
+
+  async function fetchCurrentTrack() {
+    try {
+      const res = await fetch(METADATA_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      const data = await res.json();
+
+      // Icestats classique : data.icestats.source peut être objet ou tableau
+      let title = null;
+      if (data.icestats) {
+        const src = data.icestats.source;
+        if (Array.isArray(src)) {
+          // si plusieurs flux, trouver celui qui correspond au stream ou prendre le premier
+          title = (src[0] && (src[0].title || src[0].server_description)) || null;
+        } else if (typeof src === 'object' && src !== null) {
+          title = src.title || src.server_description || null;
+        }
+      }
+
+      if (!title && data.name) title = data.name; // fallback générique
+      if (!title) title = "VAFM — En direct";
+
+      setTrackTitle(title);
+    } catch (err) {
+      console.error("Erreur API :", err);
+      trackEl.textContent = "Titre indisponible";
+      trackEl.classList.remove('long');
+    }
+  }
+
+  function setTrackTitle(title) {
+    trackEl.textContent = title;
+    // si titre trop long et desktop, active le scroll (classe "long" gérée en CSS)
+    if (title.length > 40 && window.innerWidth >= 800) {
+      trackEl.classList.add('long');
+    } else {
+      trackEl.classList.remove('long');
+    }
+  }
+
+  // Lance la récupération et la boucle
+  fetchCurrentTrack();
+  const metaInterval = setInterval(fetchCurrentTrack, 15000);
+
+  // --- Protection CORS et erreur possible
+  // Si fetch échoue côté navigateur à cause de CORS, tu verras l'erreur dans la console.
+  // Solution serveur : activer Access-Control-Allow-Origin: * sur le serveur Icecast/NGINX ou utiliser un petit proxy côté serveur.
+
+  // --- Initial state : si audio déjà en cours (rare)
+  if (!audio.paused) setPlayingState(true);
+
+  // --- Petit hack : force le lecteur en child de body pour éviter ancêtres transform/overflow
+  (function ensureInBody(){
+    const zone = document.querySelector('.mini-player-zone');
+    if (zone && zone.parentElement !== document.body) document.body.appendChild(zone);
+  })();
+
+});
 </script>
 
 <!-- Gestion du formulaire de dédicace et du marquee -->
@@ -406,6 +475,7 @@ setInterval(fetchCurrentTrack, 15000);
   
 </body>
 </html>
+
 
 
 

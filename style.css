@@ -14,122 +14,83 @@ sc-status-widget {
   text-align: center;
 }
 
-/* Espace pour que le contenu ne soit pas caché par le lecteur */
-body { padding-bottom: 110px; }
+/* espace pour le lecteur */
+body { padding-bottom: 120px; }
 
-/* Barre fixe pleine largeur */
+/* barre fixe full width */
 .mini-player-zone.full-width {
   position: fixed !important;
   bottom: 0 !important;
   left: 0 !important;
   width: 100% !important;
   z-index: 999999 !important;
-  background: linear-gradient(90deg,#0f0f0f 0%, #111 100%) !important;
-  color: #fff !important;
-  box-shadow: 0 -4px 18px rgba(0,0,0,0.6) !important;
-  padding: 10px 0 !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
+  background: #0f0f0f;
+  color: #fff;
+  box-shadow: 0 -4px 18px rgba(0,0,0,0.6);
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Conteneur centré et responsive */
+/* conteneur interne */
 .mini-player-inner{
   width: 100%;
   max-width: 1200px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 0 20px;
+  padding: 0 16px;
   box-sizing: border-box;
+  gap: 16px;
 }
 
-/* Cover */
-.mini-cover{
-  width: 56px;
-  height: 56px;
-  border-radius: 6px;
-  flex: 0 0 56px;
-  object-fit: cover;
-  background: #222;
-}
+/* blocs */
+.left-block { flex: 0 0 auto; display:flex; align-items:center; }
+.center-block { flex: 0 0 80px; display:flex; justify-content:center; align-items:center; }
+.right-block { flex: 1 1 auto; min-width: 0; display:flex; flex-direction:column; gap:4px; }
 
-/* Info et mise en page texte */
-.mini-info{
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-  flex: 1 1 auto;
-}
+/* cover */
+.mini-cover { width:56px; height:56px; border-radius:6px; object-fit:cover; }
 
-/* Ligne station + bouton */
-.station-row{
+/* station & titre */
+.station-name { font-weight:700; font-size:14px; }
+.current-track { font-weight:700; font-size:17px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* bouton play style YouTube-like simple */
+.yt-play-btn{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  border: none;
+  background: linear-gradient(180deg,#ff3b30,#e60000);
   display:flex;
   align-items:center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-/* Nom station */
-.station-name{
-  margin:0;
-  font-size: 15px;
-  font-weight:700;
-  color:#fff;
-}
-
-/* Bouton play */
-.play-btn{
-  background:#e60000;
-  color:#fff;
-  border:0;
-  padding:8px 12px;
-  border-radius:6px;
+  justify-content:center;
   cursor:pointer;
-  font-size:14px;
-}
-.play-btn:hover{ background:#ff1a1a; }
-
-/* Ligne titre de chanson — titre plus gros */
-.track-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  width:100%;
-  min-width:0;
-}
-.current-track{
-  font-size:18px;
-  font-weight:700;
+  box-shadow: 0 6px 18px rgba(230,0,0,0.35);
+  transition: transform .08s ease;
   color:#fff;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  display:block;
-  min-width:0;
+  font-size:22px;
+  line-height:1;
+  padding:0;
 }
+.yt-play-btn:active{ transform: scale(.98); }
 
-/* Si le titre est long, on propose un scroll automatique (marquee-like) sur desktop */
-@media (min-width:800px){
-  .current-track.long {
-    animation: scrollText 12s linear infinite;
-  }
-  @keyframes scrollText {
-    0% { transform: translateX(0); }
-    10% { transform: translateX(0); }
-    90% { transform: translateX(-40%); }
-    100% { transform: translateX(-40%); }
-  }
-}
+/* icon states */
+.yt-play-btn .play-icon { display:inline-block; }
+.yt-play-btn .pause-icon { display:none; }
 
-/* Mobile : empile les éléments, titre légèrement plus petit mais visible */
-@media (max-width:799px){
-  .mini-player-inner { gap:12px; padding: 8px 12px; }
-  .mini-cover{ width:46px; height:46px; flex:0 0 46px; }
-  .station-row{ flex-direction:row; }
-  .current-track{ font-size:16px; }
-  body { padding-bottom: 120px; }
+/* state when playing */
+.yt-play-btn.playing { background: linear-gradient(180deg,#222,#111); }
+.yt-play-btn.playing .play-icon { display:none; }
+.yt-play-btn.playing .pause-icon { display:inline-block; }
+
+/* responsive: reduce size on small screens */
+@media (max-width:700px){
+  .mini-cover { width:46px; height:46px; }
+  .yt-play-btn { width:52px; height:52px; font-size:18px; }
+  .current-track { font-size:15px; }
+  body { padding-bottom:110px; }
 }
 
 html, body {
@@ -1303,6 +1264,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

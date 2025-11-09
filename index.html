@@ -220,105 +220,75 @@ document.addEventListener("DOMContentLoaded", function () {
   const playBtn = document.getElementById("playBtn");
   const audio = document.getElementById("miniAudio");
   const trackEl = document.getElementById("currentTrack");
+  const METADATA_URL = "https://manager10.streamradio.fr:1555/status-json.xsl";
 
-  // --- Play / Pause (avec gestion d'erreurs)
-  async function togglePlay() {
+  // Toggle play/pause
+  async function togglePlay(){
     try {
       if (audio.paused) {
         await audio.play();
-        setPlayingState(true);
       } else {
         audio.pause();
-        setPlayingState(false);
       }
-    } catch (err) {
-      console.error("Erreur de lecture :", err);
-      // message discret pour l'utilisateur
-      playBtn.textContent = "▶ Écouter";
-      playBtn.setAttribute('aria-pressed', 'false');
+    } catch(e){
+      console.error("Erreur lecture :", e);
     }
   }
 
-  function setPlayingState(isPlaying) {
-    if (isPlaying) {
-      playBtn.textContent = '⏸ Pause';
-      playBtn.setAttribute('aria-pressed', 'true');
+  function updatePlayButton(){
+    if (!audio.paused) {
+      playBtn.classList.add('playing');
+      playBtn.setAttribute('aria-pressed','true');
     } else {
-      playBtn.textContent = '▶ Écouter';
-      playBtn.setAttribute('aria-pressed', 'false');
+      playBtn.classList.remove('playing');
+      playBtn.setAttribute('aria-pressed','false');
     }
   }
 
-  // si l'utilisateur clique
-  playBtn.addEventListener("click", togglePlay);
+  playBtn.addEventListener('click', togglePlay);
+  audio.addEventListener('play', updatePlayButton);
+  audio.addEventListener('pause', updatePlayButton);
+  audio.addEventListener('ended', updatePlayButton);
 
-  // mise à jour bouton si lecture démarrée/arrêtée depuis autre part
-  audio.addEventListener('play', () => setPlayingState(true));
-  audio.addEventListener('pause', () => setPlayingState(false));
-  audio.addEventListener('ended', () => setPlayingState(false));
-
-  // --- Récupération des métadonnées (status-json.xsl)
-  const METADATA_URL = "https://manager10.streamradio.fr:1555/status-json.xsl";
-
-  async function fetchCurrentTrack() {
+  // fetch metadata (robuste pour icestats)
+  async function fetchCurrentTrack(){
     try {
       const res = await fetch(METADATA_URL, { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
-
       const data = await res.json();
-
-      // Icestats classique : data.icestats.source peut être objet ou tableau
       let title = null;
       if (data.icestats) {
         const src = data.icestats.source;
-        if (Array.isArray(src)) {
-          // si plusieurs flux, trouver celui qui correspond au stream ou prendre le premier
-          title = (src[0] && (src[0].title || src[0].server_description)) || null;
-        } else if (typeof src === 'object' && src !== null) {
-          title = src.title || src.server_description || null;
-        }
+        if (Array.isArray(src)) title = src[0] && (src[0].title || src[0].server_description);
+        else if (src && typeof src === 'object') title = src.title || src.server_description;
       }
-
-      if (!title && data.name) title = data.name; // fallback générique
-      if (!title) title = "VAFM — En direct";
-
-      setTrackTitle(title);
-    } catch (err) {
-      console.error("Erreur API :", err);
-      trackEl.textContent = "Titre indisponible";
-      trackEl.classList.remove('long');
+      if (!title && data.name) title = data.name;
+      setTitle(title || "VAFM — En direct");
+    } catch(err){
+      console.error("Erreur meta :", err);
+      setTitle("Titre indisponible");
     }
   }
 
-  function setTrackTitle(title) {
-    trackEl.textContent = title;
-    // si titre trop long et desktop, active le scroll (classe "long" gérée en CSS)
-    if (title.length > 40 && window.innerWidth >= 800) {
-      trackEl.classList.add('long');
-    } else {
-      trackEl.classList.remove('long');
-    }
+  function setTitle(t){
+    trackEl.textContent = t;
   }
 
-  // Lance la récupération et la boucle
+  // initial load & interval
   fetchCurrentTrack();
-  const metaInterval = setInterval(fetchCurrentTrack, 15000);
+  setInterval(fetchCurrentTrack,15000);
 
-  // --- Protection CORS et erreur possible
-  // Si fetch échoue côté navigateur à cause de CORS, tu verras l'erreur dans la console.
-  // Solution serveur : activer Access-Control-Allow-Origin: * sur le serveur Icecast/NGINX ou utiliser un petit proxy côté serveur.
-
-  // --- Initial state : si audio déjà en cours (rare)
-  if (!audio.paused) setPlayingState(true);
-
-  // --- Petit hack : force le lecteur en child de body pour éviter ancêtres transform/overflow
+  // ensure reader is in body (évite ancêtres transform)
   (function ensureInBody(){
     const zone = document.querySelector('.mini-player-zone');
     if (zone && zone.parentElement !== document.body) document.body.appendChild(zone);
   })();
 
+  // set initial button state
+  updatePlayButton();
 });
 </script>
+
 
 <!-- Gestion du formulaire de dédicace et du marquee -->
 <script>
@@ -480,6 +450,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
 </body>
 </html>
+
 
 
 

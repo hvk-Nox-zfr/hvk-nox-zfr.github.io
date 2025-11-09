@@ -385,7 +385,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   
-<!-- Lecteur VAFM — logo à gauche, play au centre (bouton simple) -->
+<!-- Lecteur VAFM — logo à gauche, play centré, 2 barres de chaque côté -->
 <div class="mini-player-zone" aria-label="Lecteur audio VAFM">
   <div class="mini-player-inner">
     <div class="left-block">
@@ -393,25 +393,24 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <div class="center-block">
+      <div class="bars-left bars-vertical" aria-hidden="true">
+        <span class="bar b1"></span>
+        <span class="bar b2"></span>
+      </div>
+
       <button id="playBtn" class="simple-play" aria-pressed="false" aria-label="Lire la radio">
-        <!-- play icon -->
         <svg class="icon-play" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
           <path fill="currentColor" d="M8 5v14l11-7z"/>
         </svg>
-        <!-- pause icon (hidden by default) -->
         <svg class="icon-pause" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" style="display:none">
           <path fill="currentColor" d="M6 5h4v14H6zM14 5h4v14h-4z"/>
         </svg>
       </button>
-      
-          <!-- DEUX BARRES BLANCHES A COTE -->
-    <span class="bars" aria-hidden="true">
-      <span class="bar b1"></span>
-      <span class="bar b2"></span>
-    </span>
-  </div>
-</div>
-  
+
+      <div class="bars-right bars-vertical" aria-hidden="true">
+        <span class="bar b1"></span>
+        <span class="bar b2"></span>
+      </div>
     </div>
 
     <div class="right-block">
@@ -428,6 +427,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
 </body>
 </html>
+
 
 
 

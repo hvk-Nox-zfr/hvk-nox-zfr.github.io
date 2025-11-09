@@ -224,7 +224,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const pauseIcon = playBtn.querySelector('.icon-pause');
   const METADATA_URL = "https://manager10.streamradio.fr:1555/status-json.xsl";
 
-  // bascule play/pause
   async function togglePlay(){
     try {
       if (audio.paused) {
@@ -256,7 +255,6 @@ document.addEventListener("DOMContentLoaded", function () {
   audio.addEventListener('pause', updatePlayUI);
   audio.addEventListener('ended', updatePlayUI);
 
-  // fetch métadonnées
   async function fetchCurrentTrack(){
     try {
       const res = await fetch(METADATA_URL, { cache: 'no-store' });
@@ -279,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
   fetchCurrentTrack();
   setInterval(fetchCurrentTrack,15000);
 
-  // forcer le lecteur dans body pour éviter ancêtres transform/overflow
+  // déplacer le lecteur dans body si besoin (évite ancêtre transform/overflow)
   (function ensureInBody(){
     const zone = document.querySelector('.mini-player-zone');
     if (zone && zone.parentElement !== document.body) document.body.appendChild(zone);
@@ -289,6 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updatePlayUI();
 });
 </script>
+
 
 <!-- Gestion du formulaire de dédicace et du marquee -->
 <script>
@@ -456,6 +455,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
 </body>
 </html>
+
 
 
 

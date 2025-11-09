@@ -383,18 +383,22 @@ setInterval(fetchCurrentTrack, 15000);
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   
-  <div class="mini-player-zone">
-  <div class="mini-player-card">
-    <img src="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png" alt="VAFM" class="mini-cover" />
+<!-- Lecteur audio global VAFM — full width -->
+<div class="mini-player-zone full-width" aria-live="polite" role="region" aria-label="Lecteur audio VAFM">
+  <div class="mini-player-inner">
+    <img src="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png" alt="Logo VAFM" class="mini-cover" />
     <div class="mini-info">
-      <h3>VAFM</h3>
-      <p id="currentTrack">Chargement du titre...</p>
-      <button id="playBtn" class="play-btn">▶ Écouter</button>
+      <div class="station-row">
+        <h3 class="station-name">VAFM</h3>
+        <button id="playBtn" class="play-btn" aria-pressed="false" aria-label="Lire la radio">▶ Écouter</button>
+      </div>
+      <div class="track-row">
+        <div id="currentTrack" class="current-track">Chargement du titre...</div>
+      </div>
     </div>
   </div>
 
-  <!-- Flux audio -->
-  <audio id="miniAudio" preload="none">
+  <audio id="miniAudio" preload="none" crossorigin="anonymous">
     <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
     Ton navigateur ne supporte pas l’audio HTML5.
   </audio>
@@ -402,6 +406,7 @@ setInterval(fetchCurrentTrack, 15000);
   
 </body>
 </html>
+
 
 
 

@@ -1,3 +1,74 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const playBtn = document.getElementById("playBtn");
+  const audio = document.getElementById("miniAudio");
+  const trackEl = document.getElementById("currentTrack");
+  const playIcon = playBtn.querySelector('.icon-play');
+  const pauseIcon = playBtn.querySelector('.icon-pause');
+  const METADATA_URL = "https://manager10.streamradio.fr:1555/status-json.xsl";
+
+  async function togglePlay(){
+    try {
+      if (audio.paused) {
+        await audio.play();
+      } else {
+        audio.pause();
+      }
+    } catch(e){
+      console.error("Erreur lecture :", e);
+    }
+  }
+
+  function updatePlayUI(){
+    if (!audio.paused) {
+      playBtn.classList.add('playing');
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'inline';
+      playBtn.setAttribute('aria-pressed','true');
+    } else {
+      playBtn.classList.remove('playing');
+      playIcon.style.display = 'inline';
+      pauseIcon.style.display = 'none';
+      playBtn.setAttribute('aria-pressed','false');
+    }
+  }
+
+  playBtn.addEventListener('click', togglePlay);
+  audio.addEventListener('play', updatePlayUI);
+  audio.addEventListener('pause', updatePlayUI);
+  audio.addEventListener('ended', updatePlayUI);
+
+  async function fetchCurrentTrack(){
+    try {
+      const res = await fetch(METADATA_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      let title = null;
+      if (data.icestats) {
+        const src = data.icestats.source;
+        if (Array.isArray(src)) title = src[0] && (src[0].title || src[0].server_description);
+        else if (src && typeof src === 'object') title = src.title || src.server_description;
+      }
+      if (!title && data.name) title = data.name;
+      trackEl.textContent = title || "VAFM — En direct";
+    } catch(err){
+      console.error("Erreur meta :", err);
+      trackEl.textContent = "Titre indisponible";
+    }
+  }
+
+  fetchCurrentTrack();
+  setInterval(fetchCurrentTrack,15000);
+
+  // déplacer le lecteur dans body si besoin (évite ancêtre transform/overflow)
+  (function ensureInBody(){
+    const zone = document.querySelector('.mini-player-zone');
+    if (zone && zone.parentElement !== document.body) document.body.appendChild(zone);
+  })();
+
+  // état initial
+  updatePlayUI();
+});
+
 // principal.js (version robuste pour dédicaces)
 // Remplace entièrement ton fichier principal.js par ce contenu.
 

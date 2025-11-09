@@ -70,68 +70,6 @@ body { padding-bottom: 120px; }
 }
 .simple-play:active { transform: scale(.98); }
 
-/* état playing : change couleur et swap icônes */
-.simple-play.playing { color: #ffffff; }
-
-/* BARS verticales — couvrent toute la hauteur de la barre */
-.bars-vertical {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  height: 100%;
-  box-sizing: border-box;
-  width: 18px; /* espace réservé pour les 2 barres */
-  align-items: center;
-}
-
-/* chaque barre: pleine hauteur visuelle (proportionnelle) */
-.bars-vertical .bar {
-  display:block;
-  width: 4px;
-  background: rgba(255,255,255,0.35); /* semi-transparent hors lecture */
-  border-radius: 2px;
-  transition: background .12s ease, transform .12s ease, height .12s ease;
-}
-
-/* hauteur des deux barres: on augmente pour qu'elles paraissent "pleines" */
-.bars-vertical .bar.b1 { height: 40%; } /* barre supérieure/à gauche */
-.bars-vertical .bar.b2 { height: 70%; } /* barre inférieure/à droite */
-
-/* Ajuste pour que visuellement les barres occupent la hauteur complète du wrapper */
-.mini-player-inner { align-items: stretch; }
-.bars-vertical { justify-content: space-around; padding: 6px 0; }
-
-/* Etat PLAYING : barres blanches et légèrement agrandies */
-.simple-play.playing ~ .bars-right .bar,
-.simple-play.playing + .bars-right .bar,
-.simple-play.playing + .bars-left .bar,
-.simple-play.playing ~ .bars-left .bar,
-.simple-play.playing ~ .bars-vertical .bar,
-.simple-play.playing .bar {
-  background: #ffffff;
-  transform: scaleY(1.02);
-}
-
-/* Forcer barres pleines (blanches) quand lecture */
-.simple-play.playing ~ .bars-right .b1,
-.simple-play.playing ~ .bars-right .b2,
-.simple-play.playing ~ .bars-left .b1,
-.simple-play.playing ~ .bars-left .b2 {
-  background: #ffffff;
-}
-
-/* Responsive: réduire tailles */
-@media (max-width:700px){
-  .mini-cover { width:46px; height:46px; }
-  .mini-player-inner { height:64px; padding: 10px; }
-  .bars-vertical { width:14px; gap:6px; }
-  .bars-vertical .bar { width:3px; }
-  .bars-vertical .bar.b1 { height: 36%; }
-  .bars-vertical .bar.b2 { height: 62%; }
-  .current-track { font-size:14px; }
-  body { padding-bottom:100px; }
-}
 
 html, body {
   height: 100%;
@@ -1304,6 +1242,7 @@ header {
     height: 20px;
   }
 }
+
 
 
 

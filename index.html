@@ -289,7 +289,6 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
-<!-- Gestion du formulaire de dédicace et du marquee -->
 <script>
 (function initDedicaces() {
   const db = firebase.database();
@@ -301,6 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const nomInput = document.getElementById('nom');
   const charCount = document.getElementById('charCount');
   const file = [];
+  const affichées = new Set(); // pour éviter les doublons
 
   if (!form || !feed || !marquee || !msgInput || !nomInput) return;
 
@@ -321,8 +321,12 @@ document.addEventListener("DOMContentLoaded", function () {
       .replace(/'/g, '&#39;');
   }
 
-  // affichage local d'une dédicace
+  // affichage d'une dédicace (si pas déjà affichée)
   function displayDedicace(obj) {
+    const id = `${obj.nom}::${obj.message}`;
+    if (affichées.has(id)) return;
+    affichées.add(id);
+
     const div = document.createElement('div');
     div.className = 'dedicace-entry';
     div.innerHTML = `<strong>${escapeHtml(obj.nom)} :</strong> ${escapeHtml(obj.message)}`;
@@ -332,7 +336,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (file.length === 1) lancerDefilement();
   }
 
-  // lecture initiale (les N dernières)
+  // lecture initiale
   db.ref('dedicaces').orderByChild('date').limitToLast(100).once('value')
     .then(snap => {
       const items = [];
@@ -344,12 +348,10 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(err => console.warn('Erreur lecture initiale dedicaces:', err));
 
-  // écoute des nouveaux ajouts (en plus de la lecture initiale)
+  // écoute des nouveaux ajouts
   db.ref('dedicaces').orderByChild('date').limitToLast(10).on('child_added', snap => {
     const d = snap.val();
     if (!d || !d.nom || !d.message) return;
-    // éviter doublons : si la dédicace a un timestamp très ancien, probablement déjà affichée
-    // ici on affiche toujours (ok si duplication minime)
     displayDedicace(d);
   });
 
@@ -377,11 +379,10 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error('Erreur push dedicace', err);
         alert('Erreur lors de l\'envoi. Réessaie plus tard.');
       } else {
-        // affichage immédiat (la listener realtime ajoutera aussi, mais on évite d'attendre)
-        displayDedicace(payload);
         form.reset();
         charCount.textContent = '60 caractères restants';
         localStorage.setItem('dedicaceDate', today);
+        // on ne l'affiche pas ici → Firebase le renverra via child_added
       }
     });
   });
@@ -401,7 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(lancerDefilement, duree * 1000 + 200);
     }, 50);
   }
-})(firebase.database());
+})();
 </script>
   
 <script type="application/ld+json">
@@ -455,3 +456,4 @@ document.addEventListener("DOMContentLoaded", function () {
   
 </body>
 </html>
+

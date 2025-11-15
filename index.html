@@ -105,7 +105,17 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-    
+
+    <main class="container">
+      <div class="article-card" onclick="openPopup('popup-emission-DJ')">
+        <img src="assets/emission CQFD.png" alt="nouvelle emission CQFD" class="card-image" />
+        <div class="card-content">
+          <h3>Nouvelle émission : Underground Session débarque sur VAFM !</h3>
+          <p>VAFM enrichit sa programmation nocturne avec Underground Session, un nouveau rendez-vous entièrement dédié aux sons électroniques.
+Aux commandes : DJ MKII, qui vous fera voyager chaque mois avec un mix exclusif.</p>
+        </div>
+      </div>
+      
     <main class="container">
       <div class="article-card" onclick="openPopup('popup-emission')">
         <img src="assets/emission CQFD.png" alt="nouvelle emission CQFD" class="card-image" />
@@ -157,7 +167,26 @@
         </a>
       </div>
     </main>
-    
+
+      <div id="popup-emission-DJ" class="popup hidden">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup('popup-emission-DJ')">✖</button>
+    <img src="assets/emission CQFD.png" alt="emission DJ" class="popup-image" />
+    <h2>Nouvelle émission : Underground Session débarque sur VAFM !</h2>
+    <p>
+      VAFM enrichit sa programmation nocturne avec Underground Session, un nouveau rendez-vous entièrement dédié aux sons électroniques.
+Aux commandes : DJ MKII, qui vous fera voyager chaque mois avec un mix exclusif.
+🎧 Chaque 3ᵉ samedi du mois, de 23h à 00h, laissez-vous emporter par une heure de house et d’electro, soigneusement sélectionnée et mixée en live.
+Au programme :
+DJ MKII aux platines
+Un mix original à chaque émission
+Les meilleurs sons house & electro du moment
+Une ambiance club directement depuis votre radio
+Que vous soyez fan d’électro, passionné de house ou simplement en quête d’un nouveau rendez-vous musical, Underground Session devient l’émission incontournable de votre fin de soirée.
+    </p>
+  </div>
+</div>
+      
 <!-- Popups -->
 <div id="popup-emission" class="popup hidden">
   <div class="popup-content">
@@ -382,5 +411,6 @@
   
 </body>
 </html>
+
 
 

@@ -79,7 +79,7 @@
     </nav>
 
 <section class="hero-banner">
-  <img src="assets/3.png" alt="Bienvenue sur VAFM" class="hero-image distant">
+  <img src="assets/vafm site.png" alt="Bienvenue sur VAFM" class="hero-image distant">
   <div class="fade-overlay"></div>
 
   <div class="hero-text">
@@ -105,7 +105,15 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
+  
+      <div class="article-card" onclick="openPopup('popup-noel')">
+        <img src="assets/marché_noel.jpeg" alt="VAFM recrute" class="card-image" />
+        <div class="card-content">
+          <h3>Le marché de Noël arrive à Valenciennes.</h3>
+          <p>Le marché de noël de Valenciennes est en préparations pour vous offrir le meilleur noël.</p>
+        </div>
+      </div>
+  
     <main class="container">
       <div class="article-card" onclick="openPopup('popup-emission-DJ')">
         <img src="assets/IMG_1201.png" alt="nouvelle emission Underground" class="card-image" />
@@ -168,6 +176,20 @@ Aux commandes : DJ MKII, qui vous fera voyager chaque mois avec un mix exclusif.
       </div>
     </main>
 
+<!-- Popups -->
+<div id="popup-noel" class="popup hidden">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup('popup-noel')">✖</button>
+    <img src="assets/emission CQFD.png" alt="emission CQFD" class="popup-image" />
+    <h2>Le marché de Noël arrive à Valenciennes.</h2>
+    <p>
+      Le marché de Noël de Valenciennes est en préparation pour vous offrir le plus beau des Noëls. 
+      Au programme : une grande roue, des stands pour vous régaler et de belles décorations pour une fête incroyable et inoubliable. 
+      Le marché ouvrira ses portes le samedi 29 novembre et se terminera le 24 décembre.
+    </p>
+  </div>
+</div>
+      
       <div id="popup-emission-DJ" class="popup hidden">
   <div class="popup-content">
     <button class="close-btn" onclick="closePopup('popup-emission-DJ')">✖</button>
@@ -411,6 +433,7 @@ Que vous soyez fan d’électro, passionné de house ou simplement en quête d�
   
 </body>
 </html>
+
 
 
 

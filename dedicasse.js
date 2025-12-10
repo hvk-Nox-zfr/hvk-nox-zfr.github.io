@@ -1,16 +1,18 @@
 (function initDedicaces() {
-  // ⚡️ Configuration Firebase (remplace par tes vraies infos)
-const firebaseConfig = {
-  apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
-  authDomain: "vafm-dedicaces.firebaseapp.com",
-  databaseURL: "https://vafm-dedicaces-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "vafm-dedicaces",
-  storageBucket: "vafm-dedicaces.firebasestorage.app",
-  messagingSenderId: "553720861929",
-  appId: "1:553720861929:web:87739d3bfa41ed5b50cc78",
-  measurementId: "G-QNVR8XET7E"
-};
-  firebase.initializeApp(firebaseConfig);
+  // Évite double initialisation si ce script est inclus plusieurs fois
+  const firebaseConfig = {
+    apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
+    authDomain: "vafm-dedicaces.firebaseapp.com",
+    databaseURL: "https://vafm-dedicaces-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "vafm-dedicaces",
+    storageBucket: "vafm-dedicaces.appspot.com",
+    messagingSenderId: "553720861929",
+    appId: "1:553720861929:web:87739d3bfa41ed5b50cc78",
+    measurementId: "G-QNVR8XET7E"
+  };
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
 
   const db = firebase.database();
 
@@ -19,20 +21,26 @@ const firebaseConfig = {
   const marquee = document.getElementById('dedicaceMarquee');
   const msgInput = document.getElementById('message');
   const nomInput = document.getElementById('nom');
+  const emailInput = document.getElementById('email'); // optionnel si présent dans ton HTML
   const charCount = document.getElementById('charCount');
+
+  // File pour le défilement
   const file = [];
+  // Ensemble des clés déjà affichées pour éviter les doublons
   const affichées = new Set();
+  // Anti double clic
+  let isSending = false;
 
   if (!form || !feed || !marquee || !msgInput || !nomInput) return;
 
-  // compteur de caractères
+  // Compteur de caractères
   msgInput.addEventListener('input', () => {
     const max = parseInt(msgInput.getAttribute('maxlength') || '60', 10);
     const rem = Math.max(0, max - msgInput.value.length);
     charCount.textContent = rem + ' caractères restants';
   });
 
-  // échappement simple
+  // Échappement simple
   function escapeHtml(s) {
     return String(s)
       .replace(/&/g, '&amp;')
@@ -42,11 +50,10 @@ const firebaseConfig = {
       .replace(/'/g, '&#39;');
   }
 
-  // affichage d'une dédicace validée
-  function displayDedicace(obj) {
-    const id = `${obj.nom}::${obj.message}`;
-    if (affichées.has(id)) return;
-    affichées.add(id);
+  // Affichage d'une dédicace validée (par clé Firebase pour le de-dup)
+  function displayDedicace(key, obj) {
+    if (affichées.has(key)) return;
+    affichées.add(key);
 
     const div = document.createElement('div');
     div.className = 'dedicace-entry';
@@ -54,48 +61,86 @@ const firebaseConfig = {
     feed.prepend(div);
 
     file.push(` 🎙️ ${obj.nom} : ${obj.message} `);
-    if (file.length === 1) lancerDefilement();
+    if (file.length === 1 && typeof lancerDefilement === 'function') {
+      lancerDefilement();
+    }
   }
 
-  // lecture initiale : uniquement les "accepted"
-  db.ref('dedicaces').orderByChild('date').limitToLast(100).once('value')
+  // Lecture initiale : affiche uniquement les "accepted"
+  db.ref('dedicaces').orderByChild('date').limitToLast(200).once('value')
     .then(snap => {
       const items = [];
       snap.forEach(child => {
         const d = child.val();
-        if (d && d.nom && d.message && d.status === "accepted") items.push(d);
+        const k = child.key;
+        if (d && d.nom && d.message && d.status === "accepted") {
+          items.push({ key: k, data: d });
+        }
       });
-      items.reverse().forEach(displayDedicace);
+      // On veut du plus récent au plus ancien
+      items.reverse().forEach(({ key, data }) => displayDedicace(key, data));
     })
     .catch(err => console.warn('Erreur lecture initiale dedicaces:', err));
 
-  // écoute des nouveaux ajouts validés
-  db.ref('dedicaces').orderByChild('date').limitToLast(10).on('child_added', snap => {
+  // Écoute des nouveaux ajouts (on n’affiche que les "accepted")
+  db.ref('dedicaces').orderByChild('date').limitToLast(50).on('child_added', snap => {
     const d = snap.val();
-    if (!d || !d.nom || !d.message || d.status !== "accepted") return;
-    displayDedicace(d);
+    const k = snap.key;
+    if (!d || !d.nom || !d.message) return;
+    if (d.status === "accepted") displayDedicace(k, d);
   });
 
-  // envoi : stocke en "pending"
+  // Écoute des changements de statut : quand une dédicace passe de "pending" à "accepted", on l’affiche
+  db.ref('dedicaces').on('child_changed', snap => {
+    const d = snap.val();
+    const k = snap.key;
+    if (!d || !d.nom || !d.message) return;
+    if (d.status === "accepted") displayDedicace(k, d);
+  });
+
+  // Envoi : stocke en "pending" (et empêche les doubles envois)
   form.addEventListener('submit', e => {
     e.preventDefault();
-    const nom = nomInput.value.trim();
-    const message = msgInput.value.trim();
-    if (!nom || !message) return alert('Nom et message requis.');
+    if (isSending) return;
+    isSending = true;
 
-    // blacklist courte
-    const blacklist = ["con","connard","merde","putain","salope","enculé","fdp","tg","nique","bite","couille"];
-    if (blacklist.some(m => message.toLowerCase().includes(m))) {
-      return alert('Ton message contient un mot interdit. Merci de rester respectueux !');
+    const nom = nomInput.value.trim();
+    const email = emailInput ? emailInput.value.trim() : ""; // optionnel
+    const message = msgInput.value.trim();
+
+    if (!nom || !message) {
+      alert('Nom et message requis.');
+      isSending = false;
+      return;
     }
 
+    // Blacklist courte
+    const blacklist = ["con","connard","merde","putain","salope","enculé","fdp","tg","nique","bite","couille"];
+    if (blacklist.some(m => message.toLowerCase().includes(m))) {
+      alert('Ton message contient un mot interdit. Merci de rester respectueux !');
+      isSending = false;
+      return;
+    }
+
+    // Limite d’une dédicace par jour (locale)
     const today = new Date().toISOString().split('T')[0];
     const last = localStorage.getItem('dedicaceDate');
-    if (last === today) return alert("Tu as déjà envoyé une dédicace aujourd'hui.");
+    if (last === today) {
+      alert("Tu as déjà envoyé une dédicace aujourd'hui.");
+      isSending = false;
+      return;
+    }
 
-    const payload = { nom, message, date: Date.now(), status: "pending" };
+    const payload = {
+      nom,
+      email,                  // stocké si présent
+      message,
+      date: Date.now(),
+      status: "pending"
+    };
 
     db.ref('dedicaces').push(payload, err => {
+      isSending = false;
       if (err) {
         console.error('Erreur push dedicace', err);
         alert('Erreur lors de l\'envoi. Réessaie plus tard.');

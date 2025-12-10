@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin VAFM - Dédicaces</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .admin-layout {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #970A0A;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .sidebar h2 {
+      margin: 0 0 20px 0;
+    }
+
+    .sidebar button {
+      background-color: #fff;
+      color: #970A0A;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .sidebar button:hover {
+      background-color: #f2f2f2;
+    }
+
+    .editor {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .tools {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .tools h2 {
+      margin: 0;
+      flex: 1;
+      color: #970A0A;
+    }
+
+    .dedicace-list {
+      flex: 1;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      background-color: #fff;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .dedicace-card {
+      border: 2px solid #970A0A;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      background-color: #fdfdfd;
+    }
+
+    .dedicace-card strong {
+      color: #970A0A;
+    }
+
+    .dedicace-card button {
+      margin-top: 10px;
+      margin-right: 10px;
+      background-color: #970A0A;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .dedicace-card button:hover {
+      background-color: #b30d0d;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <h2>🛠️ Admin VAFM</h2>
+      <button onclick="window.location.href='admin.html'">🏠 Retour Admin</button>
+      <button onclick="logout()">Déconnexion</button>
+    </aside>
+
+    <main class="editor">
+      <div class="tools">
+        <h2>Dédicaces en attente</h2>
+      </div>
+
+      <div id="adminFeed" class="dedicace-list">
+        <!-- Les dédicaces pending apparaîtront ici -->
+      </div>
+    </main>
+  </div>
+
+  <!-- ✅ Firebase SDK version 8 -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <!-- ✅ Configuration Firebase -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsla-0z8ZyPgfJOTxabFKxBEE2y0oZDD8",
+      authDomain: "vafm-admin.firebaseapp.com",
+      databaseURL: "https://vafm-admin-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "vafm-admin",
+      storageBucket: "vafm-admin.appspot.com",
+      messagingSenderId: "323614046813",
+      appId: "1:323614046813:web:15a1bceb338680abb0ebb4"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "login.html";
+      });
+    }
+
+    // ✅ Script pour gérer les dédicaces
+    const db = firebase.database();
+    const adminFeed = document.getElementById('adminFeed');
+
+    db.ref('dedicaces').orderByChild('status').equalTo('pending').on('child_added', snap => {
+      const d = snap.val();
+      const id = snap.key;
+
+      const div = document.createElement('div');
+      div.className = 'dedicace-card';
+      div.innerHTML = `
+        <strong>${d.nom} :</strong> ${d.message}<br>
+        <button onclick="valider('${id}')">✅ Accepter</button>
+        <button onclick="refuser('${id}')">❌ Refuser</button>
+      `;
+      adminFeed.appendChild(div);
+    });
+
+    function valider(id) {
+      db.ref('dedicaces/' + id).update({ status: "accepted" });
+      document.getElementById('adminFeed').querySelector(`[onclick="valider('${id}')"]`).parentElement.remove();
+    }
+
+    function refuser(id) {
+      db.ref('dedicaces/' + id).update({ status: "rejected" });
+      document.getElementById('adminFeed').querySelector(`[onclick="refuser('${id}')"]`).parentElement.remove();
+    }
+  </script>
+</body>
+</html>

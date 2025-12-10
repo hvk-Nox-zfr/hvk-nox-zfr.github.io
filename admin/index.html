@@ -20,6 +20,28 @@
       color: white;
       padding: 20px;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .sidebar h2 {
+      margin: 0 0 20px 0;
+    }
+
+    .sidebar button {
+      background-color: #fff;
+      color: #970A0A;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .sidebar button:hover {
+      background-color: #f2f2f2;
     }
 
     .editor {
@@ -50,6 +72,11 @@
       padding: 10px 20px;
       border-radius: 30px;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .tools button:hover {
+      background-color: #b30d0d;
     }
 
     .zone-cartes {
@@ -102,6 +129,7 @@
   <div class="admin-layout">
     <aside class="sidebar">
       <h2>🛠️ Admin VAFM</h2>
+      <button onclick="window.location.href='dedicaces-admin.html'">📜 Dédicaces</button>
       <button onclick="logout()">Déconnexion</button>
     </aside>
 
@@ -125,7 +153,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-  <!-- ✅ Configuration + Sécurité Firebase -->
+  <!-- ✅ Configuration Firebase -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyBsla-0z8ZyPgfJOTxabFKxBEE2y0oZDD8",
@@ -144,9 +172,16 @@
         window.location.href = "login.html";
       }
     });
+
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = "login.html";
+      });
+    }
   </script>
 
   <!-- ✅ Script principal -->
   <script src="script.js"></script>
 </body>
 </html>
+

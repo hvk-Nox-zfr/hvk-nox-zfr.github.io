@@ -1,4 +1,17 @@
 (function initDedicaces() {
+  // ⚡️ Configuration Firebase (remplace par tes vraies infos)
+const firebaseConfig = {
+  apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
+  authDomain: "vafm-dedicaces.firebaseapp.com",
+  databaseURL: "https://vafm-dedicaces-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "vafm-dedicaces",
+  storageBucket: "vafm-dedicaces.firebasestorage.app",
+  messagingSenderId: "553720861929",
+  appId: "1:553720861929:web:87739d3bfa41ed5b50cc78",
+  measurementId: "G-QNVR8XET7E"
+};
+  firebase.initializeApp(firebaseConfig);
+
   const db = firebase.database();
 
   const form = document.getElementById('dedicaceForm');

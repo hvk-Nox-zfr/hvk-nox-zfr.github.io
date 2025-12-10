@@ -1,5 +1,5 @@
 (function initDedicaces() {
-  // Évite double initialisation si ce script est inclus plusieurs fois
+  // ⚡️ Configuration Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyBiMcAmaOy9g-5Ail2lmj4adxNBNzW4IGk",
     authDomain: "vafm-dedicaces.firebaseapp.com",
@@ -24,23 +24,20 @@
   const emailInput = document.getElementById('email'); // optionnel si présent dans ton HTML
   const charCount = document.getElementById('charCount');
 
-  // File pour le défilement
   const file = [];
-  // Ensemble des clés déjà affichées pour éviter les doublons
   const affichées = new Set();
-  // Anti double clic
   let isSending = false;
 
   if (!form || !feed || !marquee || !msgInput || !nomInput) return;
 
-  // Compteur de caractères
+  // compteur de caractères
   msgInput.addEventListener('input', () => {
     const max = parseInt(msgInput.getAttribute('maxlength') || '60', 10);
     const rem = Math.max(0, max - msgInput.value.length);
     charCount.textContent = rem + ' caractères restants';
   });
 
-  // Échappement simple
+  // échappement simple
   function escapeHtml(s) {
     return String(s)
       .replace(/&/g, '&amp;')
@@ -50,7 +47,7 @@
       .replace(/'/g, '&#39;');
   }
 
-  // Affichage d'une dédicace validée (par clé Firebase pour le de-dup)
+  // affichage d'une dédicace validée
   function displayDedicace(key, obj) {
     if (affichées.has(key)) return;
     affichées.add(key);
@@ -66,7 +63,7 @@
     }
   }
 
-  // Lecture initiale : affiche uniquement les "accepted"
+  // lecture initiale : uniquement les "accepted"
   db.ref('dedicaces').orderByChild('date').limitToLast(200).once('value')
     .then(snap => {
       const items = [];
@@ -77,12 +74,11 @@
           items.push({ key: k, data: d });
         }
       });
-      // On veut du plus récent au plus ancien
       items.reverse().forEach(({ key, data }) => displayDedicace(key, data));
     })
     .catch(err => console.warn('Erreur lecture initiale dedicaces:', err));
 
-  // Écoute des nouveaux ajouts (on n’affiche que les "accepted")
+  // écoute des nouveaux ajouts validés
   db.ref('dedicaces').orderByChild('date').limitToLast(50).on('child_added', snap => {
     const d = snap.val();
     const k = snap.key;
@@ -90,7 +86,7 @@
     if (d.status === "accepted") displayDedicace(k, d);
   });
 
-  // Écoute des changements de statut : quand une dédicace passe de "pending" à "accepted", on l’affiche
+  // écoute des changements de statut
   db.ref('dedicaces').on('child_changed', snap => {
     const d = snap.val();
     const k = snap.key;
@@ -98,14 +94,14 @@
     if (d.status === "accepted") displayDedicace(k, d);
   });
 
-  // Envoi : stocke en "pending" (et empêche les doubles envois)
+  // envoi : stocke en "pending"
   form.addEventListener('submit', e => {
     e.preventDefault();
     if (isSending) return;
     isSending = true;
 
     const nom = nomInput.value.trim();
-    const email = emailInput ? emailInput.value.trim() : ""; // optionnel
+    const email = emailInput ? emailInput.value.trim() : "";
     const message = msgInput.value.trim();
 
     if (!nom || !message) {
@@ -114,7 +110,7 @@
       return;
     }
 
-    // Blacklist courte
+    // blacklist courte
     const blacklist = ["con","connard","merde","putain","salope","enculé","fdp","tg","nique","bite","couille"];
     if (blacklist.some(m => message.toLowerCase().includes(m))) {
       alert('Ton message contient un mot interdit. Merci de rester respectueux !');
@@ -122,18 +118,9 @@
       return;
     }
 
-    // Limite d’une dédicace par jour (locale)
-    const today = new Date().toISOString().split('T')[0];
-    const last = localStorage.getItem('dedicaceDate');
-    if (last === today) {
-      alert("Tu as déjà envoyé une dédicace aujourd'hui.");
-      isSending = false;
-      return;
-    }
-
     const payload = {
       nom,
-      email,                  // stocké si présent
+      email,
       message,
       date: Date.now(),
       status: "pending"
@@ -147,7 +134,6 @@
       } else {
         form.reset();
         charCount.textContent = '60 caractères restants';
-        localStorage.setItem('dedicaceDate', today);
         alert("Ta dédicace a été envoyée et attend validation !");
       }
     });

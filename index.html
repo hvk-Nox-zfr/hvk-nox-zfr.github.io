@@ -304,12 +304,40 @@ Que vous soyez fan d’électro, passionné de house ou simplement en quête d�
 <!-- Statistiques GoatCounter -->
 <script data-goatcounter="https://vafm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-    <div class="center-block">
-      <script src="https://elfsightcdn.com/platform.js" async></script> 
-      <div class="elfsight-app-71ce22f6-65e8-43de-b7ba-5a0e40abb7ad" data-elfsight-app-lazy></div>
+  <!-- Lecteur VAFM — logo à gauche, play au centre (bouton simple) -->
+<div class="mini-player-zone" aria-label="Lecteur audio VAFM">
+  <div class="mini-player-inner">
+    <div class="left-block">
+      <img src="https://manager4.streamradio.fr:1130/media/widgets/VAFM.png" alt="Logo VAFM" class="mini-cover" />
     </div>
+
+    <div class="center-block">
+      <button id="playBtn" class="simple-play" aria-pressed="false" aria-label="Lire la radio">
+        <!-- play icon -->
+        <svg class="icon-play" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path fill="currentColor" d="M8 5v14l11-7z"/>
+        </svg>
+        <!-- pause icon (hidden by default) -->
+        <svg class="icon-pause" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" style="display:none">
+          <path fill="currentColor" d="M6 5h4v14H6zM14 5h4v14h-4z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="right-block">
+      <div class="station-name">VAFM</div>
+      <div id="currentTrack" class="current-track">Chargement du titre...</div>
+    </div>
+  </div>
+
+  <audio id="miniAudio" preload="none" crossorigin="anonymous">
+    <source src="https://manager10.streamradio.fr:1555/stream" type="audio/mpeg">
+    Ton navigateur ne supporte pas l’audio HTML5.
+  </audio>
+</div>
 </body>
 </html>
+
 
 
 

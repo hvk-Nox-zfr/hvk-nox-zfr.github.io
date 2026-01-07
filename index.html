@@ -82,7 +82,7 @@
 <section class="hero-banner">
   <img src="assets/vafm site.png" alt="Bienvenue sur VAFM" class="hero-image distant">
   <div class="fade-overlay"></div>
-
+  
   <div class="hero-text">
     <h2>Bienvenue sur VAFM</h2>
     <h3>VAFM est la webradio du Valenciennois. Nous diffusons des émissions locales, des interviews, des reportages et des dédicaces en direct.</h3>
@@ -106,6 +106,27 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
+
+      <div class="article-card" onclick="openPopup('popup-pub')">
+        <img src="assets/marchenoel.jpeg" alt="VAFM publicité" class="card-image" />
+        <div class="card-content">
+          <h3>Vous voulez faire votre publicité ?</h3>
+          <p>Vous voulez faire votre publicité ? Alors remplissez le formulaire en cliquant ici.</p>
+        </div>
+      </div>
+  
+  <div id="popup-pub" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup('popup-pub')">&times;</span>
+
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSeYFNikK9dE6AlrMl5nh8IAR-YsvhLjJUsYhTiz6WAMkLrmTw/viewform?embedded=true" 
+      width="100%" height="600" frameborder="0">
+    </iframe>
+
+  </div>
+</div>
   
       <div class="article-card" onclick="openPopup('popup-noel')">
         <img src="assets/marchenoel.jpeg" alt="VAFM recrute" class="card-image" />
@@ -178,6 +199,20 @@ Aux commandes : DJ MKII, qui vous fera voyager chaque mois avec un mix exclusif.
       </div>
     </main>
 
+<!-- Popups -->
+<div id="popup-pub" class="popup hidden">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup('popup-pub')">✖</button>
+    <img src="assets/marchenoel.jpeg" alt="emission CQFD" class="popup-image" />
+    <h2>Le marché de Noël arrive à Valenciennes.</h2>
+    <p>
+      Le marché de Noël de Valenciennes est en préparation pour vous offrir le plus beau des Noëls. 
+      Au programme : une grande roue, des stands pour vous régaler et de belles décorations pour une fête incroyable et inoubliable. 
+      Le marché ouvrira ses portes le samedi 29 novembre et se terminera le 24 décembre.
+    </p>
+  </div>
+</div>
+      
 <!-- Popups -->
 <div id="popup-noel" class="popup hidden">
   <div class="popup-content">
@@ -337,6 +372,7 @@ Que vous soyez fan d’électro, passionné de house ou simplement en quête d�
 </div>
 </body>
 </html>
+
 
 
 

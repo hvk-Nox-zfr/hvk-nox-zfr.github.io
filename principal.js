@@ -394,3 +394,11 @@ dedicaceForm.addEventListener("submit", async (e) => {
     })
     .catch(err => { console.error(err); alert("Erreur lors de l'envoi."); });
 });
+
+function openPopup(id) {
+  document.getElementById(id).style.display = "flex";
+}
+
+function closePopup(id) {
+  document.getElementById(id).style.display = "none";
+}
